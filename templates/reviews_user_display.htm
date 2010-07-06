@@ -1,0 +1,31 @@
+{*  $Id: reviews_user_display.htm 443 2010-07-06 15:46:57Z drak $  *}
+{assign var='templatetitle' value=$title}
+{include file='reviews_user_menu.htm'}
+
+<h3>{$title|modcallhooks|safehtml}</h3>
+
+<div id="review-body">
+    {$text|safehtml|modcallhooks:'Reviews'}
+</div>
+
+<dl id="review-meta">
+    <dt>{gt text='Published on'}:</dt>
+    <dd>{$cr_date|dateformat|safetext}</dd>
+    <dt>{gt text='Reviewer'}:</dt>
+    <dd><a href="mailto:{$email|safetext}">{$reviewer|safetext}</a></dd>
+    {if $score neq ''}
+    <dt>{gt text='Score'}:</dt>
+    <dd>{$score|safetext}</dd>
+    {/if}
+    {if $url neq '' and $url_title neq ''}
+    <dt>{gt text='Related Link'}:</dt>
+    <dd><a href="{$url|safetext}">{$url_title|safetext}</a></dd>
+    {/if}
+    <dt>{gt text='Hits'}:</dt>
+    <dd>{$hits|safetext}</dd>
+</dl>
+
+{pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='page' shift=1}
+
+{modurl modname='Reviews' func='display' id=$id assign='returnurl'}
+{modcallhooks hookobject='item' hookaction='display' hookid=$id module='Reviews' returnurl=$returnurl}
