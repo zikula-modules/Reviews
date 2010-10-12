@@ -3,7 +3,7 @@
 {include file='reviews_user_menu.htm'}
 <h3>{$templatetitle}</h3>
 
-<form id="reviews_user_newform" class="z-form" action="{modurl modname='Reviews type='user' func='create'}" method="post" enctype="application/x-www-form-urlencoded">
+<form id="reviews_user_newform" class="z-form" action="{modurl modname='Reviews' type='user' func='create'}" method="post" enctype="application/x-www-form-urlencoded">
     <div>
         <input type="hidden" name="authid" value="{insert name='generateauthkey' module='Reviews'}" />
         <fieldset>
