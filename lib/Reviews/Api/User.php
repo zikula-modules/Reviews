@@ -61,8 +61,8 @@ class Reviews_Api_User extends Zikula_Api
         if (!isset($args['language'])) {
             $args['language'] = null;
         }
-        if (!isset($args['order'])) {
-            $args['order'] = 'id';
+        if (!isset($args['orderby'])) {
+            $args['orderby'] = 'id';
         }
         if (!isset($args['category'])) {
             $args['category'] = null;
@@ -117,7 +117,7 @@ class Reviews_Api_User extends Zikula_Api
         }
 
         // get the objects from the db
-        $objArray = DBUtil::selectObjectArray('reviews', $where, $args['order'], $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
+        $objArray = DBUtil::selectObjectArray('reviews', $where, $args['orderby'], $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
 
         // check for an error with the database code, and if so set an appropriate
         // error message and return
