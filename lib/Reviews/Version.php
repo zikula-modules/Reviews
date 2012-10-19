@@ -9,7 +9,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Version extends Zikula_Version
+class Reviews_Version extends Zikula_AbstractVersion
 {
     public function getMetaData()
     {
