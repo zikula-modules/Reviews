@@ -34,7 +34,7 @@
                 <a href="{modurl modname='Reviews' func='display' id=$items[k].id}">{$items[k].title|safehtml}</a>
                 {/if}
             </td>
-            <td>{$items[k].reviewer|modcallhooks:'Reviews'|safehtml}</td>
+            <td>{$items[k].reviewer|safehtml}</td>
             <td>{$items[k].score|safetext}</td>
             <td>{$items[k].hits|safetext}</td>
         </tr>
