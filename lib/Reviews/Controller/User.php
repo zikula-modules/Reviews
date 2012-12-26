@@ -10,7 +10,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Controller_User extends Zikula_Controller
+class Reviews_Controller_User extends Zikula_AbstractController 
 {
     /**
      * the main user function

@@ -10,7 +10,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Api_Search extends Zikula_Api
+class Reviews_Api_Search extends Zikula_AbstractApi
 {
     /**
      * Search plugin info
