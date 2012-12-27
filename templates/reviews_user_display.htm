@@ -2,10 +2,10 @@
 {assign var='templatetitle' value=$title}
 {include file='reviews_user_menu.htm'}
 
-<h3>{$title|modcallhooks|safehtml}</h3>
+<h3>{$title|safetext}</h3>
 
 <div id="review-body">
-    {$text|safehtml|modcallhooks:'Reviews'}
+    {$text|safehtml}
 </div>
 
 <dl id="review-meta">
@@ -26,6 +26,3 @@
 </dl>
 
 {pager rowcount=$pager.numitems limit=$pager.itemsperpage posvar='page' shift=1}
-
-{modurl modname='Reviews' func='display' id=$id assign='returnurl'}
-{modcallhooks hookobject='item' hookaction='display' hookid=$id module='Reviews' returnurl=$returnurl}

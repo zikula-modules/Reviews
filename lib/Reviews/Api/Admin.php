@@ -10,7 +10,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Api_Admin extends Zikula_Api
+class Reviews_Api_Admin extends Zikula_AbstractApi
 {
     /**
      * delete a Reviews item
