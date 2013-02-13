@@ -10,12 +10,12 @@
  * @subpackage Reviews
  */
 
-class Reviews_Installer extends Zikula_Installer
+class Reviews_Installer extends Zikula_AbstractInstaller
 {
     /**
      * init reviews module
      */
-    public function init()
+    public function install()
     {
         // create table
         if (!DBUtil::createTable('reviews')) {
@@ -66,7 +66,7 @@ class Reviews_Installer extends Zikula_Installer
     /**
      * delete the reviews module
      */
-    public function delete()
+    public function uninstall()
     {
         // drop table
         if (!DBUtil::dropTable('reviews')) {

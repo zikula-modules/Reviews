@@ -10,7 +10,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Api_User extends Zikula_Api
+class Reviews_Api_User extends Zikula_AbstractApi
 {
     /**
      * get a specific review

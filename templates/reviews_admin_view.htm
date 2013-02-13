@@ -57,7 +57,7 @@
         <tbody>
             {foreach from=$reviews item='review'}
             <tr class="{cycle values='z-odd,z-even'}">
-                <td>{$review.title|modcallhooks|safehtml}</td>
+                <td>{$review.title|safehtml}</td>
                 <td>{$review.id|safetext}</td>
                 {if $enablecategorization}
                 <td>

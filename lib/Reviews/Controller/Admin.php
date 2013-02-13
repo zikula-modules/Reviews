@@ -10,7 +10,7 @@
  * @subpackage Reviews
  */
 
-class Reviews_Controller_Admin extends Zikula_Controller
+class Reviews_Controller_Admin extends Zikula_AbstractController 
 {
     protected function postInitialize()
     {
