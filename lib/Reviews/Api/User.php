@@ -330,7 +330,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
         }
 
         // define the available user functions
-        $funcs = array('main', 'view', 'display', 'newreview', 'create');
+        $funcs = array('main', 'view', 'display', 'new', 'create');
         // set the correct function name based on our input
         if (empty($args['vars'][2])) {
             System::queryStringSetVar('func', 'main');
