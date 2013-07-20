@@ -56,7 +56,7 @@ function smarty_function_reviewsuserlinks($params, &$smarty)
                              'text' => __('View reviews', $dom));
     }
     if (SecurityUtil::checkPermission('Reviews::', "::", ACCESS_COMMENT)) {
-        $userlinks[] = array('url'  => ModUtil::url('Reviews', 'user', 'new'),
+        $userlinks[] = array('url'  => ModUtil::url('Reviews', 'user', 'newreview'),
                              'text' => __('Submit a review', $dom));
     }
 

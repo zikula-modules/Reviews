@@ -369,9 +369,12 @@ class Reviews_Controller_Admin extends Zikula_AbstractController
 
         $enablecategorization = (bool)FormUtil::getPassedValue('enablecategorization', false, 'POST');
         $this->setVar('enablecategorization', $enablecategorization);
+        
+        $addcategorytitletopermalink = (bool)FormUtil::getPassedValue('addcategorytitletopermalink', false, 'POST');
+        $this->setVar('addcategorytitletopermalink', $addcategorytitletopermalink);
 
         // Let any other modules know that the modules configuration has been updated
-        $this->callHooks('module', 'updateconfig', 'Reviews', array('module' => 'Reviews'));
+        ModUtil::callHooks('module', 'updateconfig', 'Reviews', array('module' => 'Reviews'));
 
         // the module configuration has been updated successfuly
         LogUtil::registerStatus($this->__('Done! Module configuration updated.'));
