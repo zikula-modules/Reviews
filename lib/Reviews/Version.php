@@ -2,7 +2,7 @@
 /**
  * Zikula Application Framework
  *
- * @copyright (c) 2002, Zikula Development Team
+ * @copyright (c) 2013, Zikula Development Team
  * @link http://www.zikula.org
  * @license GNU/GPL - http://www.gnu.org/copyleft/gpl.html
  * @package Zikula_Value_Addons
@@ -19,7 +19,7 @@ class Reviews_Version extends Zikula_AbstractVersion
         //! this defines the module's url
         $meta['url']            = __('reviews');
         $meta['version']        = '2.4.1';
-        $meta['contact']        = 'http://www.markwest.me.uk/';
+        $meta['contact']        = 'http://webdesign-in-bremen.com';
 
         $meta['securityschema'] = array('Reviews::' => 'Review name::Review ID');
         return $meta;
