@@ -55,7 +55,19 @@ class Reviews_Installer extends Zikula_AbstractInstaller
         // Upgrade dependent on old version number
         switch ($oldversion)
         {
+            case '2.4':
+                $prefix = $this->serviceManager['prefix'];
+                $connection = Doctrine_Manager::getInstance()->getConnection('default');
+                $sql = 'RENAME TABLE ' . $prefix . '_' . 'reviews' . ' TO ' . 'reviews';
+                $stmt = $connection->prepare($sql);
+                try {
+                    $stmt->execute();
+                } catch (Exception $e) {
+                    LogUtil::registerError($e);
+                }
+
             case '2.4.1':
+                // for later update
                 break;
         }
 
@@ -78,8 +90,8 @@ class Reviews_Installer extends Zikula_AbstractInstaller
 
         // Delete entries from category registry
         ModUtil::dbInfoLoad('Categories');
-        DBUtil::deleteWhere('categories_registry', "crg_modname = 'Reviews'");
-        DBUtil::deleteWhere('categories_mapobj', "cmo_modname = 'Reviews'");
+        DBUtil::deleteWhere('categories_registry', "modname = 'Reviews'");
+        DBUtil::deleteWhere('categories_mapobj', "modname = 'Reviews'");
 
         // Deletion successful
         return true;
