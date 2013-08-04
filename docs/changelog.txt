@@ -1,0 +1,20 @@
+CHANGELOG
+---------
+
+Changes in 2.4.1
+
+fixed #1 The module is installable now under Zikula 1.3.5
+
+fixed #2 Wrong class name Zikula_Version changed to correct class Zikula_AbstractVersion
+
+fixed #3 Wrong hook calls and class names deleted and fixed
+
+fixed #5 Shorturls works now
+
+fixed #10 wrong pagevar setter and wrong controller calling deleted
+
+fixed #15 The module is deinstallable now
+
+fixed #16 ot file generated
+
+fixed #17 German translation complete
