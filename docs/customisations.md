@@ -17,6 +17,12 @@ implemented classes
 
 *lib/Reviews/Controller/Admin.php
 
+*lib/Reviews/Entity/Review.php
 *lib/Reviews/Entity/Repository/Review.php
 
 *lib/Reviews/Util/Model.php
+
+
+New files
+
+*templates/plugins/modifier.reviewsShowStars.php
