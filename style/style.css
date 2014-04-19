@@ -1,37 +1,68 @@
-
-/* Admin panel */
-div#reviews_category_selectors {
-    display: inline;
+/* view pages */
+div#z-maincontent.z-module-reviews table tbody tr td {
+    vertical-align: top;
 }
 
-/* UI */
-.pn-module-Reviews .z-menu {
-    margin-bottom: 1em;
-}
-
-div.reviews-alphapager {
-    margin: 1em 0;
-}
-
-div#reviews-popular,
-div#reviews-recent {
+/* display pages */
+.reviews-display.with-rightbox div.z-panel-content {
     float: left;
-    margin: 2em auto;
-    width: 50%;
+    width: 79%;
+}
+.reviews-display div.reviews-rightbox {
+    float: right;
+    margin: 0 1em;
+    padding: .5em;
+    width: 20%;
+    /*border: 1px solid #666;*/
 }
 
-div#reviews-categories {
-    width: 100%;
+.reviews-display div.reviews-rightbox h3 {
+    color: #333;
+    font-weight: 400;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
 }
 
-#review-body {
-    border-bottom: 1px solid #ddd;
-    margin: 1em;
-    padding-bottom: 1em;
+.reviews-display div.reviews-rightbox p.managelink {
+    margin-left: 18px;
+}
+/* validation */
+div.z-formrow input.required, div.z-formrow textarea.required {
+    border: 1px solid #00a8e6;
+}
+div.z-formrow input.validation-failed, div.z-formrow textarea.validation-failed {
+    border: 1px solid #f30;
+    color: #f30;
+}
+div.z-formrow input.validation-passed, div.z-formrow textarea.validation-passed {
+    border: 1px solid #0c0;
+    color: #000;
 }
 
-dl#review-meta dt {
-    float: left;
-    padding-right: 0.5em;
-    margin:0;
+.validation-advice {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #f90;
+    color: #fff;
+    font-weight: 700;
+}
+div.reviews-view form.reviews-quicknav {
+    margin: 10px 0;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
+
+div.reviews-view form.reviews-quicknav fieldset {
+    padding: 3px 10px;
+    margin-bottom: 0;
+}
+
+div.reviews-view form.reviews-quicknav fieldset h3 {
+    margin-top: 0;
+    display: none;
+}
+
+div.reviews-view form.reviews-quicknav fieldset #num {
+    width: 50px;
+    text-align: right;
 }

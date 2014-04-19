@@ -12,98 +12,7 @@
 
 class Reviews_Api_Admin extends Zikula_AbstractApi
 {
-    /**
-     * delete a Reviews item
-     *
-     * @param $args['tid'] ID of the item
-     * @return bool true on success, false on failure
-     */
-    public function delete($args)
-    {
-        // Argument check
-        if (!isset($args['id'])) {
-            return LogUtil::registerArgsError();
-        }
 
-        // Get the review
-        $item = ModUtil::apiFunc('Reviews', 'user', 'get', array('id' => $args['id']));
-
-        if ($item == false) {
-            return LogUtil::registerError($this->__('No such review found.'));
-        }
-
-        // Security check
-        if (!SecurityUtil::checkPermission('Reviews::', "$item[title]::$item[id]", ACCESS_DELETE)) {
-            return LogUtil::registerPermissionError();
-        }
-
-        if (!DBUtil::deleteObjectByID('reviews', $item['id'], 'id')) {
-            return LogUtil::registerError($this->__('Error! Deletion attempt failed.'));
-        }
-
-        // Let any hooks know that we have deleted an item.
-        $this->callHooks('item', 'delete', $item['id'], array('module' => 'Reviews'));
-
-        return true;
-    }
-
-    /**
-     * update a Reviews item
-     *
-     * @param $args['tid'] the ID of the item
-     * @param $args['name'] the new name of the item
-     * @param $args['number'] the new number of the item
-     */
-    public function update($args)
-    {
-        // Argument check
-        if ((!isset($args['id'])) ||
-                (!isset($args['title'])) ||
-                (!isset($args['text'])) ||
-                (!isset($args['reviewer'])) ||
-                (!isset($args['email']))) {
-            return LogUtil::registerArgsError();
-        }
-
-        // Check review to update exists, and get information for
-        // security check
-        $item = ModUtil::apiFunc('Reviews', 'user', 'get', array('id' => $args['id']));
-
-        if ($item == false) {
-            return LogUtil::registerError($this->__('No such review found.'));
-        }
-
-        // Security check
-        if (!SecurityUtil::checkPermission('Reviews::', "$item[title]::$args[id]", ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
-        if (!SecurityUtil::checkPermission('Reviews::', "$args[title]::$args[id]", ACCESS_EDIT)) {
-            return LogUtil::registerPermissionError();
-        }
-
-        // set some defaults
-        if (!isset($args['language'])) {
-            $args['language'] = '';
-        }
-
-        // define the permalink title if not present
-        if (!isset($args['urltitle']) || empty($args['urltitle'])) {
-            $args['urltitle'] = DataUtil::formatPermalink($args['title']);
-        }
-
-        if (!DBUtil::updateObject($args, 'reviews', '', 'id')) {
-            return LogUtil::registerError($this->__('Error! Update attempt failed.'));
-        }
-
-        // Let any other modules know we have updated an item
-        $this->callHooks('item', 'update', $args['id'], array('module' => 'Reviews'));
-
-        // The item has been modified, so we clear all cached pages of this item.
-        $render = & Zikula_View::getInstance('Reviews');
-        $render->clear_cache(null, $args['id']);
-
-        return true;
-    }
 
     /**
      * Purge the permalink fields in the Reviews table
@@ -125,14 +34,14 @@ class Reviews_Api_Admin extends Zikula_AbstractApi
         }
 
         // get all the ID and permalink of the table
-        $data = DBUtil::selectObjectArray('reviews', '', '', -1, -1, 'id', null, null, array('id', 'urltitle'));
+        $data = DBUtil::selectObjectArray('reviews', '', '', -1, -1, 'id', null, null, array('id', 'slug'));
 
         // loop the data searching for non equal permalinks
         $perma = '';
         foreach (array_keys($data) as $id) {
-            $perma = strtolower(DataUtil::formatPermalink($data[$id]['urltitle']));
-            if ($data[$id]['urltitle'] != $perma) {
-                $data[$id]['urltitle'] = $perma;
+            $perma = strtolower(DataUtil::formatPermalink($data[$id]['slug']));
+            if ($data[$id]['slug'] != $perma) {
+                $data[$id]['slug'] = $perma;
             } else {
                 unset($data[$id]);
             }
@@ -153,32 +62,37 @@ class Reviews_Api_Admin extends Zikula_AbstractApi
             return false;
         }
     }
-
+    
     /**
-     * get available admin panel links
+     * Returns available admin panel links.
      *
-     * @author Mark West
-     * @return array array of admin links
+     * @return array Array of admin links.
      */
     public function getlinks()
     {
         $links = array();
-
-        if (SecurityUtil::checkPermission('Reviews::', '::', ACCESS_READ)) {
-            $links[] = array('url'  => ModUtil::url('Reviews', 'admin', 'view'),
-                    'text' => $this->__('View reviews list'));
+    
+        if (SecurityUtil::checkPermission($this->name . '::', '::', ACCESS_READ)) {
+            $links[] = array('url' => ModUtil::url($this->name, 'user', 'main'),
+                    'text' => $this->__('Frontend'),
+                    'title' => $this->__('Switch to user area.'),
+                    'class' => 'z-icon-es-home');
         }
-        if (SecurityUtil::checkPermission('Reviews::', '::', ACCESS_ADD)) {
-            $links[] = array('url'  => ModUtil::url('Reviews', 'admin', 'newreview'),
-                    'text' => $this->__('Create a review'));
-        }
+        if (SecurityUtil::checkPermission($this->name . ':Review:', '::', ACCESS_ADMIN)) {
+            $links[] = array('url' => ModUtil::url($this->name, 'admin', 'view', array('ot' => 'review')),
+                    'text' => $this->__('Reviews'),
+                    'title' => $this->__('Review list'));
+        } 
         if (SecurityUtil::checkPermission('Reviews::', '::', ACCESS_ADMIN)) {
             $links[] = array('url'  => ModUtil::url('Reviews', 'admin', 'view', array('purge' => 1)),
                     'text' => $this->__('Purge permalinks'));
-            $links[] = array('url'  => ModUtil::url('Reviews', 'admin', 'modifyconfig'),
-                    'text' => $this->__('Settings'));
         }
-
+        if (SecurityUtil::checkPermission($this->name . '::', '::', ACCESS_ADMIN)) {
+            $links[] = array('url' => ModUtil::url($this->name, 'admin', 'config'),
+                    'text' => $this->__('Configuration'),
+                    'title' => $this->__('Manage settings for this application'));
+        }
+    
         return $links;
     }
 }

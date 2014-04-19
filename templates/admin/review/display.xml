@@ -1,0 +1,4 @@
+{* purpose of this template: reviews display xml view in admin area *}
+{reviewsTemplateHeaders contentType='text/xml'}<?xml version="1.0" encoding="{charset}" ?>
+{getbaseurl assign='baseurl'}
+{include file='admin/review/include.xml' item=$review}

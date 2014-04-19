@@ -13,231 +13,40 @@
 class Reviews_Api_User extends Zikula_AbstractApi
 {
     /**
-     * get a specific review
+     * Returns available user panel links.
      *
-     * @param $args['id'] id of review to get
-     * @return mixed item array, or false on failure
+     * @return array Array of user links.
      */
-    public function get($args)
+    public function getlinks()
     {
-        // argument check
-        if ((!isset($args['id']) || !is_numeric($args['id'])) &&
-                !isset($args['title'])) {
-            return LogUtil::registerArgsError();
+        $links = array();
+    
+        if (SecurityUtil::checkPermission($this->name . '::', '::', ACCESS_ADMIN)) {
+            $links[] = array('url' => ModUtil::url($this->name, 'admin', 'main'),
+                    'text' => $this->__('Backend'),
+                    'title' => $this->__('Switch to administration area.'),
+                    'class' => 'z-icon-es-options');
         }
+    
+        $controllerHelper = new Reviews_Util_Controller($this->serviceManager);
+        $utilArgs = array('api' => 'user', 'action' => 'getlinks');
+        $allowedObjectTypes = $controllerHelper->getObjectTypes('api', $utilArgs);
+    
+        if (in_array('review', $allowedObjectTypes)
+                && SecurityUtil::checkPermission($this->name . ':Review:', '::', ACCESS_READ)) {
+            $links[] = array('url' => ModUtil::url($this->name, 'user', 'view', array('ot' => 'review')),
+                    'text' => $this->__('Reviews'),
+                    'title' => $this->__('Review list'));
+        }     
+        if (in_array('review', $allowedObjectTypes)
+                && SecurityUtil::checkPermission($this->name . ':Review:', '::', ACCESS_ADD)) {       
+            $links[] = array('url' => ModUtil::url($this->name, 'user', 'edit', array('ot' => 'review')),
+                    'text' => $this->__('Create Review'),
+                    'title' => $this->__('Create a review'));   
+        }         
 
-        // define the permission filter to apply
-        $permFilter   = array();
-        $permFilter[] = array('component_left'  => 'Reviews',
-                'component_right' => 'Item',
-                'instance_left'   => 'title',
-                'instance_right'  => 'id',
-                'level'           => ACCESS_READ);
-
-        if (isset($args['id']) && is_numeric($args['id'])) {
-            return DBUtil::selectObjectByID('reviews', $args['id'], 'id', '', $permFilter);
-        } else {
-            return DBUtil::selectObjectByID('reviews', $args['title'], 'urltitle', '', $permFilter);
-        }
-    }
-
-    /**
-     * get all reviews
-     *
-     * @return mixed array of items, or false on failure
-     */
-    public function getall($args)
-    {
-        // optional arguments.
-        if (!isset($args['startnum']) || empty($args['startnum'])) {
-            $args['startnum'] = 0;
-        }
-        if (!isset($args['numitems']) || empty($args['numitems'])) {
-            $args['numitems'] = -1;
-        }
-        if (!isset($args['ignoreml']) || !is_bool($args['ignoreml'])) {
-            $args['ignoreml'] = false;
-        }
-        if (!isset($args['language'])) {
-            $args['language'] = null;
-        }
-        if (!isset($args['orderby'])) {
-            $args['orderby'] = 'id';
-        }
-        if (!isset($args['category'])) {
-            $args['category'] = null;
-        }
-
-        if (!is_numeric($args['startnum']) ||
-                !is_numeric($args['numitems'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        $args['catFilter'] = array();
-        if (isset($args['category']) && !empty($args['category'])){
-            if (is_array($args['category'])) {
-                $args['catFilter'] = $args['category'];
-            } elseif (isset($args['property'])) {
-                $property = $args['property'];
-                $args['catFilter'][$property] = $args['category'];
-            }
-            $args['catFilter']['__META__'] = array('module' => 'Reviews');
-        }
-
-        // security check
-        if (!SecurityUtil::checkPermission('Reviews::', '::', ACCESS_READ)) {
-            return array();
-        }
-
-        // define the permission filter to apply
-        $permFilter   = array();
-        $permFilter[] = array('component_left'  => 'Reviews',
-                'component_right' => 'Item',
-                'instance_left'   => 'title',
-                'instance_right'  => 'id',
-                'level'           => ACCESS_READ);
-
-        // get database setup
-        $pntable = DBUtil::getTables();
-        $columns = $pntable['reviews_column'];
-
-        $whereargs = array();
-        // check and form where clause
-        if (isset($args['letter'])) {
-            $whereargs[] = "$columns[title] LIKE '" . DataUtil::formatForStore($args['letter']) . "%'";
-        }
-        if (System::getVar('multilingual') == 1 && !$args['ignoreml'] && $args['language']) {
-            $whereargs[] = "($columns[language] = '" . DataUtil::formatForStore($args['language']) . "' OR $columns[language] = '')";
-        }
-
-        // construct the where statements
-        $where = '';
-        if (count($whereargs) > 0) {
-            $where = ' WHERE ' . implode(' AND ', $whereargs);
-        }
-
-        // get the objects from the db
-        $objArray = DBUtil::selectObjectArray('reviews', $where, $args['orderby'], $args['startnum']-1, $args['numitems'], '', $permFilter, $args['catFilter']);
-
-        // check for an error with the database code, and if so set an appropriate
-        // error message and return
-        if ($objArray === false) {
-            return LogUtil::registerError(__('Error! Could not load items.', $dom));
-        }
-
-        // need to do this here as the category expansion code can't know the
-        // root category which we need to build the relative path component
-        if (ModUtil::getVar('Reviews', 'enablecategorization') && $objArray && isset($args['catregistry']) && $args['catregistry']) {
-            ObjectUtil::postProcessExpandedObjectArrayCategories ($objArray, $args['catregistry']);
-        }
-
-        // return the items
-        return $objArray;
-    }
-
-    /**
-     * utility function to count the number of items held by this module
-     *
-     * @return integer number of items held by this module
-     */
-    public function countitems($args)
-    {
-        // security check
-        if (!SecurityUtil::checkPermission('Reviews::', '::', ACCESS_READ)) {
-            return 0;
-        }
-
-        $args['catFilter'] = array();
-
-        if ($args['category']){
-            if (is_array($args['category'])) {
-                $args['catFilter'] = $args['category'];
-            } else {
-                $args['catFilter'][] = $args['category'];
-            }
-            $args['catFilter']['__META__'] = array('module' => 'Reviews');
-        }
-
-        // Get optional arguments a build the where conditional
-        // Credit to Jorg Napp for this superb technique.
-        $pntable = DBUtil::getTables();
-        $columns = $pntable['reviews_column'];
-
-        $queryargs = array();
-        if (isset($args['letter'])) {
-            $queryargs[] = "$columns[title] LIKE '" . DataUtil::formatForStore($args['letter']) . "%'";
-        }
-
-        $where = '';
-        if (count($queryargs) > 0) {
-            $where = ' WHERE ' . implode(' AND ', $queryargs);
-        }
-
-        // Return the number of items
-        return DBUtil::selectObjectCount('reviews', $where, 'id', false, $args['catFilter']);
-    }
-
-    /**
-     * increment the item read count
-     * @author Mark West
-     * @return bool true on success, false on failiure
-     */
-    public function incrementreadcount($args)
-    {
-        if ((!isset($args['id']) || !is_numeric($args['id'])) &&
-                !isset($args['title'])) {
-            return LogUtil::registerArgsError();
-        }
-
-        if (isset($args['id'])) {
-            return DBUtil::incrementObjectFieldByID('reviews', 'hits', $args['id'], 'id');
-        } else {
-            return DBUtil::incrementObjectFieldByID('reviews', 'hits', $args['title'], 'urltitle');
-        }
-    }
-
-    /**
-     * create a new Reviews item
-     *
-     * @param $args['name'] name of the item
-     * @param $args['number'] number of the item
-     * @return mixed Reviews item ID on success, false on failure
-     */
-    public function create($args)
-    {
-        // Argument check
-        if ((!isset($args['title'])) ||
-                (!isset($args['text'])) ||
-                (!isset($args['reviewer'])) ||
-                (!isset($args['email']))) {
-            return LogUtil::registerArgsError();
-        }
-
-        // Security check
-        if (!SecurityUtil::checkPermission('Reviews::', "$args[title]::", ACCESS_ADD)) {
-            return LogUtil::registerPermissionError();
-        }
-
-        // set some defaults
-        if (!isset($args['language'])) {
-            $args['language'] = '';
-        }
-
-        // define the permalink title if not present
-        if (!isset($args['urltitle']) || empty($args['urltitle'])) {
-            $args['urltitle'] = DataUtil::formatPermalink($args['title']);
-        }
-
-        // insert object to db
-        if (!DBUtil::insertObject($args, 'reviews', 'id')) {
-            return LogUtil::registerError(__('Error! Creation attempt failed.', $dom));
-        }
-
-        // Let any hooks know that we have created a new item
-        ModUtil::callHooks('item', 'create', $args['id'], array('module' => 'Reviews'));
-
-        // Return the id of the newly created item to the calling process
-        return $args['id'];
+    
+        return $links;
     }
 
     /**
@@ -246,7 +55,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
      * @author Mark West
      * @return string custom url string
      */
-    public function encodeurl($args)
+     /*public function encodeurl($args)
     {
         // check we have the required input
         if (!isset($args['modname']) || !isset($args['func']) || !isset($args['args'])) {
@@ -285,14 +94,14 @@ class Reviews_Api_User extends Zikula_AbstractApi
             }
             // get the item (will be cached by DBUtil)
             if (isset($args['args']['id'])) {
-                $item = ModUtil::apiFunc('Reviews', 'user', 'get', array('id' => $args['args']['id']));
+                $item = ModUtil::apiFunc('Reviews', 'selection', 'getEntity', array('id' => $args['args']['id']));
             } else {
-                $item = ModUtil::apiFunc('Reviews', 'user', 'get', array('title' => $args['args']['title']));
+                $item = ModUtil::apiFunc('Reviews', 'selection', 'getEntity', array('title' => $args['args']['title']));
             }
             if (ModUtil::getVar('Reviews', 'addcategorytitletopermalink') && isset($args['args']['cat'])) {
-                $vars = $args['args']['cat'].'/'.$item['urltitle'];
+                $vars = $args['args']['cat'].'/'.$item['slug'];
             } else {
-                $vars = $item['urltitle'];
+                $vars = $item['slug'];
             }
             if (isset($args['args']['page']) && $args['args']['page'] != 1) {
                 $vars .= '/page/'.$args['args']['page'];
@@ -322,7 +131,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
      * @author Mark West
      * @return bool true if successful, false otherwise
      */
-    public function decodeurl($args)
+    /* public function decodeurl($args)
     {
         // check we actually have some vars to work with...
         if (!isset($args['vars'])) {
@@ -330,7 +139,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
         }
 
         // define the available user functions
-        $funcs = array('main', 'view', 'display', 'newreview', 'create');
+        $funcs = array('main', 'view', 'display', 'edit');
         // set the correct function name based on our input
         if (empty($args['vars'][2])) {
             System::queryStringSetVar('func', 'main');

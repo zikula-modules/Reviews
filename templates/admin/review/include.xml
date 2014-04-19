@@ -1,0 +1,14 @@
+{* purpose of this template: reviews xml inclusion template in admin area *}
+<review id="{$item.id}" createdon="{$item.createdDate|dateformat}" updatedon="{$item.updatedDate|dateformat}">
+    <id>{$item.id}</id>
+    <title><![CDATA[{$item.title}]]></title>
+    <text><![CDATA[{$item.text}]]></text>
+    <zlanguage><![CDATA[{$item.zlanguage|getlanguagename|safetext}]]></zlanguage>
+    <reviewer><![CDATA[{$item.reviewer}]]></reviewer>
+    <email>{$item.email}</email>
+    <score>{$item.score|reviewsGetListEntry:'review':'score'|safetext}</score>
+    <url>{$item.url}</url>
+    <urlTitle><![CDATA[{$item.urlTitle}]]></urlTitle>
+    <hits>{$item.hits}</hits>
+    <workflowState>{$item.workflowState|reviewsObjectState:false|lower}</workflowState>
+</review>

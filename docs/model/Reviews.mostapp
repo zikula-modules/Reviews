@@ -1,0 +1,137 @@
+application Reviews {
+	vendor MU
+	author "Michael Ueberschaer"
+	email "kontakt@webdesign-in-bremen.com"
+	url "http://webdesign-in-bremen.com"
+	version "2.5.0"
+	prefix reviews
+	targetCoreVersion ZKPRE14
+	generatorSettings {
+		settingsContainer Konfiguration
+		targetCoreVersion ZK136
+		generateAtomTemplates false
+		generateCsvTemplates false
+		generateXmlTemplates false
+		generateJsonTemplates false
+		generateKmlTemplates false
+		generateOnlyBaseClasses true
+		writeModelToDocs true
+		skipFiles "/templates/user/main.tpl, README.md"
+	}
+	modelLayer {
+		modelContainer Model {
+			numExampleRows 0
+			entities {
+				entity review leading categorisable {
+					nameMultiple reviews
+					displayPattern "#title#"
+					workflow STANDARD
+					hasTray true
+					fields {
+						string title {
+							sluggablePosition 1
+						},
+						text ^text {
+							length 6000
+						},
+						string zlanguage nospace language {
+							regexp ""
+						},
+						string reviewer,
+						email ^email,
+						list score {
+							defaultValue ""
+							mandatory false
+							items {
+								listItem ten ( "10" ),
+								listItem nine ( "9" ),
+								listItem eight ( "8" ),
+								listItem seven ( "7" ),
+								listItem six ( "6" ) {
+									image ""
+								},
+								listItem five ( "5" ),
+								listItem four ( "4" ),
+								listItem three ( "3" ) {
+									image ""
+								},
+								listItem two ( "2" ),
+								listItem one ( "1" ) {
+									image ""
+								}
+							}
+						},
+						url ^url {
+							defaultValue ""
+							mandatory false
+						},
+						string url_title {
+							defaultValue ""
+							mandatory false
+						},
+						integer hits {
+							defaultValue ""
+							mandatory false
+							length 18
+						},
+						string cover {
+							defaultValue ""
+							mandatory false
+						},
+						upload coverUpload {
+							mandatory false
+							allowedFileSize 102400
+						}
+					}
+				}
+			}
+			variables {
+				varContainer General {
+					vars {
+						boolVar enablecategorization,
+						intVar pagesize {
+							value "10"
+						},
+						boolVar scoreForUsers,
+						boolVar addcategorytitletopermalink
+					}
+				}
+			}
+		}
+	}
+	controllerLayer {
+		controllerContainer Controller {
+			modelContext ( "Reviews.Model" )
+			processViews "Reviews.View"
+			controllers {
+				adminController Admin {
+					actions {
+						mainAction Main,
+						viewAction View,
+						displayAction Display,
+						editAction Edit,
+						deleteAction Delete
+					}
+				},
+				userController User {
+					actions {
+						mainAction Main,
+						viewAction View,
+						displayAction Display,
+						editAction Edit
+					}
+				},
+				ajaxController Ajax {
+					actions {
+						mainAction Main
+					}
+				}
+			}
+		}
+	}
+	viewLayer {
+		viewContainer View {
+			controller "Reviews.Controller"
+		}
+	}
+}

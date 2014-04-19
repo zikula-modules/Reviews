@@ -1,0 +1,8 @@
+{* purpose of this template: reviews view json view in admin area *}
+{reviewsTemplateHeaders contentType='application/json'}
+[
+{foreach item='item' from=$items name='reviews'}
+    {if not $smarty.foreach.reviews.first},{/if}
+    {$item->toJson()}
+{/foreach}
+]

@@ -1,0 +1,3 @@
+{* purpose of this template: reviews display json view in user area *}
+{reviewsTemplateHeaders contentType='application/json'}
+{$review->toJson()}

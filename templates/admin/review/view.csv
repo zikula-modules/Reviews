@@ -1,0 +1,6 @@
+{* purpose of this template: reviews view csv view in admin area *}
+{reviewsTemplateHeaders contentType='text/comma-separated-values; charset=iso-8859-15' asAttachment=true filename='Reviews.csv'}
+"{gt text='Title'}";"{gt text='Text'}";"{gt text='Zlanguage'}";"{gt text='Reviewer'}";"{gt text='Email'}";"{gt text='Score'}";"{gt text='Url'}";"{gt text='Url title'}";"{gt text='Hits'}";"{gt text='Workflow state'}"
+{foreach item='review' from=$items}
+    "{$review.title|replace:"\"":""}";"{$review.text|replace:"\"":""}";"{$review.zlanguage|getlanguagename|safetext|replace:"\"":""}";"{$review.reviewer|replace:"\"":""}";"{$review.email}";"{$review.score|reviewsGetListEntry:'review':'score'|safetext|replace:"\"":""}";"{$review.url}";"{$review.urlTitle|replace:"\"":""}";"{$review.hits|replace:"\"":""}";"{$item.workflowState|reviewsObjectState:false|lower}"
+{/foreach}
