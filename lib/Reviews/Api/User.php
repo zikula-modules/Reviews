@@ -39,7 +39,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
                     'title' => $this->__('Review list'));
         }     
         if (in_array('review', $allowedObjectTypes)
-                && SecurityUtil::checkPermission($this->name . ':Review:', '::', ACCESS_ADD)) {       
+                && SecurityUtil::checkPermission($this->name . '::', '.*', ACCESS_EDIT)) {       
             $links[] = array('url' => ModUtil::url($this->name, 'user', 'edit', array('ot' => 'review')),
                     'text' => $this->__('Create Review'),
                     'title' => $this->__('Create a review'));   
