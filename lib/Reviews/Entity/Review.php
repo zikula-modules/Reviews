@@ -30,7 +30,105 @@ use DoctrineExtensions\StandardFields\Mapping\Annotation as ZK;
  */
 class Reviews_Entity_Review extends Reviews_Entity_Base_Review
 {
-    // feel free to add your own methods here
+    /**
+     * Collect available actions for this entity.
+     */
+    protected function prepareItemActions()
+    {
+        if (!empty($this->_actions)) {
+            return;
+        }
+    
+        $currentType = FormUtil::getPassedValue('type', 'user', 'GETPOST', FILTER_SANITIZE_STRING);
+        $currentFunc = FormUtil::getPassedValue('func', 'main', 'GETPOST', FILTER_SANITIZE_STRING);
+        $dom = ZLanguage::getModuleDomain('Reviews');
+        if ($currentType == 'admin') {
+            if (in_array($currentFunc, array('main', 'view'))) {
+                $this->_actions[] = array(
+                    'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                    'icon' => 'preview',
+                    'linkTitle' => __('Open preview page', $dom),
+                    'linkText' => __('Preview', $dom)
+                );
+                $this->_actions[] = array(
+                    'url' => array('type' => 'admin', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                    'icon' => 'display',
+                    'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
+                    'linkText' => __('Details', $dom)
+                );
+            }
+            if (in_array($currentFunc, array('main', 'view', 'display'))) {
+                $component = 'Reviews:Review:';
+                $instance = $this->id . '::';
+                if (SecurityUtil::checkPermission($component, $instance, ACCESS_EDIT)) {
+                    $this->_actions[] = array(
+                        'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                        'icon' => 'edit',
+                        'linkTitle' => __('Edit', $dom),
+                        'linkText' => __('Edit', $dom)
+                    );
+                    $this->_actions[] = array(
+                        'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
+                        'icon' => 'saveas',
+                        'linkTitle' => __('Reuse for new item', $dom),
+                        'linkText' => __('Reuse', $dom)
+                    );
+                }
+                if (SecurityUtil::checkPermission($component, $instance, ACCESS_DELETE)) {
+                    $this->_actions[] = array(
+                        'url' => array('type' => 'admin', 'func' => 'delete', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                        'icon' => 'delete',
+                        'linkTitle' => __('Delete', $dom),
+                        'linkText' => __('Delete', $dom)
+                    );
+                }
+            }
+            if ($currentFunc == 'display') {
+                $this->_actions[] = array(
+                    'url' => array('type' => 'admin', 'func' => 'view', 'arguments' => array('ot' => 'review')),
+                    'icon' => 'back',
+                    'linkTitle' => __('Back to overview', $dom),
+                    'linkText' => __('Back to overview', $dom)
+                );
+            }
+        }
+        if ($currentType == 'user') {
+            if (in_array($currentFunc, array('main', 'view'))) {
+                $this->_actions[] = array(
+                    'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                    'icon' => 'display',
+                    'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
+                    'linkText' => __('Details', $dom)
+                );
+            }
+           /* if (in_array($currentFunc, array('main', 'view', 'display'))) {
+                $component = 'Reviews:Review:';
+                $instance = $this->id . '::';
+                if (SecurityUtil::checkPermission($component, $instance, ACCESS_EDIT)) {
+                    $this->_actions[] = array(
+                        'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                        'icon' => 'edit',
+                        'linkTitle' => __('Edit', $dom),
+                        'linkText' => __('Edit', $dom)
+                    );
+                    $this->_actions[] = array(
+                        'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
+                        'icon' => 'saveas',
+                        'linkTitle' => __('Reuse for new item', $dom),
+                        'linkText' => __('Reuse', $dom)
+                    );
+                }
+            } */
+            if ($currentFunc == 'display') {
+                $this->_actions[] = array(
+                    'url' => array('type' => 'user', 'func' => 'view', 'arguments' => array('ot' => 'review')),
+                    'icon' => 'back',
+                    'linkTitle' => __('Back to overview', $dom),
+                    'linkText' => __('Back to overview', $dom)
+                );
+            }
+        }
+    }
 
     
     /**
