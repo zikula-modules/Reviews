@@ -156,6 +156,12 @@ class Reviews_Controller_User extends Reviews_Controller_Base_User
         
         $where = '';
         
+        // we check for letter
+        $letter = $this->request->query->filter('letter', NULL);
+        
+        if ($letter != NULL) {
+            $where = 'tbl.title LIKE \'' . DataUtil::formatForStore($letter) . '%\'';
+        }        
         $selectionArgs = array(
                 'ot' => $objectType,
                 'where' => $where,
