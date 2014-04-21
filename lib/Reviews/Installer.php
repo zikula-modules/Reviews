@@ -105,21 +105,24 @@ class Reviews_Installer extends Reviews_Base_Installer
                     }
                     return LogUtil::registerError($this->__f('An error was encountered while dropping the tables for the %s extension.', array($this->getName())));
                 }
-                
 
+                // we adapt the modvars
                 $pagesize = $this->getVar('itemsperpage');
                 $this->setVar('pagesize', $pagesize);
                 $this->delVar('itemsperpage');
                 $this->setVar('scoreForUsers', false);
                 $addcategorytitletopermalink = $this->getVar('addcategorytitletopermalink');
-                $this->setVar('addcategorytitletopermalink');
+                $this->setVar('addcategorytitletopermalink', $addcategorytitletopermalink);
 
                 $serviceManager = ServiceUtil::getManager();
                 $entityManager = $serviceManager->getService('doctrine.entitymanager');
                 $repository = $entityManager->getRepository('Reviews_Entity_Review');
                 
                 //$repository = Reviews_Util_Model::getReviewRepository();
-                $reviews = $repository->selectWhere();
+                //$reviews = $repository->selectWhere();
+                $where = "tbl.workflowState = ''";
+                $selectionArgs = array('ot' => 'review', 'where' => $where);
+                $reviews = ModUtil::apiFunc($this->name, 'selection', 'getEntities', $selectionArgs);
                 
                 LogUtil::registerError(count($reviews));
                 if (count($reviews) > 0) {
