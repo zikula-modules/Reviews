@@ -29,7 +29,7 @@ use DoctrineExtensions\StandardFields\Mapping\Annotation as ZK;
  * @ORM\HasLifecycleCallbacks
  */
 class Reviews_Entity_Review extends Reviews_Entity_Base_Review
-{
+{    
     /**
      * Collect available actions for this entity.
      */
