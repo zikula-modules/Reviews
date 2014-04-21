@@ -23,62 +23,62 @@
 function smarty_modifier_reviewsShowStars($score)
 {
     $result = '';
-    
+
     switch ($score)
     {
         case (10):
-            for ($i = 1; $i < 10; $i++) {
+            for ($i = 1; $i < 11; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (9):
-                for ($i = 1; $i < 9; $i++) {
+            for ($i = 1; $i < 10; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (8):
-                for ($i = 1; $i < 8; $i++) {
+            for ($i = 1; $i < 9; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (7):
-                for ($i = 1; $i < 7; $i++) {
+            for ($i = 1; $i < 8; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (6):
-                for ($i = 1; $i < 6; $i++) {
+            for ($i = 1; $i < 7; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (5):
-                for ($i = 1; $i < 5; $i++) {
+            for ($i = 1; $i < 6; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (4):
-                for ($i = 1; $i < 4; $i++) {
+            for ($i = 1; $i < 5; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (3):
-                for ($i = 1; $i < 3; $i++) {
+            for ($i = 1; $i < 4; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (2):
-                for ($i = 1; $i < 2; $i++) {
+            for ($i = 1; $i < 3; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
         case (1):
-                for ($i = 1; $i < 1; $i++) {
+            for ($i = 1; $i < 2; $i++) {
                 $result .= "<img src='/images/icons/extrasmall/favorites.png' />";
             }
             break;
-            
-            default:
-                break;
+
+        default:
+            break;
 
     }
 
