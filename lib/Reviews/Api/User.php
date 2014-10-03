@@ -17,7 +17,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
      *
      * @return array Array of user links.
      */
-    public function getlinks()
+    public function getLinks()
     {
         $links = array();
 
@@ -29,7 +29,7 @@ class Reviews_Api_User extends Zikula_AbstractApi
         }
 
         $controllerHelper = new Reviews_Util_Controller($this->serviceManager);
-        $utilArgs = array('api' => 'user', 'action' => 'getlinks');
+        $utilArgs = array('api' => 'user', 'action' => 'getLinks');
         $allowedObjectTypes = $controllerHelper->getObjectTypes('api', $utilArgs);
 
         if (in_array('review', $allowedObjectTypes)
