@@ -21,15 +21,15 @@ use DoctrineExtensions\StandardFields\Mapping\Annotation as ZK;
  *
  * This is the concrete entity class for review entities.
  * @ORM\Entity(repositoryClass="Reviews_Entity_Repository_Review")
-  * @ORM\Table(name="reviews_review",
-  *     indexes={
+ * @ORM\Table(name="reviews_review",
+ *     indexes={
  *         @ORM\Index(name="workflowstateindex", columns={"workflowState"})
-  *     }
-  * )
+ *     }
+ * )
  * @ORM\HasLifecycleCallbacks
  */
 class Reviews_Entity_Review extends Reviews_Entity_Base_Review
-{    
+{
     /**
      * Collect available actions for this entity.
      */
@@ -38,23 +38,23 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
         if (!empty($this->_actions)) {
             return;
         }
-    
+
         $currentType = FormUtil::getPassedValue('type', 'user', 'GETPOST', FILTER_SANITIZE_STRING);
         $currentFunc = FormUtil::getPassedValue('func', 'main', 'GETPOST', FILTER_SANITIZE_STRING);
         $dom = ZLanguage::getModuleDomain('Reviews');
         if ($currentType == 'admin') {
             if (in_array($currentFunc, array('main', 'view'))) {
                 $this->_actions[] = array(
-                    'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
-                    'icon' => 'preview',
-                    'linkTitle' => __('Open preview page', $dom),
-                    'linkText' => __('Preview', $dom)
+                        'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                        'icon' => 'preview',
+                        'linkTitle' => __('Open preview page', $dom),
+                        'linkText' => __('Preview', $dom)
                 );
                 $this->_actions[] = array(
-                    'url' => array('type' => 'admin', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
-                    'icon' => 'display',
-                    'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
-                    'linkText' => __('Details', $dom)
+                        'url' => array('type' => 'admin', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                        'icon' => 'display',
+                        'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
+                        'linkText' => __('Details', $dom)
                 );
             }
             if (in_array($currentFunc, array('main', 'view', 'display'))) {
@@ -62,75 +62,84 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
                 $instance = $this->id . '::';
                 if (SecurityUtil::checkPermission($component, $instance, ACCESS_EDIT)) {
                     $this->_actions[] = array(
-                        'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
-                        'icon' => 'edit',
-                        'linkTitle' => __('Edit', $dom),
-                        'linkText' => __('Edit', $dom)
+                            'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                            'icon' => 'edit',
+                            'linkTitle' => __('Edit', $dom),
+                            'linkText' => __('Edit', $dom)
                     );
                     $this->_actions[] = array(
-                        'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
-                        'icon' => 'saveas',
-                        'linkTitle' => __('Reuse for new item', $dom),
-                        'linkText' => __('Reuse', $dom)
+                            'url' => array('type' => 'admin', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
+                            'icon' => 'saveas',
+                            'linkTitle' => __('Reuse for new item', $dom),
+                            'linkText' => __('Reuse', $dom)
                     );
                 }
                 if (SecurityUtil::checkPermission($component, $instance, ACCESS_DELETE)) {
                     $this->_actions[] = array(
-                        'url' => array('type' => 'admin', 'func' => 'delete', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
-                        'icon' => 'delete',
-                        'linkTitle' => __('Delete', $dom),
-                        'linkText' => __('Delete', $dom)
+                            'url' => array('type' => 'admin', 'func' => 'delete', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                            'icon' => 'delete',
+                            'linkTitle' => __('Delete', $dom),
+                            'linkText' => __('Delete', $dom)
                     );
                 }
             }
             if ($currentFunc == 'display') {
                 $this->_actions[] = array(
-                    'url' => array('type' => 'admin', 'func' => 'view', 'arguments' => array('ot' => 'review')),
-                    'icon' => 'back',
-                    'linkTitle' => __('Back to overview', $dom),
-                    'linkText' => __('Back to overview', $dom)
+                        'url' => array('type' => 'admin', 'func' => 'view', 'arguments' => array('ot' => 'review')),
+                        'icon' => 'back',
+                        'linkTitle' => __('Back to overview', $dom),
+                        'linkText' => __('Back to overview', $dom)
                 );
             }
         }
         if ($currentType == 'user') {
             if (in_array($currentFunc, array('main', 'view'))) {
-                $this->_actions[] = array(
-                    'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
-                    'icon' => 'display',
-                    'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
-                    'linkText' => __('Details', $dom)
-                );
-            }
-           /* if (in_array($currentFunc, array('main', 'view', 'display'))) {
-                $component = 'Reviews:Review:';
-                $instance = $this->id . '::';
-                if (SecurityUtil::checkPermission($component, $instance, ACCESS_EDIT)) {
+                if (ModUtil::getVar('Reviews' ,'addcategorytitletopermalink') == 1 && ModUtil::getVar('Reviews' ,'enablecategorization') == 1) {
                     $this->_actions[] = array(
-                        'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
-                        'icon' => 'edit',
-                        'linkTitle' => __('Edit', $dom),
-                        'linkText' => __('Edit', $dom)
+                            'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'cat' => 'ei', 'id' => $this['id'], 'slug' => $this->slug)),
+                            'icon' => 'display',
+                            'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
+                            'linkText' => __('Details', $dom)
                     );
+                } else {
                     $this->_actions[] = array(
-                        'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
-                        'icon' => 'saveas',
-                        'linkTitle' => __('Reuse for new item', $dom),
-                        'linkText' => __('Reuse', $dom)
-                    );
+                            'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
+                            'icon' => 'display',
+                            'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
+                            'linkText' => __('Details', $dom)
+                    );                    
                 }
+            }
+            /* if (in_array($currentFunc, array('main', 'view', 'display'))) {
+             $component = 'Reviews:Review:';
+            $instance = $this->id . '::';
+            if (SecurityUtil::checkPermission($component, $instance, ACCESS_EDIT)) {
+            $this->_actions[] = array(
+                    'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'id' => $this['id'])),
+                    'icon' => 'edit',
+                    'linkTitle' => __('Edit', $dom),
+                    'linkText' => __('Edit', $dom)
+            );
+            $this->_actions[] = array(
+                    'url' => array('type' => 'user', 'func' => 'edit', 'arguments' => array('ot' => 'review', 'astemplate' => $this['id'])),
+                    'icon' => 'saveas',
+                    'linkTitle' => __('Reuse for new item', $dom),
+                    'linkText' => __('Reuse', $dom)
+            );
+            }
             } */
             if ($currentFunc == 'display') {
                 $this->_actions[] = array(
-                    'url' => array('type' => 'user', 'func' => 'view', 'arguments' => array('ot' => 'review')),
-                    'icon' => 'back',
-                    'linkTitle' => __('Back to overview', $dom),
-                    'linkText' => __('Back to overview', $dom)
+                        'url' => array('type' => 'user', 'func' => 'view', 'arguments' => array('ot' => 'review')),
+                        'icon' => 'back',
+                        'linkTitle' => __('Back to overview', $dom),
+                        'linkText' => __('Back to overview', $dom)
                 );
             }
         }
     }
 
-    
+
     /**
      * Post-Process the data after the entity has been constructed by the entity manager.
      *
@@ -142,7 +151,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPostLoadCallback();
     }
-    
+
     /**
      * Pre-Process the data prior to an insert operation.
      *
@@ -154,7 +163,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPrePersistCallback();
     }
-    
+
     /**
      * Post-Process the data after an insert operation.
      *
@@ -166,7 +175,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPostPersistCallback();
     }
-    
+
     /**
      * Pre-Process the data prior a delete operation.
      *
@@ -178,7 +187,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPreRemoveCallback();
     }
-    
+
     /**
      * Post-Process the data after a delete.
      *
@@ -190,7 +199,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPostRemoveCallback();
     }
-    
+
     /**
      * Pre-Process the data prior to an update operation.
      *
@@ -202,7 +211,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPreUpdateCallback();
     }
-    
+
     /**
      * Post-Process the data after an update operation.
      *
@@ -214,7 +223,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPostUpdateCallback();
     }
-    
+
     /**
      * Pre-Process the data prior to a save operation.
      *
@@ -227,7 +236,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPreSaveCallback();
     }
-    
+
     /**
      * Post-Process the data after a save operation.
      *
@@ -240,5 +249,5 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
     {
         $this->performPostSaveCallback();
     }
-    
+
 }
