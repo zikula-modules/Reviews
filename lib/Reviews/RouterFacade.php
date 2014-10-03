@@ -16,5 +16,45 @@
  */
 class Reviews_RouterFacade extends Reviews_Base_RouterFacade
 {
-    // here you can customise the data which is provided to the url router.
+    /**
+     * Constructor.
+     */
+    function __construct()
+    {
+        $displayDefaultEnding = System::getVar('shorturlsext', '');
+    
+        $this->requirements = array(
+                'func'          => '\w+',
+                'ot'            => '\w+',
+                'slug'          => '[^/.]+', // slugs ([^/.]+ = all chars except / and .)
+                'displayending' => '(?:' . $displayDefaultEnding . '|xml|pdf|json|kml)',
+                'viewending'    => '(?:\.csv|\.rss|\.atom|\.xml|\.pdf|\.json|\.kml)?',
+                'id'            => '\d+'
+        );
+    
+        // initialise and reference router instance
+        $this->router = new Zikula_Routing_UrlRouter();
+    
+        // add generic routes
+        return $this->initUrlRoutes();
+    }
+        
+    /**
+     * Helper function to route permalinks for different slug types.
+     *
+     * @param string $prefix
+     * @param string $patternStart
+     * @param string $patternEnd
+     * @param string $defaults
+     * @param string $fieldRequirements
+     */
+    protected function initRouteForEachSlugType($prefix, $patternStart, $patternEnd, $defaults, $fieldRequirements)
+    {
+        // entities with unique slug (slug only)
+        $this->router->set($prefix . 'a', new Zikula_Routing_UrlRoute($patternStart . ':slug' . $patternEnd,        $defaults, $fieldRequirements));
+        // entities with non-unique slug (slug and id)
+        $this->router->set($prefix . 'b', new Zikula_Routing_UrlRoute($patternStart . ':slug.:id.' . $patternEnd,    $defaults, $fieldRequirements));
+        // entities without slug (id)
+        $this->router->set($prefix . 'c', new Zikula_Routing_UrlRoute($patternStart . 'id.:id.' . $patternEnd,        $defaults, $fieldRequirements));
+    }
 }
