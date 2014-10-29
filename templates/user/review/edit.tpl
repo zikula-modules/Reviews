@@ -51,12 +51,12 @@
             {reviewsValidationError id='email' class='required'}
             {reviewsValidationError id='email' class='validate-email'}
         </div>
-        
+        {if $modvars.Reviews.scoreForUsers eq 1}
         <div class="z-formrow">
             {formlabel for='score' __text='Score' cssClass=''}
             {formdropdownlist group='review' id='score' mandatory=false __title='Choose the score' selectionMode='single'}
         </div>
-        
+        {/if}
         <div class="z-formrow">
             {formlabel for='url' __text='Url' cssClass=''}
             {formurlinput group='review' id='url' mandatory=false readOnly=false __title='Enter the url of the review' textMode='singleline' maxLength=255 cssClass=' validate-url' }

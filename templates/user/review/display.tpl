@@ -4,13 +4,13 @@
     {gt text='Review' assign='templateTitle'}
     {assign var='templateTitle' value=$review->getTitleFromDisplayPattern()|default:$templateTitle}
     {pagesetvar name='title' value=$templateTitle|@html_entity_decode}
-    <h2>{$templateTitle|notifyfilters:'reviews.filter_hooks.reviews.filter'} <small>({$review.workflowState|reviewsObjectState:false|lower})</small>{icon id='itemActionsTrigger' type='options' size='extrasmall' __alt='Actions' class='z-pointer z-hide'}</h2>
+    <h2>{$templateTitle|notifyfilters:'reviews.filter_hooks.reviews.filter'}{* <small>({$review.workflowState|reviewsObjectState:false|lower})</small> *} {icon id='itemActionsTrigger' type='options' size='extrasmall' __alt='Actions' class='z-pointer z-hide'}</h2>
 
     <dl>
-        <dt>{gt text='State'}</dt>
+       {* <dt>{gt text='State'}</dt>
         <dd>{$review.workflowState|reviewsGetListEntry:'review':'workflowState'|safetext}</dd>
         <dt>{gt text='Title'}</dt>
-        <dd>{$review.title}</dd>
+        <dd>{$review.title}</dd> *}
         <dt>{gt text='Text'}</dt>
         <dd>{$review.text}</dd>
         <dt>{gt text='Zlanguage'}</dt>
@@ -25,18 +25,19 @@
         {/if}
         </dd>
         <dt>{gt text='Score'}</dt>
-        <dd>{$review.score|reviewsGetListEntry:'review':'score'|safetext}</dd>
+        <dd>{* {$review.score|reviewsGetListEntry:'review':'score'|safetext} *}
+        {$review.score|reviewsShowStars}</dd>
+        {if $review.url ne ''}
         <dt>{gt text='Url'}</dt>
         <dd>{if $review.url ne ''}
         {if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}
-        <a href="{$review.url}" title="{gt text='Visit this page'}">{icon type='url' size='extrasmall' __alt='Homepage'}</a>
+        <a href="{$review.url}" title="{if $review.url_title ne ''}{$review.url_title}{else}{gt text='Visit this page'}{/if}">{icon type='url' size='extrasmall' title=$review.url_title}</a>
         {else}
           {$review.url}
         {/if}
         {else}&nbsp;{/if}
         </dd>
-        <dt>{gt text='Url_title'}</dt>
-        <dd>{$review.url_title}</dd>
+        {/if}
         <dt>{gt text='Hits'}</dt>
         <dd>{$review.hits}</dd>
         <dt>{gt text='Cover'}</dt>

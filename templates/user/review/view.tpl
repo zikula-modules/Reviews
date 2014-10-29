@@ -1,5 +1,8 @@
 {* purpose of this template: reviews view view in user area *}
 {include file='user/header.tpl'}
+<div class="reviews-alphapager">
+    [{pagerabc posvar='letter' forwardvars=''}]
+</div>
 <div class="reviews-review reviews-view">
     {gt text='Review list' assign='templateTitle'}
     {pagesetvar name='title' value=$templateTitle}
@@ -31,45 +34,45 @@
 
     <table class="z-datatable">
         <colgroup>
-            <col id="cWorkflowState" />
+           {* <col id="cWorkflowState" /> *}
             <col id="cTitle" />
-            <col id="cText" />
-            <col id="cZlanguage" />
+           {* <col id="cText" />
+            <col id="cZlanguage" /> *}
             <col id="cReviewer" />
-            <col id="cEmail" />
+           {* <col id="cEmail" /> *}
             <col id="cScore" />
-            <col id="cUrl" />
+           {* <col id="cUrl" />
             <col id="cUrl_title" />
             <col id="cHits" />
             <col id="cCover" />
-            <col id="cCoverUpload" />
+            <col id="cCoverUpload" /> *}
             <col id="cItemActions" />
         </colgroup>
         <thead>
         <tr>
             {assign var='catIdListMainString' value=','|implode:$catIdList.Main}
-            <th id="hWorkflowState" scope="col" class="z-left">
+           {* <th id="hWorkflowState" scope="col" class="z-left">
                 {sortlink __linktext='State' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='workflowState' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
-            </th>
+            </th> *}
             <th id="hTitle" scope="col" class="z-left">
                 {sortlink __linktext='Title' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='title' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
             </th>
-            <th id="hText" scope="col" class="z-left">
+           {* <th id="hText" scope="col" class="z-left">
                 {sortlink __linktext='Text' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='text' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
             </th>
             <th id="hZlanguage" scope="col" class="z-left">
                 {sortlink __linktext='Zlanguage' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='zlanguage' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
-            </th>
+            </th> *}
             <th id="hReviewer" scope="col" class="z-left">
                 {sortlink __linktext='Reviewer' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='reviewer' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
             </th>
-            <th id="hEmail" scope="col" class="z-left">
+           {* <th id="hEmail" scope="col" class="z-left">
                 {sortlink __linktext='Email' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='email' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
-            </th>
+            </th> *}
             <th id="hScore" scope="col" class="z-left">
                 {sortlink __linktext='Score' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='score' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
             </th>
-            <th id="hUrl" scope="col" class="z-left">
+           {* <th id="hUrl" scope="col" class="z-left">
                 {sortlink __linktext='Url' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='url' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
             </th>
             <th id="hUrl_title" scope="col" class="z-left">
@@ -83,7 +86,7 @@
             </th>
             <th id="hCoverUpload" scope="col" class="z-left">
                 {sortlink __linktext='Cover upload' currentsort=$sort modname='Reviews' type='user' func='view' ot='review' sort='coverUpload' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
-            </th>
+            </th> *}
             <th id="hItemActions" scope="col" class="z-right z-order-unsorted">{gt text='Actions'}</th>
         </tr>
         </thead>
@@ -91,28 +94,29 @@
     
     {foreach item='review' from=$items}
         <tr class="{cycle values='z-odd, z-even'}">
-            <td headers="hWorkflowState" class="z-left z-nowrap">
+           {* <td headers="hWorkflowState" class="z-left z-nowrap">
                 {$review.workflowState|reviewsObjectState}
-            </td>
+            </td> *}
             <td headers="hTitle" class="z-left">
                 {$review.title}
             </td>
-            <td headers="hText" class="z-left">
+           {* <td headers="hText" class="z-left">
                 {$review.text}
             </td>
             <td headers="hZlanguage" class="z-left">
                 {$review.zlanguage|getlanguagename|safetext}
-            </td>
+            </td> *}
             <td headers="hReviewer" class="z-left">
                 {$review.reviewer}
             </td>
-            <td headers="hEmail" class="z-left">
+           {* <td headers="hEmail" class="z-left">
                 <a href="mailto:{$review.email}" title="{gt text='Send an email'}">{icon type='mail' size='extrasmall' __alt='Email'}</a>
-            </td>
+            </td> *}
             <td headers="hScore" class="z-left">
-                {$review.score|reviewsGetListEntry:'review':'score'|safetext}
+               {* {$review.score|reviewsGetListEntry:'review':'score'|safetext} *}
+                {$review.score|reviewsShowStars}
             </td>
-            <td headers="hUrl" class="z-left">
+           {* <td headers="hUrl" class="z-left">
                 {if $review.url ne ''}
                 <a href="{$review.url}" title="{gt text='Visit this page'}">{icon type='url' size='extrasmall' __alt='Homepage'}</a>
                 {else}&nbsp;{/if}
@@ -136,7 +140,7 @@
                   {/if}
                   </a>
                 {else}&nbsp;{/if}
-            </td>
+            </td> *}
             <td id="itemActions{$review.id}" headers="hItemActions" class="z-right z-nowrap z-w02">
                 {if count($review._actions) gt 0}
                     {foreach item='option' from=$review._actions}
