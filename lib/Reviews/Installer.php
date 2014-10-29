@@ -73,14 +73,13 @@ class Reviews_Installer extends Reviews_Base_Installer
 
                 $sql2 = "ALTER TABLE `reviews_review`
                         CHANGE `pn_id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
-                        ADD `workflowState` VARCHAR( 20 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
                         CHANGE `pn_title` `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
                         CHANGE `pn_urltitle` `slug` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
                         CHANGE `pn_text` `text` VARCHAR( 5000 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL  ,
                         CHANGE `pn_language` `zlanguage` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
                         CHANGE `pn_reviewer` `reviewer` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
                         CHANGE `pn_email` `email` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
-                        CHANGE `pn_score` `score` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+                        CHANGE `pn_score` `score` INT( 20 ) ,
                         CHANGE `pn_url` `url` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
                         CHANGE `pn_url_title` `url_title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
                         CHANGE `pn_hits` `hits` INT( 18 ) NOT NULL ,
@@ -88,8 +87,8 @@ class Reviews_Installer extends Reviews_Base_Installer
                         CHANGE `pn_lu_date` `updatedDate` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
                         CHANGE `pn_cr_uid` `createdUserId` INT( 11 ) NOT NULL DEFAULT '0',
                         CHANGE `pn_lu_uid` `updatedUserId` INT( 11 ) NOT NULL DEFAULT '0'";
-                
-                
+
+
                 $stmt2 = $connection->prepare($sql2);
                 try {
                     $stmt2->execute();
@@ -106,49 +105,49 @@ class Reviews_Installer extends Reviews_Base_Installer
                     return LogUtil::registerError($this->__f('An error was encountered while dropping the tables for the %s extension.', array($this->getName())));
                 }
 
-                // we adapt the modvars
-                $pagesize = $this->getVar('itemsperpage');
-                $this->setVar('pagesize', $pagesize);
-                $this->delVar('itemsperpage');
-                $this->setVar('scoreForUsers', false);
-                $addcategorytitletopermalink = $this->getVar('addcategorytitletopermalink');
-                $this->setVar('addcategorytitletopermalink', $addcategorytitletopermalink);
+                $repository = $this->getEntityManager()->getRepository('Reviews_Entity_Review');
+                $reviews = $repository->findAll();
 
-                $serviceManager = ServiceUtil::getManager();
-                $entityManager = $serviceManager->getService('doctrine.entitymanager');
-                $repository = $entityManager->getRepository('Reviews_Entity_Review');
-                
-                //$repository = Reviews_Util_Model::getReviewRepository();
-                //$reviews = $repository->selectWhere();
-                $where = "tbl.workflowState = ''";
-                $selectionArgs = array('ot' => 'review', 'where' => $where);
-                $reviews = ModUtil::apiFunc($this->name, 'selection', 'getEntities', $selectionArgs);
-                
+                $workflowHelper = new Zikula_Workflow('standard', 'Reviews');
+
                 LogUtil::registerError(count($reviews));
                 if (count($reviews) > 0) {
                     $serviceManager = ServiceUtil::getManager();
                     $entityManager = $serviceManager->getService('doctrine.entitymanager');
                     foreach ($reviews as $review) {
-                        $thisreview = $repository->selectById($review['id']);
+                        $thisreview = $repository->findOneBy(array('id' => $review['id']));
                         $thisreview->setWorkflowState('approved');
+                        $thisreview->setEmail($review['email']);
                         $thisreview->setCoverUploadMeta('a:0:{}');
-                        
-                        $tables = DBUtil::getTables();
-                        $catmapcolumn = $tables['categories_mapobj_column'];
+
+                        /* $tables = DBUtil::getTables();
+                         $catmapcolumn = $tables['categories_mapobj_column'];
                         $where = "$catmapcolumn[obj_id] = '" . DataUtil::formatForStore($review['id']). "'";
                         $where .= " AND ";
-                        $where .= "$catmapcolumn[modname]] = Reviews";
+                        $where .= "$catmapcolumn[modname] = 'Reviews'";
                         $categories = DBUtil::selectObjectArray('categories_mapobj', $where);
                         foreach ($categories as $category) {
-                            $thiscategories[] = $category['category_id'] ;
+                        $thiscategories[] = $category['category_id'] ;
                         }
-                        $thisreview->setCategories($thiscategories);
-                        $entityManager->flush();                 
+                        $thisreview->setCategories($thiscategories);*/
+                        $entityManager->flush();
+
+                        $obj['__WORKFLOW__']['obj_table'] = 'review';
+                        $obj['__WORKFLOW__']['obj_idcolumn'] = 'id';
+                        $obj['id'] = $review['id'];
+                        $workflowHelper->registerWorkflow($obj, 'approved');
                     }
                 }
-                
+
+                $pagesize = $this->getVar('itemsperpage');
+                $this->setVar('pagesize', $pagesize);
+                $this->delVar('itemsperpage');
+                $this->setVar('scoreForUsers', false);
+                $addcategorytitletopermalink = $this->getVar('addcategorytitletopermalink');
+                $this->setVar('addcategorytitletopermalink');
+
             case '2.5.0':
-                
+
                 // later upgrades
         }
 
