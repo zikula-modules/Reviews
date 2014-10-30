@@ -13,38 +13,8 @@
 class Reviews_Installer extends Reviews_Base_Installer
 {
     /**
-     * init reviews module
+     * upgrade
      */
-    /*public function install()
-     {
-    // create table
-    if (!DBUtil::createTable('reviews')) {
-    return false;
-    }
-
-    // set up config variables
-    $modvars = array(
-            'itemsperpage' => 25,
-            'enablecategorization' => true,
-            'addcategorytitletopermalink' => true
-    );
-
-    // create our default category
-    if (!$this->_createdefaultcategory()) {
-    LogUtil::registerStatus($this->__('Warning! Could not create the default Reviews category tree. If you want to use categorization for the reviews, register at least one property for the module in the Category Registry.'));
-    $modvars['enablecategorization'] = false;
-    }
-
-    // set up module variables
-    ModUtil::setVars('Reviews', $modvars);
-
-    // initialisation successful
-    return true;
-    }
-
-    /**
-    * upgrade
-    */
     public function upgrade($oldversion)
     {
         // Upgrade dependent on old version number
@@ -62,39 +32,6 @@ class Reviews_Installer extends Reviews_Base_Installer
                 }
 
             case '2.4.1':
-                $connection = Doctrine_Manager::getInstance()->getConnection('default');
-                $sql = 'RENAME TABLE reviews TO reviews_review';
-                $stmt = $connection->prepare($sql);
-                try {
-                    $stmt->execute();
-                } catch (Exception $e) {
-                    LogUtil::registerError($e);
-                }
-
-                $sql2 = "ALTER TABLE `reviews_review`
-                        CHANGE `pn_id` `id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
-                        CHANGE `pn_title` `title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-                        CHANGE `pn_urltitle` `slug` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-                        CHANGE `pn_text` `text` VARCHAR( 5000 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL  ,
-                        CHANGE `pn_language` `zlanguage` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-                        CHANGE `pn_reviewer` `reviewer` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-                        CHANGE `pn_email` `email` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
-                        CHANGE `pn_score` `score` INT( 20 ) ,
-                        CHANGE `pn_url` `url` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                        CHANGE `pn_url_title` `url_title` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-                        CHANGE `pn_hits` `hits` INT( 18 ) NOT NULL ,
-                        CHANGE `pn_cr_date` `createdDate` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
-                        CHANGE `pn_lu_date` `updatedDate` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
-                        CHANGE `pn_cr_uid` `createdUserId` INT( 11 ) NOT NULL DEFAULT '0',
-                        CHANGE `pn_lu_uid` `updatedUserId` INT( 11 ) NOT NULL DEFAULT '0'";
-
-
-                $stmt2 = $connection->prepare($sql2);
-                try {
-                    $stmt2->execute();
-                } catch (Exception $f) {
-                    LogUtil::registerError($f);
-                }
 
                 try {
                     DoctrineHelper::updateSchema($this->entityManager, $this->listEntityClasses());
@@ -106,30 +43,52 @@ class Reviews_Installer extends Reviews_Base_Installer
                 }
 
                 $repository = $this->getEntityManager()->getRepository('Reviews_Entity_Review');
-                $reviews = $repository->findAll();
+                //$reviews = $repository->findAll();
+
+                $result = DBUtil::executeSQL('SELECT * FROM `reviews`');
+                $reviews = $result->fetchAll(Doctrine::FETCH_ASSOC);
 
                 $workflowHelper = new Zikula_Workflow('standard', 'Reviews');
 
-                LogUtil::registerError(count($reviews));
-                if (count($reviews) > 0) {
-                    $serviceManager = ServiceUtil::getManager();
-                    $entityManager = $serviceManager->getService('doctrine.entitymanager');
-                    foreach ($reviews as $review) {
-                        $thisreview = $repository->findOneBy(array('id' => $review['id']));
-                        $thisreview->setWorkflowState('approved');
-                        $thisreview->setEmail($review['email']);
-                        $thisreview->setCoverUploadMeta('a:0:{}');
+                // we get serviceManager
+                $serviceManager = ServiceUtil::getManager();
+                // we get entityManager
+                $entityManager = $serviceManager->getService('doctrine.entitymanager');
 
-                        /* $tables = DBUtil::getTables();
-                         $catmapcolumn = $tables['categories_mapobj_column'];
+                if (count($reviews) > 0) {
+                    foreach ($reviews as $key => $review) {
+                        $newReview = new Reviews_Entity_Review();
+                        $newReview->setWorkflowState('approved');
+                        $newReview->setTitle($review['pn_title']);
+                        $newReview->setText($review['pn_text']);
+                        $newReview->setReviewer($review['pn_reviewer']);
+                        $newReview->setEmail($review['pn_email']);
+                        $newReview->setScore($review['pn_score']);
+                        $newReview->setCover($review['pn_cover']);
+                        $newReview->setUrl($review['pn_url']);
+                        $newReview->setUrl_title($review['pn_url_title']);
+                        $newReview->setHits($review['pn_hits']);
+                        $newReview->setZlanguage($review['pn_language']);
+                        //$createdDate = $review['pn_cr_date'];
+                        //$createdDate = DateUtil::getDatetime($createdDate);
+                        //$newReview->setCreatedDate($review['pn_cr_date']);
+                        $updatedDate = $review['pn_lu_date'];
+                        //$updatedDate = DateUtil::getDatetime($updatedDate);
+                        //$newReview->setUpdatedDate($review['pn_lu_date']);
+                        $newReview->setCreatedUserId($review['pn_cr_uid']);
+                        $newReview->setUpdatedUserId($review['pn_lu_uid']);
+
+                        $tables = DBUtil::getTables();
+                        $catmapcolumn = $tables['categories_mapobj_column'];
                         $where = "$catmapcolumn[obj_id] = '" . DataUtil::formatForStore($review['id']). "'";
                         $where .= " AND ";
                         $where .= "$catmapcolumn[modname] = 'Reviews'";
                         $categories = DBUtil::selectObjectArray('categories_mapobj', $where);
                         foreach ($categories as $category) {
-                        $thiscategories[] = $category['category_id'] ;
+                            $thiscategories[] = $category['category_id'] ;
                         }
-                        $thisreview->setCategories($thiscategories);*/
+                        $newReview->setCategories($categories);
+                        $entityManager->persist($newReview);
                         $entityManager->flush();
 
                         $obj['__WORKFLOW__']['obj_table'] = 'review';
@@ -137,6 +96,16 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $obj['id'] = $review['id'];
                         $workflowHelper->registerWorkflow($obj, 'approved');
                     }
+                }
+                 
+                $result2 = DBUtil::executeSQL('SELECT * FROM `reviews_review`');
+                $reviews2 = $result2->fetchAll(Doctrine::FETCH_ASSOC);
+
+                foreach ($reviews2 as $key => $review2) {
+                    $obj['__WORKFLOW__']['obj_table'] = 'review';
+                    $obj['__WORKFLOW__']['obj_idcolumn'] = 'id';
+                    $obj['id'] = $review2['id'];
+                    $workflowHelper->registerWorkflow($obj, 'approved');
                 }
 
                 $pagesize = $this->getVar('itemsperpage');
@@ -154,68 +123,4 @@ class Reviews_Installer extends Reviews_Base_Installer
         // upgrade successful
         return true;
     }
-
-    /**
-     * delete the reviews module
-     */
-    /*public function uninstall()
-     {
-    // drop table
-    if (!DBUtil::dropTable('reviews')) {
-    return false;
-    }
-
-    // Delete any module variables
-    ModUtil::delVar('Reviews');
-
-    // Delete entries from category registry
-    ModUtil::dbInfoLoad('Categories');
-    DBUtil::deleteWhere('categories_registry', "modname = 'Reviews'");
-    DBUtil::deleteWhere('categories_mapobj', "modname = 'Reviews'");
-
-    // Deletion successful
-    return true;
-    }
-
-    /**
-    * create default category for the module
-    */
-    /*function _createdefaultcategory($regpath = '/__SYSTEM__/Modules/Global')
-     {
-    // get the language file
-    $lang = ZLanguage::getLanguageCode();
-
-    // get the category path for which we're going to insert our place holder category
-    $rootcat = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules');
-    $rCat    = CategoryUtil::getCategoryByPath('/__SYSTEM__/Modules/Reviews');
-
-    if (!$rCat) {
-    // create placeholder for all our migrated categories
-    $cat = new Categories_DBObject_Category ();
-    $cat->setDataField('parent_id', $rootcat['id']);
-    $cat->setDataField('name', 'Reviews');
-    $cat->setDataField('display_name', array($lang => $this->__('Reviews')));
-    $cat->setDataField('display_desc', array($lang => $this->__('Reviews system module')));
-    if (!$cat->validate('admin')) {
-    return false;
-    }
-    $cat->insert();
-    $cat->update();
-    }
-
-    // get the category path for which we're going to insert our upgraded categories
-    $rootcat = CategoryUtil::getCategoryByPath($regpath);
-    if ($rootcat) {
-    // create an entry in the categories registry
-    $registry = new Categories_DBObject_Registry();
-    $registry->setDataField('modname', 'Reviews');
-    $registry->setDataField('table', 'reviews');
-    $registry->setDataField('property', 'Main');
-    $registry->setDataField('category_id', $rootcat['id']);
-    $registry->insert();
-    } else {
-    return false;
-    }
-
-    return true;*/
 }
