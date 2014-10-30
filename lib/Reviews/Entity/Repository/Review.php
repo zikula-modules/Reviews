@@ -26,7 +26,7 @@ class Reviews_Entity_Repository_Review extends Reviews_Entity_Repository_Base_Re
      *
      * @return Doctrine\ORM\QueryBuilder Enriched query builder instance.
      */
-    protected function applyDefaultFilters($qb, $parameters = array())
+    protected function applyDefaultFilters(QueryBuilder $qb, $parameters = array())
     {
         $currentModule = ModUtil::getName();//FormUtil::getPassedValue('module', '', 'GETPOST');
         $currentType = FormUtil::getPassedValue('type', 'user', 'GETPOST');
