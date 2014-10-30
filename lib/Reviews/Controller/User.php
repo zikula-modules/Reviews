@@ -82,7 +82,7 @@ class Reviews_Controller_User extends Reviews_Controller_Base_User
      */
     public function edit()
     {
-        $id = $this->request->query->filter('id', 0, FILTER_SANATIZE_NUMBER_INT);
+        $id = $this->request->query->filter('id', 0);
         if ($id > 0) {
             $url = ModUtil::url($this->name, 'user', 'view');
             return System::redirect($url);
