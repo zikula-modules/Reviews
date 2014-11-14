@@ -16,5 +16,65 @@
  */
 class Reviews_Util_ListEntries extends Reviews_Util_Base_ListEntries
 {
-    // feel free to add your own convenience methods here
+    /**
+     * Get 'score' list entries.
+     *
+     * @return array Array with desired list entries.
+     */
+    public function getScoreEntriesForReview()
+    {
+        $states = array();
+        $states[] = array('value'   => '10',
+                          'text'    => $this->__('10'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '9',
+                          'text'    => $this->__('9'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '8',
+                          'text'    => $this->__('8'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '7',
+                          'text'    => $this->__('7'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '6',
+                          'text'    => $this->__('6'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '5',
+                          'text'    => $this->__('5'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '4',
+                          'text'    => $this->__('4'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '3',
+                          'text'    => $this->__('3'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '2',
+                          'text'    => $this->__('2'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+        $states[] = array('value'   => '1',
+                          'text'    => $this->__('1'),
+                          'title'   => '',
+                          'image'   => '',
+                          'default' => false);
+    
+        return $states;
+    }
 }
