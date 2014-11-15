@@ -43,7 +43,6 @@ class Reviews_Installer extends Reviews_Base_Installer
                 }
 
                 $repository = $this->getEntityManager()->getRepository('Reviews_Entity_Review');
-                //$reviews = $repository->findAll();
 
                 $result = DBUtil::executeSQL('SELECT * FROM `reviews`');
                 $reviews = $result->fetchAll(Doctrine::FETCH_ASSOC);
@@ -85,16 +84,13 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $where .= "$catmapcolumn[modname] = 'Reviews'";
                         $categories = DBUtil::selectObjectArray('categories_mapobj', $where);
                         foreach ($categories as $category) {
+                            LogUtil::registerError($category['category_id']);
                             $thiscategories[] = $category['category_id'] ;
                         }
-                        $newReview->setCategories($categories);
+                        $newReview->setCategories($thiscategories);
                         $entityManager->persist($newReview);
                         $entityManager->flush();
 
-                        $obj['__WORKFLOW__']['obj_table'] = 'review';
-                        $obj['__WORKFLOW__']['obj_idcolumn'] = 'id';
-                        $obj['id'] = $review['id'];
-                        $workflowHelper->registerWorkflow($obj, 'approved');
                     }
                 }
                  
@@ -107,6 +103,14 @@ class Reviews_Installer extends Reviews_Base_Installer
                     $obj['id'] = $review2['id'];
                     $workflowHelper->registerWorkflow($obj, 'approved');
                 }
+                
+                $result3 = DBUtil::executeSQL('SELECT * FROM `categories_registry`');
+                $categoriesRegistered = $result3->fetchAll(Doctrine::FETCH_ASSOC);
+                //$categoriesRegistered = CategoryRegistryUtil::getRegisteredModuleCategories($this->name, 'reviews');
+                foreach ($categoriesRegistered as $categoryRegistered) {
+                    if ($categoryRegistered['tablename'] == 'reviews')
+                    CategoryRegistryUtil::updateEntry($categoryRegistered['id'], $this->name, 'Review', $categoryRegistered['property'], $categoryRegistered['category_id']);
+                }
 
                 $pagesize = $this->getVar('itemsperpage');
                 $this->setVar('pagesize', $pagesize);
@@ -114,6 +118,8 @@ class Reviews_Installer extends Reviews_Base_Installer
                 $this->setVar('scoreForUsers', false);
                 $addcategorytitletopermalink = $this->getVar('addcategorytitletopermalink');
                 $this->setVar('addcategorytitletopermalink');
+                
+                DBUtil::dropTable('reviews');
 
             case '2.5.0':
 
