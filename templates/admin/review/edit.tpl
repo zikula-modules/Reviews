@@ -40,8 +40,8 @@
         </div>
         
         <div class="z-formrow">
-            {formlabel for='zlanguage' __text='Zlanguage' mandatorysym='1' cssClass=''}
-            {formlanguageselector group='review' id='zlanguage' mandatory=true addAllOption=false __title='Choose the zlanguage of the review'}
+            {formlabel for='zlanguage' __text='Language' mandatorysym='0' cssClass=''}
+            {formlanguageselector group='review' id='zlanguage' mandatory=false addAllOption=true __title='Choose the language of the review'}
             {reviewsValidationError id='zlanguage' class='required'}
         </div>
         

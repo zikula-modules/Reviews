@@ -13,6 +13,7 @@
         {gt text='All' assign='lblDefault'}
         {if !isset($categoryFilter) || $categoryFilter eq true}
             {nocache}
+            {if $coredata.Reviews.enablecategorization eq 1}
             {modapifunc modname='Reviews' type='category' func='getAllProperties' ot=$objectType assign='properties'}
             {if $properties ne null && is_array($properties)}
                 {gt text='All' assign='lblDefault'}
@@ -32,6 +33,7 @@
                         &nbsp;
                         {selector_category name="`$categorySelectorName``$propertyName`" field='id' selectedValue=$catIdList.$propertyName categoryRegistryModule='Reviews' categoryRegistryTable=$objectType categoryRegistryProperty=$propertyName defaultText=$lblDefault editLink=false multipleSize=$categorySelectorSize}
                 {/foreach}
+            {/if}
             {/if}
             {/nocache}
         {/if}
@@ -54,7 +56,7 @@
                 </select>
         {/if}
         {if !isset($zlanguageFilter) || $zlanguageFilter eq true}
-                <label for="zlanguage">{gt text='Zlanguage'}</label>
+                <label for="zlanguage">{gt text='Language'}</label>
                 {html_select_locales name='zlanguage' selected=$zlanguage}
         {/if}
         {if !isset($searchFilter) || $searchFilter eq true}

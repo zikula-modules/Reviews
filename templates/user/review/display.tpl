@@ -11,10 +11,26 @@
         <dd>{$review.workflowState|reviewsGetListEntry:'review':'workflowState'|safetext}</dd>
         <dt>{gt text='Title'}</dt>
         <dd>{$review.title}</dd> *}
+        {if $review.cover ne '' && $review.coverUpload eq ''}
+          <dt>{gt text='Cover'}</dt>
+          <dd><img src="/modules/Reviews/images/{$review.cover}" /></dd>
+        {/if} 
+        {if $review.coverUpload ne ''}       
+        <dt>{gt text='Cover upload'}</dt>
+        <dd>
+          <a href="{$review.coverUploadFullPathURL}" title="{$review->getTitleFromDisplayPattern()|replace:"\"":""}"{if $review.coverUploadMeta.isImage} rel="imageviewer[review]"{/if}>
+          {if $review.coverUploadMeta.isImage}
+              {thumb image=$review.coverUploadFullPath objectid="review-`$review.id`" preset=$reviewThumbPresetCoverUpload tag=true img_alt=$review->getTitleFromDisplayPattern()}
+          {else}
+              {gt text='Download'} ({$review.coverUploadMeta.size|reviewsGetFileSize:$review.coverUploadFullPath:false:false})
+          {/if}
+          </a>
+        {else}&nbsp;{/if}
+        </dd>
         <dt>{gt text='Text'}</dt>
         <dd>{$review.text}</dd>
-        <dt>{gt text='Zlanguage'}</dt>
-        <dd>{$review.zlanguage|getlanguagename|safetext}</dd>
+        {* <dt>{gt text='Zlanguage'}</dt>
+        <dd>{$review.zlanguage|getlanguagename|safetext}</dd> *}
         <dt>{gt text='Reviewer'}</dt>
         <dd>{$review.reviewer}</dd>
         <dt>{gt text='Email'}</dt>
@@ -28,7 +44,7 @@
         <dd>{* {$review.score|reviewsGetListEntry:'review':'score'|safetext} *}
         {$review.score|reviewsShowStars}</dd>
         {if $review.url ne ''}
-        <dt>{gt text='Url'}</dt>
+        <dt>{gt text='Web'}</dt>
         <dd>{if $review.url ne ''}
         {if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}
         <a href="{$review.url}" title="{if $review.url_title ne ''}{$review.url_title}{else}{gt text='Visit this page'}{/if}">{icon type='url' size='extrasmall' title=$review.url_title}</a>
@@ -40,7 +56,7 @@
         {/if}
         <dt>{gt text='Hits'}</dt>
         <dd>{$review.hits}</dd>
-        <dt>{gt text='Cover'}</dt>
+       {* <dt>{gt text='Cover'}</dt>
         <dd>{$review.cover}</dd>
         <dt>{gt text='Cover upload'}</dt>
         <dd>{if $review.coverUpload ne ''}
@@ -52,7 +68,7 @@
           {/if}
           </a>
         {else}&nbsp;{/if}
-        </dd>
+        </dd> *}
         
     </dl>
     {include file='user/include_categories_display.tpl' obj=$review}

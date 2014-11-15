@@ -34,9 +34,9 @@
         </div>
         
         <div class="z-formrow">
-            {formlabel for='zlanguage' __text='Zlanguage' mandatorysym='1' cssClass=''}
-            {formlanguageselector group='review' id='zlanguage' mandatory=true addAllOption=false __title='Choose the zlanguage of the review'}
-            {reviewsValidationError id='zlanguage' class='required'}
+            {formlabel for='zlanguage' __text='Language' mandatorysym='0' cssClass=''}
+            {formlanguageselector group='review' id='zlanguage' mandatory=false addAllOption=true __title='Choose the language of the review'}
+            {reviewsValidationError id='zlanguage' class=''}
         </div>
         
         <div class="z-formrow">
@@ -77,6 +77,7 @@
         <div class="z-formrow">
             {formlabel for='cover' __text='Cover' cssClass=''}
             {formtextinput group='review' id='cover' mandatory=false readOnly=false __title='Enter the cover of the review' textMode='singleline' maxLength=255 cssClass='' }
+            <em class="z-sub z-formnote">{gt text='Name of the cover image, located in %s. Not required.' tag1=modules/Reviews/images/}</em>
         </div>
         
         <div class="z-formrow">
@@ -106,6 +107,7 @@
             {/if}
             {reviewsValidationError id='coverUpload' class='validate-upload'}
         </div>
+        <p class="z-warningmsg">{gt text='Please make sure that the information entered is 100% valid and uses proper grammar and capitalization. For instance, please do not enter your text in ALL CAPS, as it will be rejected.'}</p>
     </fieldset>
     
     {include file='user/include_categories_edit.tpl' obj=$review groupName='reviewObj'}

@@ -69,7 +69,7 @@
                         {sortlink __linktext='Text' currentsort=$sort modname='Reviews' type='admin' func='view' ot='review' sort='text' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
                     </th>
                     <th id="hZlanguage" scope="col" class="z-left">
-                        {sortlink __linktext='Zlanguage' currentsort=$sort modname='Reviews' type='admin' func='view' ot='review' sort='zlanguage' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
+                        {sortlink __linktext='Language' currentsort=$sort modname='Reviews' type='admin' func='view' ot='review' sort='zlanguage' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
                     </th>
                     <th id="hReviewer" scope="col" class="z-left">
                         {sortlink __linktext='Reviewer' currentsort=$sort modname='Reviews' type='admin' func='view' ot='review' sort='reviewer' sortdir=$sdir all=$all own=$own catidMain=$catIdListMainString workflowState=$workflowState score=$score zlanguage=$zlanguage searchterm=$searchterm pageSize=$pageSize}
