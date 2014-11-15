@@ -16,5 +16,33 @@
  */
 class Reviews_Util_Controller extends Reviews_Util_Base_Controller
 {
-    // feel free to add your own convenience methods here
+	/**
+	 * This function increment the page view if the user is not the creator
+	 */
+
+	public static function addView($id) 
+	{
+	    $serviceManager = ServiceUtil::getManager();
+	    $modelHelper = new Reviews_Util_Model($serviceManager);
+		// build review repository
+		$repository = $modelHelper->getReviewRepository();
+
+		$entity = $repository->selectById($id);
+
+		$serviceManager = ServiceUtil::getManager();
+		$entityManager = $serviceManager->getService('doctrine.entitymanager');
+
+		if ($entity->getCreatedUserId() != UserUtil::getVar('uid')) {
+		$hits = $entity->getHits();
+		$entity->setHits($hits + 1);
+		$email = $entity->getEmail();
+		$email = html_entity_decode($email);
+		$entity->setEmail($email);
+
+		$entityManager->flush();
+		}
+
+		return true;
+
+	}
 }
