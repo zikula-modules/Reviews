@@ -87,19 +87,6 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $newReview->setCreatedUserId($review['pn_cr_uid']);
                         $newReview->setUpdatedUserId($review['pn_lu_uid']);
 
-                        $tables = DBUtil::getTables();
-                        $catmapcolumn = $tables['categories_mapobj_column'];
-                        $where = "$catmapcolumn[obj_id] = '" . DataUtil::formatForStore($review['id']). "'";
-                        $where .= " AND ";
-                        $where .= "$catmapcolumn[modname] = 'Reviews'";
-                        $categories = DBUtil::selectObjectArray('categories_mapobj', $where);
-
-                        foreach ($categories as $category) {
-                            LogUtil::registerError($category['id']);
-                            //$newCategory = new Reviews_Entity_ReviewCategory($category['reg_id'], $category['category_id'], $newReview);
-                            $thiscategories[] = $category['id'];
-                        }
-                        $newReview->setCategories($thiscategories);
                         $entityManager->persist($newReview);
                         $entityManager->flush();
 
@@ -117,14 +104,6 @@ class Reviews_Installer extends Reviews_Base_Installer
                     $workflowHelper->registerWorkflow($obj, 'approved');
                 }
                 
-               /* $result3 = DBUtil::executeSQL('SELECT * FROM `categories_registry`');
-                $categoriesRegistered = $result3->fetchAll(Doctrine::FETCH_ASSOC);
-                // we change for each relevant entry the table to 'Review'.
-                foreach ($categoriesRegistered as $categoryRegistered) {
-                    if ($categoryRegistered['tablename'] == 'reviews')
-                    CategoryRegistryUtil::updateEntry($categoryRegistered['id'], $this->name, 'Review', $categoryRegistered['property'], $categoryRegistered['category_id']);
-                }*/
-                
                 // move relations from categories_mapobj to reviews_category
                 // then delete old data
                 $connection = $this->entityManager->getConnection();
@@ -132,7 +111,7 @@ class Reviews_Installer extends Reviews_Base_Installer
                 $sqls[] = "INSERT INTO reviews_review_category (entityId, registryId, categoryId) SELECT obj_id, reg_id, category_id FROM categories_mapobj WHERE modname = 'Reviews' AND tablename = 'reviews'";
                 $sqls[] = "DELETE FROM categories_mapobj WHERE modname = 'Reviews' AND tablename = 'reviews'";
                 // update category registry data to change tablename to EntityName
-                $sqls[] = "UPDATE categories_registry SET tablename = 'Reviews' WHERE tablename = 'reviews'";
+                $sqls[] = "UPDATE categories_registry SET tablename = 'Review' WHERE tablename = 'reviews'";
                 // do changes
                 foreach ($sqls as $sql) {
                     $stmt = $connection->prepare($sql);
