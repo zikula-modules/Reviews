@@ -54,7 +54,7 @@
                 </select>
         {/if}
         {if !isset($zlanguageFilter) || $zlanguageFilter eq true}
-                <label for="zlanguage">{gt text='Zlanguage'}</label>
+                <label for="zlanguage">{gt text='Language'}</label>
                 {html_select_locales name='zlanguage' selected=$zlanguage}
         {/if}
         {if !isset($searchFilter) || $searchFilter eq true}
