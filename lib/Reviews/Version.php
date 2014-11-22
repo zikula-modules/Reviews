@@ -9,11 +9,12 @@
  * @subpackage Reviews
  */
 
-class Reviews_Version extends Zikula_AbstractVersion
+class Reviews_Version extends Reviews_Base_Version
 {
     public function getMetaData()
     {
-        $meta = array();
+        $meta = parent::getMetaData();
+        
         $meta['displayname']    = __('Reviews system');
         $meta['description']    = __('Reviews system module');
         //! this defines the module's url

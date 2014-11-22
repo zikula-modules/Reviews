@@ -71,7 +71,7 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $newReview->setUrl_title($review['pn_url_title']);
                         $newReview->setHits($review['pn_hits']);
                         $newReview->setZlanguage($review['pn_language']);
-                        
+
                         $createdDate =  $review['pn_cr_date'];
                         //$createdDate = $createdDate->getTimestamp();
 
@@ -89,7 +89,6 @@ class Reviews_Installer extends Reviews_Base_Installer
 
                         $entityManager->persist($newReview);
                         $entityManager->flush();
-
                     }
                 }
                  
@@ -103,7 +102,7 @@ class Reviews_Installer extends Reviews_Base_Installer
                     $obj['id'] = $review2['id'];
                     $workflowHelper->registerWorkflow($obj, 'approved');
                 }
-                
+
                 // move relations from categories_mapobj to reviews_category
                 // then delete old data
                 $connection = $this->entityManager->getConnection();
@@ -129,6 +128,12 @@ class Reviews_Installer extends Reviews_Base_Installer
                 $addcategorytitletopermalink = $this->getVar('addcategorytitletopermalink');
                 $this->setVar('addcategorytitletopermalink');
                 
+                // register persistent event handlers
+                $this->registerPersistentEventHandlers();
+                
+                // register hook subscriber bundles
+                HookUtil::registerSubscriberBundles($this->version->getHookSubscriberBundles());
+
                 DBUtil::dropTable('reviews');
 
             case '2.5.0':
