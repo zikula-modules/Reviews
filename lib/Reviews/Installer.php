@@ -1,4 +1,6 @@
 <?php
+use DoctrineExtensions\Query\Mysql\CountIf;
+
 /**
  * Zikula Application Framework
  *
@@ -44,6 +46,7 @@ class Reviews_Installer extends Reviews_Base_Installer
 
                 $repository = $this->getEntityManager()->getRepository('Reviews_Entity_Review');
 
+                // we get all old entries
                 $result = DBUtil::executeSQL('SELECT * FROM `reviews`');
                 $reviews = $result->fetchAll(Doctrine::FETCH_ASSOC);
 
@@ -68,12 +71,19 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $newReview->setUrl_title($review['pn_url_title']);
                         $newReview->setHits($review['pn_hits']);
                         $newReview->setZlanguage($review['pn_language']);
-                        //$createdDate = $review['pn_cr_date'];
-                        //$createdDate = DateUtil::getDatetime($createdDate);
-                        //$newReview->setCreatedDate($review['pn_cr_date']);
-                        $updatedDate = $review['pn_lu_date'];
-                        //$updatedDate = DateUtil::getDatetime($updatedDate);
-                        //$newReview->setUpdatedDate($review['pn_lu_date']);
+                        
+                        $createdDate =  $review['pn_cr_date'];
+                        //$createdDate = $createdDate->getTimestamp();
+
+                        //$createdDate = date( 'Y-m-d H:i:s', $createdDate);
+                        //$createdDate = DateUtil::formatDatetime($review['pn_cr_date'], 'datetimelong');
+                        //$newReview->setCreatedDate($createdDate);
+                        //$updatedDate = $review['pn_lu_date'];
+
+                        //$updatedDate = $updatedDate->getTimestamp();
+
+                        //$updatedDate = date( 'Y-m-d H:i:s', $updatedDate);
+                        //$newReview->setUpdatedDate($updatedDate);
                         $newReview->setCreatedUserId($review['pn_cr_uid']);
                         $newReview->setUpdatedUserId($review['pn_lu_uid']);
 
@@ -83,9 +93,11 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $where .= " AND ";
                         $where .= "$catmapcolumn[modname] = 'Reviews'";
                         $categories = DBUtil::selectObjectArray('categories_mapobj', $where);
+
                         foreach ($categories as $category) {
-                            LogUtil::registerError($category['category_id']);
-                            $thiscategories[] = $category['category_id'] ;
+                            LogUtil::registerError($category['id']);
+                            //$newCategory = new Reviews_Entity_ReviewCategory($category['reg_id'], $category['category_id'], $newReview);
+                            $thiscategories[] = $category['id'];
                         }
                         $newReview->setCategories($thiscategories);
                         $entityManager->persist($newReview);
@@ -97,6 +109,7 @@ class Reviews_Installer extends Reviews_Base_Installer
                 $result2 = DBUtil::executeSQL('SELECT * FROM `reviews_review`');
                 $reviews2 = $result2->fetchAll(Doctrine::FETCH_ASSOC);
 
+                // we set the workflow
                 foreach ($reviews2 as $key => $review2) {
                     $obj['__WORKFLOW__']['obj_table'] = 'review';
                     $obj['__WORKFLOW__']['obj_idcolumn'] = 'id';
@@ -104,12 +117,30 @@ class Reviews_Installer extends Reviews_Base_Installer
                     $workflowHelper->registerWorkflow($obj, 'approved');
                 }
                 
-                $result3 = DBUtil::executeSQL('SELECT * FROM `categories_registry`');
+               /* $result3 = DBUtil::executeSQL('SELECT * FROM `categories_registry`');
                 $categoriesRegistered = $result3->fetchAll(Doctrine::FETCH_ASSOC);
-                //$categoriesRegistered = CategoryRegistryUtil::getRegisteredModuleCategories($this->name, 'reviews');
+                // we change for each relevant entry the table to 'Review'.
                 foreach ($categoriesRegistered as $categoryRegistered) {
                     if ($categoryRegistered['tablename'] == 'reviews')
                     CategoryRegistryUtil::updateEntry($categoryRegistered['id'], $this->name, 'Review', $categoryRegistered['property'], $categoryRegistered['category_id']);
+                }*/
+                
+                // move relations from categories_mapobj to reviews_category
+                // then delete old data
+                $connection = $this->entityManager->getConnection();
+                $sqls = array();
+                $sqls[] = "INSERT INTO reviews_review_category (entityId, registryId, categoryId) SELECT obj_id, reg_id, category_id FROM categories_mapobj WHERE modname = 'Reviews' AND tablename = 'reviews'";
+                $sqls[] = "DELETE FROM categories_mapobj WHERE modname = 'Reviews' AND tablename = 'reviews'";
+                // update category registry data to change tablename to EntityName
+                $sqls[] = "UPDATE categories_registry SET tablename = 'Reviews' WHERE tablename = 'reviews'";
+                // do changes
+                foreach ($sqls as $sql) {
+                    $stmt = $connection->prepare($sql);
+                    try {
+                        $stmt->execute();
+                    } catch (Exception $e) {
+                        LogUtil::registerError($e->getMessage());
+                    }
                 }
 
                 $pagesize = $this->getVar('itemsperpage');
