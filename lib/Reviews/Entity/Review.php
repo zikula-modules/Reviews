@@ -96,7 +96,7 @@ class Reviews_Entity_Review extends Reviews_Entity_Base_Review
             if (in_array($currentFunc, array('main', 'view'))) {
                 if (ModUtil::getVar('Reviews' ,'addcategorytitletopermalink') == 1 && ModUtil::getVar('Reviews' ,'enablecategorization') == 1) {
                     $this->_actions[] = array(
-                            'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'cat' => 'ei', 'id' => $this['id'], 'slug' => $this->slug)),
+                            'url' => array('type' => 'user', 'func' => 'display', 'arguments' => array('ot' => 'review', 'id' => $this['id'], 'slug' => $this->slug)),
                             'icon' => 'display',
                             'linkTitle' => str_replace('"', '', $this->getTitleFromDisplayPattern()),
                             'linkText' => __('Details', $dom)
