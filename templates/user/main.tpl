@@ -8,9 +8,9 @@
     <ol>
         {foreach from=$popularreviews item='review'}
         {if $shorturls && $addcategorytitletopermalink}
-        <li><a href="{modurl modname='Reviews' type='user' func='display' id=$review.id cat=$review.categories.category.name}">{$review.title}</a></li>
+        <li><a href="{modurl modname='Reviews' type='user' func='display' ot='review' id=$review.id cat=$review.categories.category.name}">{$review.title}</a></li>
         {else}
-        <li><a href="{modurl modname='Reviews' type='user' func='display' id=$review.id}">{$review.title}</a></li>
+        <li><a href="{modurl modname='Reviews' type='user' func='display' ot='review' id=$review.id}">{$review.title}</a></li>
         {/if}
         {/foreach}
     </ol>
@@ -21,9 +21,9 @@
     <ol>
         {foreach from=$recentreviews item='review2'}
         {if $shorturls && $addcategorytitletopermalink}
-        <li><a href="{modurl modname='Reviews' type='user' func='display' id=$review2.id cat=$review2.categories.category.name}">{$review2.title}</a></li>
+        <li><a href="{modurl modname='Reviews' type='user' func='display' ot='review' id=$review2.id cat=$review2.categories.category.name}">{$review2.title}</a></li>
         {else}
-        <li><a href="{modurl modname='Reviews' type='user' func='display' id=$review2.id}">{$review2.title}</a></li>
+        <li><a href="{modurl modname='Reviews' type='user' func='display' ot='review' id=$review2.id}">{$review2.title}</a></li>
         {/if}
         {/foreach}
     </ol>

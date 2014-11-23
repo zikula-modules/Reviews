@@ -43,4 +43,58 @@ class Reviews_Entity_Repository_Review extends Reviews_Entity_Repository_Base_Re
     
         return $qb;
     }
+    
+    /**
+     * Builds a generic Doctrine query supporting WHERE and ORDER BY.
+     *
+     * @param string  $where    The where clause to use when retrieving the collection (optional) (default='').
+     * @param string  $orderBy  The order-by clause to use when retrieving the collection (optional) (default='').
+     * @param boolean $useJoins Whether to include joining related objects (optional) (default=true).
+     * @param boolean $slimMode If activated only some basic fields are selected without using any joins (optional) (default=false).
+     *
+     * @return Doctrine\ORM\QueryBuilder query builder instance to be further processed
+     */
+    public function genericBaseQuery($where = '', $orderBy = '', $useJoins = true, $slimMode = false)
+    {
+        // normally we select the whole table
+        $selection = 'tbl';
+    
+        if ($slimMode === true) {
+            // but for the slim version we select only the basic fields, and no joins
+    
+            $selection = 'tbl.id';
+    
+    
+            $selection .= ', tbl.title';
+            $selection .= ', tbl.slug';
+            $useJoins = false;
+        }
+    
+        if ($useJoins === true) {
+            $selection .= $this->addJoinsToSelection();
+        }
+    
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select($selection)
+        ->from('Reviews_Entity_Review', 'tbl');
+    
+        if ($useJoins === true) {
+            $this->addJoinsToFrom($qb);
+        }
+    
+        // we get a request object
+        $request = new Zikula_Request_Http();
+        
+        $type = $request->query->filter('type', 'admin');
+        $func = $request->query->filter('func', 'main');
+        
+        if ($type == 'user' && $func == 'main') {
+        $qb->setMaxResults(10);
+        }
+    
+        $this->genericBaseQueryAddWhere($qb, $where);
+        $this->genericBaseQueryAddOrderBy($qb, $orderBy);
+    
+        return $qb;
+    }
 }

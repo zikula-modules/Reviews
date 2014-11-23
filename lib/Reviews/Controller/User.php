@@ -33,15 +33,11 @@ class Reviews_Controller_User extends Reviews_Controller_Base_User
 
         // Get all matching reviews
         $recentitems = ModUtil::apiFunc('Reviews', 'selection', 'getEntities',
-                array('startnum' => $startnum,
-                'orderby' => 'createdDate DESC',
-                'numitems' => 10));
+                array('orderBy' => 'createdDate ASC'));
         
         // Get the most popular reviews
         $popularitems = ModUtil::apiFunc('Reviews', 'selection', 'getEntities',
-                array('startnum' => $startnum,
-                'orderby' => 'hits DESC',
-                'numitems' => 10));
+                array('orderBy' => 'hits DESC'));
 
         // assign item arrays to template
         $this->view->assign('lang', ZLanguage::getLanguageCode());
@@ -202,7 +198,7 @@ class Reviews_Controller_User extends Reviews_Controller_Base_User
             // the number of items displayed on a page for pagination
             $resultsPerPage = (int) $this->request->query->filter('num', 0, FILTER_VALIDATE_INT);
             if ($resultsPerPage == 0) {
-                $resultsPerPage = $this->getVar('pageSize', 10);
+                $resultsPerPage = $this->getVar('pagesize', 10);
             }
         
             // set cache id
