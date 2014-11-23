@@ -33,7 +33,7 @@ class Reviews_Controller_User extends Reviews_Controller_Base_User
 
         // Get all matching reviews
         $recentitems = ModUtil::apiFunc('Reviews', 'selection', 'getEntities',
-                array('orderBy' => 'createdDate ASC'));
+                array('orderBy' => 'createdDate DESC'));
         
         // Get the most popular reviews
         $popularitems = ModUtil::apiFunc('Reviews', 'selection', 'getEntities',
