@@ -18,5 +18,108 @@
  */
 class Reviews_Entity_Validator_Review extends Reviews_Entity_Validator_Base_Review
 {
-    // here you can add custom validation methods or override existing checks
+    /**
+     * Performs all validation rules.
+     *
+     * @return mixed either array with error information or true on success
+     */
+    public function validateAll()
+    {
+        $errorInfo = array('message' => '', 'code' => 0, 'debugArray' => array());
+        $dom = ZLanguage::getModuleDomain('Reviews');
+        if (!$this->isValidInteger('id')) {
+            $errorInfo['message'] = __f('Error! Field value may only contain digits (%s).', array('id'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isNumberNotLongerThan('id', 9)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('id', 9), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotEmpty('workflowState')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('workflow state'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('title', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('title', 255), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotEmpty('title')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('title'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('text', 6000)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('text', 6000), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotEmpty('text')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('text'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('zlanguage', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('zlanguage', 255), $dom);
+            return $errorInfo;
+        }
+       /* if (!$this->isStringNotEmpty('zlanguage')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('zlanguage'), $dom);
+            return $errorInfo;
+        }*/
+        if (!$this->isStringNotContaining('zlanguage', ' ')) {
+            $errorInfo['message'] = __f('Error! Field value must not contain space chars (%s).', array('zlanguage'), $dom);
+            return $errorInfo;
+        }
+       /* if (!$this->isValidLanguage('zlanguage', false)) {
+            $errorInfo['message'] = __f('Error! Field value must be a valid language code (%s).', array('zlanguage'), $dom);
+            return $errorInfo;
+        }*/
+        if (!$this->isStringNotLongerThan('reviewer', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('reviewer', 255), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotEmpty('reviewer')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('reviewer'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('email', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('email', 255), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotEmpty('email')) {
+            $errorInfo['message'] = __f('Error! Field value must not be empty (%s).', array('email'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isValidEmail('email')) {
+            $errorInfo['message'] = __f('Error! Field value must be a valid email address (%s).', array('email'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('url', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('url', 255), $dom);
+            return $errorInfo;
+        }
+        if ($this->entity['url'] != '' && !$this->isValidUrl('url')) {
+            $errorInfo['message'] = __f('Error! Field value must be a valid url (%s).', array('url'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('url_title', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('url_title', 255), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isValidInteger('hits')) {
+            $errorInfo['message'] = __f('Error! Field value may only contain digits (%s).', array('hits'), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isNumberNotLongerThan('hits', 18)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('hits', 18), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('cover', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('cover', 255), $dom);
+            return $errorInfo;
+        }
+        if (!$this->isStringNotLongerThan('coverUpload', 255)) {
+            $errorInfo['message'] = __f('Error! Length of field value must not be higher than %2$s (%1$s).', array('cover upload', 255), $dom);
+            return $errorInfo;
+        }
+    
+        return true;
+    }
 }
