@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Reviews\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-24 12:45+0000\n"
-"PO-Revision-Date: 2014-11-24 14:25+0100\n"
+"PO-Revision-Date: 2014-11-24 15:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -28,6 +28,9 @@ msgid ""
 "finally approved publications. It does not allow corrections of non-editors "
 "to published pages."
 msgstr ""
+"Dieser Workflow ist 2-stufig mit Stati für nicht vertrauensvolle "
+"Einreichungen und abschließend freigegebene Publikationen. Er erlaubt nicht "
+"das Editieren von veröffentlichten Seiten durch Nicht-Moderatoren."
 
 #: workflows/function.standard_permissioncheck.php:61
 #: lib/Reviews/Util/Base/Workflow.php:28
@@ -122,7 +125,7 @@ msgstr "Freigeben"
 #: Resources/templates/admin/review/view.tpl:187
 #: templates/admin/review/view.tpl:187
 msgid "Update content and approve for immediate publishing."
-msgstr ""
+msgstr "Inhalt aktualisieren und freigeben für direkte Veröffentlichung."
 
 #: workflows/function.standard_permissioncheck.php:78
 #: workflows/function.standard_permissioncheck.php:84
@@ -585,7 +588,7 @@ msgstr "Moderation"
 
 #: lib/Reviews/Block/Base/Moderation.php:42
 msgid "Show a list of pending tasks to moderators."
-msgstr ""
+msgstr "Zeige eine Liste von wartenden Inhalten für Moderatoren."
 
 #: lib/Reviews/Installer.php:44
 #, php-format
@@ -1487,13 +1490,11 @@ msgstr "Keine Rezensionen gefunden."
 
 #: Resources/templates/admin/review/view.tpl:184
 #: templates/admin/review/view.tpl:184
-#, fuzzy
 msgid "With selected reviews"
-msgstr "Rezensionen"
+msgstr "Gewählte Rezensionen"
 
 #: Resources/templates/admin/review/view.tpl:186
 #: templates/admin/review/view.tpl:186
-#, fuzzy
 msgid "Choose action"
 msgstr "Wähle eine Aktion"
 
@@ -1503,7 +1504,6 @@ msgstr "Wähle eine Aktion"
 #: Resources/templates/user/review/edit.tpl:11
 #: templates/admin/review/edit.tpl:7 templates/admin/review/edit.tpl:13
 #: templates/user/review/edit.tpl:7 templates/user/review/edit.tpl:11
-#, fuzzy
 msgid "Edit review"
 msgstr "Rezension bearbeiten"
 
@@ -1516,30 +1516,26 @@ msgstr "Inhalt"
 #: Resources/templates/admin/review/edit.tpl:32
 #: Resources/templates/user/review/edit.tpl:26
 #: templates/admin/review/edit.tpl:32 templates/user/review/edit.tpl:26
-#, fuzzy
 msgid "Enter the title of the review"
-msgstr "Gib den Titel der Sitzung ein"
+msgstr "Gib den Titel der Rezension ein"
 
 #: Resources/templates/admin/review/edit.tpl:38
 #: Resources/templates/user/review/edit.tpl:33
 #: templates/admin/review/edit.tpl:38 templates/user/review/edit.tpl:33
-#, fuzzy
 msgid "Enter the text of the review"
-msgstr "Sie müssen einen Text eingeben!"
+msgstr "Gib den Text für die Rezension ein!"
 
 #: Resources/templates/admin/review/edit.tpl:44
 #: Resources/templates/user/review/edit.tpl:40
 #: templates/admin/review/edit.tpl:44 templates/user/review/edit.tpl:40
-#, fuzzy
 msgid "Choose the language of the review"
-msgstr "Sprache"
+msgstr "Wähle die Sprache für die Rezension"
 
 #: Resources/templates/admin/review/edit.tpl:50
 #: Resources/templates/user/review/edit.tpl:46
 #: templates/admin/review/edit.tpl:50 templates/user/review/edit.tpl:46
-#, fuzzy
 msgid "Enter the reviewer of the review"
-msgstr "Rezensent"
+msgstr "Gib den Rezensenten ein"
 
 #: Resources/templates/admin/review/edit.tpl:56
 #: Resources/templates/user/review/edit.tpl:53
@@ -1550,9 +1546,8 @@ msgstr "Gib die Email Adresse für die Rezension ein"
 #: Resources/templates/admin/review/edit.tpl:63
 #: Resources/templates/user/review/edit.tpl:61
 #: templates/admin/review/edit.tpl:63 templates/user/review/edit.tpl:61
-#, fuzzy
 msgid "Choose the score"
-msgstr "Bewertung"
+msgstr "Wähle die Bewertung"
 
 #: Resources/templates/admin/review/edit.tpl:68
 #: Resources/templates/user/review/edit.tpl:66
@@ -1683,7 +1678,7 @@ msgstr "Offizielle Website des Produkts. Muss mit 'http://' beginnen"
 #: templates/user/review/edit.tpl:74
 msgid "Required if you have a related link, otherwise not required."
 msgstr ""
-"Pflicht, wenn Du einne zugehörigen Link hast, andernfalls keine Pflicht."
+"Pflicht, wenn Du einen zugehörigen Link hast, andernfalls keine Pflicht."
 
 #: Resources/templates/user/review/edit.tpl:87
 #: templates/user/review/edit.tpl:87
