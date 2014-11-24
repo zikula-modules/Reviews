@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zikula 1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-24 17:15+0000\n"
+"POT-Creation-Date: 2014-11-24 12:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,160 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: workflows/function.standard_permissioncheck.php:56
+msgid "Standard workflow (single approval)"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:57
+msgid ""
+"This is a two staged workflow with stages for untrusted submissions and "
+"finally approved publications. It does not allow corrections of non-editors "
+"to published pages."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:61
+#: lib/Reviews/Util/Base/Workflow.php:28
+msgid "Initial"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:61
+msgid "Pseudo-state for content which is just created and not persisted yet."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:62
+#: lib/Reviews/Util/Base/ListEntries.php:164
+#: lib/Reviews/Util/Base/Workflow.php:31
+msgid "Waiting"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:62
+#: lib/Reviews/Util/Base/ListEntries.php:165
+msgid "Content has been submitted and waits for approval."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:63
+#: lib/Reviews/Util/Base/ListEntries.php:169
+#: lib/Reviews/Util/Base/Workflow.php:34
+msgid "Approved"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:63
+#: lib/Reviews/Util/Base/ListEntries.php:170
+msgid "Content has been approved and is available online."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:64
+#: lib/Reviews/Util/Base/ListEntries.php:174
+#: lib/Reviews/Util/Base/Workflow.php:37
+msgid "Suspended"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:64
+#: lib/Reviews/Util/Base/ListEntries.php:175
+msgid "Content has been approved, but is temporarily offline."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:65
+#: lib/Reviews/Util/Base/Workflow.php:40
+msgid "Deleted"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:65
+msgid "Pseudo-state for content which has been deleted from the database."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:71
+#: Resources/templates/admin/review/view.tpl:192
+#: templates/admin/review/view.tpl:192
+msgid "Submit"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:71
+msgid "Submit content for acceptance by a moderator."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:72
+msgid "Submit and Approve"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:72
+msgid "Submit content and approve immediately."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:76
+#: workflows/function.standard_permissioncheck.php:82
+#: workflows/function.standard_permissioncheck.php:88
+msgid "Update"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:76
+#: workflows/function.standard_permissioncheck.php:82
+#: workflows/function.standard_permissioncheck.php:88
+msgid "Update content."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:77
+#: Resources/templates/admin/review/view.tpl:187
+#: templates/admin/review/view.tpl:187
+msgid "Approve"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:77
+#: Resources/templates/admin/review/view.tpl:187
+#: templates/admin/review/view.tpl:187
+msgid "Update content and approve for immediate publishing."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:78
+#: workflows/function.standard_permissioncheck.php:84
+#: workflows/function.standard_permissioncheck.php:90
+#: lib/Reviews/Entity/Base/Review.php:998
+#: lib/Reviews/Entity/Base/Review.php:999 lib/Reviews/Entity/Review.php:81
+#: lib/Reviews/Entity/Review.php:82
+#: Resources/templates/admin/review/view.tpl:190
+#: templates/admin/review/view.tpl:190 templates/admin/review/delete.tpl:7
+#: templates/admin/review/delete.tpl:20
+msgid "Delete"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:78
+#: workflows/function.standard_permissioncheck.php:84
+#: workflows/function.standard_permissioncheck.php:90
+#: Resources/templates/admin/review/view.tpl:190
+#: templates/admin/review/view.tpl:190
+msgid "Delete content permanently."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:83
+#: Resources/templates/admin/review/view.tpl:188
+#: templates/admin/review/view.tpl:188
+msgid "Unpublish"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:83
+#: Resources/templates/admin/review/view.tpl:188
+#: templates/admin/review/view.tpl:188
+msgid "Hide content temporarily."
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:89
+#: Resources/templates/admin/review/view.tpl:189
+#: templates/admin/review/view.tpl:189
+msgid "Publish"
+msgstr ""
+
+#: workflows/function.standard_permissioncheck.php:89
+#: Resources/templates/admin/review/view.tpl:189
+#: templates/admin/review/view.tpl:189
+msgid "Make content available again."
+msgstr ""
+
 #: templates/plugins/function.reviewsuserlinks.php:52
-#: templates/reviews_user_main.htm:2
+#: lib/Reviews/Api/User.php:38 templates/user/main.tpl:3
 msgid "Reviews index"
 msgstr ""
 
 #: templates/plugins/function.reviewsuserlinks.php:56
-#: templates/reviews_user_view.htm:2
 msgid "View reviews"
 msgstr ""
 
@@ -31,386 +178,1755 @@ msgstr ""
 msgid "Submit a review"
 msgstr ""
 
-#: lib/Reviews/Installer.php:34
-msgid ""
-"Warning! Could not create the default Reviews category tree. If you want to "
-"use categorization for the reviews, register at least one property for the "
-"module in the Category Registry."
+#: templates/plugins/function.reviewsValidationError.php:36
+msgid "This is a required field."
 msgstr ""
 
-#: lib/Reviews/Installer.php:117 templates/reviews_user_menu.htm:2
-#: templates/reviews_search_options.htm:5 templates/reviews_admin_menu.htm:5
+#: templates/plugins/function.reviewsValidationError.php:37
+msgid "Please enter a valid number in this field."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:38
+msgid ""
+"Please use numbers only in this field. please avoid spaces or other "
+"characters such as dots or commas."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:39
+msgid "Please use letters only (a-z) in this field."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:40
+msgid ""
+"Please use only letters (a-z) or numbers (0-9) only in this field. No spaces "
+"or other characters are allowed."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:41
+msgid "Please enter a valid date."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:42
+msgid "Please enter a valid email address. For example yourname@example.com ."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:43
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:44
+msgid ""
+"Please use this date format: dd/mm/yyyy. For example 17/03/2010 for the 17th "
+"of March, 2010."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:45
+msgid "Please enter a valid $ amount. For example $100.00 ."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:46
+msgid "Please make a selection."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:47
+msgid "Please select one of the above options."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:50
+msgid "This value must not contain spaces."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:51
+msgid "Please select an allowed file type."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:52
+#: templates/plugins/function.reviewsValidationError.php:54
+#: templates/plugins/function.reviewsValidationError.php:56
+msgid "Please select a value in the past."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:53
+#: templates/plugins/function.reviewsValidationError.php:55
+#: templates/plugins/function.reviewsValidationError.php:57
+msgid "Please select a value in the future."
+msgstr ""
+
+#: templates/plugins/function.reviewsValidationError.php:58
+msgid "This value is already assigned, but must be unique. Please change it."
+msgstr ""
+
+#: templates/plugins/function.reviewsTemplateSelector.php:30
+#: templates/block/itemlist_modify.tpl:52
+msgid "Only item titles"
+msgstr ""
+
+#: templates/plugins/function.reviewsTemplateSelector.php:31
+#: templates/block/itemlist_modify.tpl:53
+msgid "With description"
+msgstr ""
+
+#: templates/plugins/function.reviewsTemplateSelector.php:32
+#: templates/contenttype/itemlist_edit.tpl:67
+#: templates/block/itemlist_modify.tpl:54
+#: templates/block/itemlist_modify.tpl:59
+msgid "Custom template"
+msgstr ""
+
+#: templates/plugins/function.reviewsObjectTypeSelector.php:30
+#: lib/Reviews/Base/Version.php:30 lib/Reviews/Api/Base/User.php:42
+#: lib/Reviews/Api/Base/Admin.php:42 lib/Reviews/Api/User.php:45
+#: lib/Reviews/Api/Admin.php:81 templates/user/header.tpl:12
+#: templates/search/options.tpl:5 templates/block/itemlist_modify.tpl:5
 msgid "Reviews"
 msgstr ""
 
-#: lib/Reviews/Installer.php:118 lib/Reviews/Version.php:18
-msgid "Reviews system module"
-msgstr ""
-
-#: lib/Reviews/Version.php:17
-msgid "Reviews system"
-msgstr ""
-
-#. ! this defines the module's url
-#: lib/Reviews/Version.php:20
-msgid "reviews"
-msgstr ""
-
-#: lib/Reviews/Api/Search.php:70 lib/Reviews/Api/Search.php:97
-#: lib/Reviews/Api/User.php:125
-msgid "Error! Could not load items."
-msgstr ""
-
-#: lib/Reviews/Api/User.php:233
-msgid "Error! Creation attempt failed."
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:32 lib/Reviews/Api/Admin.php:73
-#: lib/Reviews/Controller/User.php:275 lib/Reviews/Controller/Admin.php:73
-#: lib/Reviews/Controller/Admin.php:171
-msgid "No such review found."
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:41
-msgid "Error! Deletion attempt failed."
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:95
-msgid "Error! Update attempt failed."
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:169
-msgid "View reviews list"
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:173
-msgid "Create a review"
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:177
-msgid "Purge permalinks"
-msgstr ""
-
-#: lib/Reviews/Api/Admin.php:179 templates/reviews_admin_modifyconfig.htm:2
-msgid "Settings"
-msgstr ""
-
-#: lib/Reviews/Controller/User.php:124
-msgid "Done! Review created"
-msgstr ""
-
-#: lib/Reviews/Controller/User.php:190
-msgid "Invalid category passed."
-msgstr ""
-
-#: lib/Reviews/Controller/User.php:286
-msgid "No such review page found."
-msgstr ""
-
-#: lib/Reviews/Controller/Admin.php:87 lib/Reviews/Controller/Admin.php:243
+#: templates/plugins/function.reviewsTemplateHeaders.php:31
 #, php-format
-msgid "Error! Unable to load class [%s]"
+msgid "%1$s: missing parameter '%2$s'"
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:137
+#: templates/plugins/function.reviewsModerationObjects.php:24
+#, php-format
+msgid "Error! in %1$s: the %2$s parameter must be specified."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:61
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:61
+msgid ""
+"Sorry, but you can not create the review yet as other items are required "
+"which must be created before!"
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:173
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:173
+msgid "Done! Review created."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:175
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:182
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:175
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:182
 msgid "Done! Review updated."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:199
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:179
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:179
 msgid "Done! Review deleted."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:226
-msgid "Purging of the pemalinks was successful"
+#: lib/Reviews/Form/Handler/Admin/Review/Base/Edit.php:208
+#: lib/Reviews/Form/Handler/User/Review/Base/Edit.php:208
+#: lib/Reviews/Controller/Base/Admin.php:472
+#, php-format
+msgid ""
+"Sorry, but an unknown error occured during the %s action. Please apply the "
+"changes again!"
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:228
-msgid "Purging of the pemalinks has failed"
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:235
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:318
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:350
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:235
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:318
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:350
+#: lib/Reviews/Controller/Base/User.php:238
+#: lib/Reviews/Controller/Base/Admin.php:224
+#: lib/Reviews/Controller/Base/Admin.php:337
+#: lib/Reviews/Controller/Base/External.php:92
+#: lib/Reviews/Controller/User.php:368
+msgid "No such item."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:282
-msgid "View"
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:266
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:266
+#: lib/Reviews/Controller/Base/Admin.php:346
+msgid "Error! Could not determine workflow actions."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:287
-msgid "Edit"
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:523
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:523
+msgid "Done! Item created."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:292
-msgid "Delete"
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:525
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:525
+msgid "Error! Creation attempt failed."
 msgstr ""
 
-#: lib/Reviews/Controller/Admin.php:380
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:530
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:530
+#: lib/Reviews/Controller/Base/Admin.php:482
+msgid "Done! Item updated."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:532
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:532
+msgid "Error! Update attempt failed."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:537
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:537
+#: lib/Reviews/Controller/Base/Admin.php:372
+#: lib/Reviews/Controller/Base/Admin.php:480
+msgid "Done! Item deleted."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Base/Edit.php:539
+#: lib/Reviews/Form/Handler/User/Base/Edit.php:539
+msgid "Error! Deletion attempt failed."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Base/Config.php:114
+msgid "Error! Failed to set configuration variables."
+msgstr ""
+
+#: lib/Reviews/Form/Handler/Admin/Base/Config.php:121
 msgid "Done! Module configuration updated."
 msgstr ""
 
-#: templates/reviews_admin_delete.htm:2
-msgid "Delete Review"
+#: lib/Reviews/Form/Plugin/Base/ColourInput.php:96
+msgid "Close"
 msgstr ""
 
-#: templates/reviews_admin_delete.htm:11
-msgid "Do you really want to delete this review?"
+#: lib/Reviews/Form/Plugin/Base/ColourInput.php:140
+msgid "Error! Invalid colour."
 msgstr ""
 
-#: templates/reviews_admin_delete.htm:16 templates/reviews_admin_delete.htm:21
-msgid "Confirm deletion?"
+#: lib/Reviews/ContentType/Base/Item.php:52
+msgid "Reviews detail view"
 msgstr ""
 
-#: templates/reviews_admin_delete.htm:22
-#: templates/reviews_admin_modifyconfig.htm:35
-#: templates/reviews_admin_new.htm:95 templates/reviews_user_new.htm:70
-#: templates/reviews_admin_modify.htm:113
-msgid "Cancel"
+#: lib/Reviews/ContentType/Base/Item.php:64
+msgid "Display or link a single Reviews object."
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:15
-msgid "General Settings"
+#: lib/Reviews/ContentType/Base/Item.php:119
+msgid "No item selected."
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:17
-msgid "Enable categorization"
+#: lib/Reviews/ContentType/Base/ItemList.php:118
+#: lib/Reviews/Block/Base/ItemList.php:50
+msgid "Reviews list view"
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:21
-msgid "Items per page"
+#: lib/Reviews/ContentType/Base/ItemList.php:130
+#: lib/Reviews/Block/Base/ItemList.php:51
+msgid "Display list of Reviews objects."
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:26
-msgid "Permalinks settings"
+#: lib/Reviews/ContentType/Base/ItemList.php:409
+#: Resources/templates/admin/review/view_quickNav.tpl:13
+#: Resources/templates/admin/review/view_quickNav.tpl:18
+#: Resources/templates/user/review/view_quickNav.tpl:13
+#: Resources/templates/user/review/view_quickNav.tpl:19
+#: templates/external/review/find.tpl:36
+#: templates/external/review/select.tpl:15
+#: templates/admin/review/view_quickNav.tpl:13
+#: templates/admin/review/view_quickNav.tpl:18
+#: templates/user/review/view_quickNav.tpl:13
+#: templates/user/review/view_quickNav.tpl:19
+#: templates/block/itemlist_modify.tpl:11
+msgid "All"
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:28
-msgid "Add category title to PermaLink"
+#: lib/Reviews/Base/Installer.php:38 lib/Reviews/Base/Installer.php:136
+#: lib/Reviews/Installer.php:42
+msgid "Doctrine Exception: "
 msgstr ""
 
-#: templates/reviews_admin_modifyconfig.htm:34
-msgid "Update Configuration"
+#: lib/Reviews/Base/Installer.php:40
+#, php-format
+msgid ""
+"An error was encountered while creating the tables for the %s extension."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:2
-msgid "Create a Review"
+#: lib/Reviews/Base/Installer.php:42
+msgid ""
+"Please enable the development mode by editing the /config/config.php file in "
+"order to reveal the error details."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:16 templates/reviews_user_view.htm:16
-#: templates/reviews_admin_view.htm:49 templates/reviews_user_new.htm:12
-#: templates/reviews_admin_modify.htm:18
-msgid "Title"
+#: lib/Reviews/Base/Installer.php:68
+#, php-format
+msgid "Error! Could not create a category registry for the %s entity."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:18 templates/reviews_user_new.htm:14
-#: templates/reviews_admin_modify.htm:20
-msgid "Name of the reviewed product."
+#: lib/Reviews/Base/Installer.php:129
+#, php-format
+msgid ""
+"An error was encountered while removing stored object workflows for the %s "
+"extension."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:21 templates/reviews_admin_modify.htm:23
-msgid "PermaLink URL title"
+#: lib/Reviews/Base/Installer.php:138
+#, php-format
+msgid "An error was encountered while dropping tables for the %s extension."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:23 templates/reviews_admin_modify.htm:25
-msgid "(Blank = auto-generate)"
+#: lib/Reviews/Base/Installer.php:162
+#, php-format
+msgid "The upload directories at [%s] can be removed manually."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:27 templates/reviews_admin_view.htm:16
-#: templates/reviews_admin_view.htm:52 templates/reviews_user_new.htm:18
-#: templates/reviews_admin_modify.htm:29
-msgid "Category"
+#: lib/Reviews/Base/UploadHandler.php:97
+msgid "Error! Could not move your file to the destination folder."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:28 templates/reviews_admin_view.htm:17
-#: templates/reviews_user_new.htm:19 templates/reviews_admin_modify.htm:30
-msgid "Choose Category"
+#: lib/Reviews/Base/UploadHandler.php:127
+msgid "Error! No file found."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:39 templates/reviews_user_new.htm:30
-#: templates/reviews_admin_modify.htm:47
-msgid "Language"
+#: lib/Reviews/Base/UploadHandler.php:139
+msgid ""
+"Error! This file type is not allowed. Please choose another file format."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:44 templates/reviews_user_new.htm:35
-#: templates/reviews_admin_modify.htm:52
+#: lib/Reviews/Base/UploadHandler.php:150
+#, php-format
+msgid "Error! Your file is too big. Please keep it smaller than %s kilobytes."
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:154
+#, php-format
+msgid "Error! Your file is too big. Please keep it smaller than %s megabytes."
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:163
+msgid "Error! This file type seems not to be a valid image."
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:324
+#: lib/Reviews/Base/UploadHandler.php:342
+msgid "Unknown error"
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:327
+#: lib/Reviews/Base/UploadHandler.php:330
+msgid "File too big"
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:333
+msgid "File uploaded partially"
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:336
+msgid "No file uploaded"
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:339
+msgid "No tmp folder"
+msgstr ""
+
+#: lib/Reviews/Base/UploadHandler.php:346
+msgid "Error with upload: "
+msgstr ""
+
+#: lib/Reviews/Base/Version.php:32
+msgid "Reviews module generated by ModuleStudio 0.6.2."
+msgstr ""
+
+#. ! url version of name, should be in lowercase without space
+#. ! this defines the module's url
+#: lib/Reviews/Base/Version.php:34 lib/Reviews/Version.php:21
+msgid "reviews"
+msgstr ""
+
+#: lib/Reviews/Base/Version.php:69
+msgid "reviews Reviews Display Hooks"
+msgstr ""
+
+#: lib/Reviews/Base/Version.php:87
+msgid "reviews Reviews Filter Hooks"
+msgstr ""
+
+#: lib/Reviews/Block/Base/ItemList.php:46
+#: lib/Reviews/Block/Base/Moderation.php:37
+msgid ""
+"Notice: This block will not be displayed until you activate the Reviews "
+"module."
+msgstr ""
+
+#: lib/Reviews/Block/Base/ItemList.php:185
+msgid "Reviews items"
+msgstr ""
+
+#: lib/Reviews/Block/Base/Moderation.php:41
+#: lib/Reviews/Block/Base/Moderation.php:87
+msgid "Moderation"
+msgstr ""
+
+#: lib/Reviews/Block/Base/Moderation.php:42
+msgid "Show a list of pending tasks to moderators."
+msgstr ""
+
+#: lib/Reviews/Installer.php:44
+#, php-format
+msgid ""
+"An error was encountered while dropping the tables for the %s extension."
+msgstr ""
+
+#: lib/Reviews/Version.php:18
+msgid "Reviews system"
+msgstr ""
+
+#: lib/Reviews/Version.php:19
+msgid "Reviews system module"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:179
+msgid "All except waiting"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:180
+msgid "Shows all items except these which are waiting"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:184
+msgid "All except approved"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:185
+msgid "Shows all items except these which are approved"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:189
+msgid "All except suspended"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:190
+msgid "Shows all items except these which are suspended"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:206
+msgid "Ten"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:211
+msgid "Nine"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:216
+msgid "Eight"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:221
+msgid "Seven"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:226
+msgid "Six"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:231
+msgid "Five"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:236
+msgid "Four"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:241
+msgid "Three"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:246
+msgid "Two"
+msgstr ""
+
+#: lib/Reviews/Util/Base/ListEntries.php:251
+msgid "One"
+msgstr ""
+
+#: lib/Reviews/Util/Base/View.php:217
+msgid "Bytes"
+msgstr ""
+
+#: lib/Reviews/Util/Base/View.php:220
+msgid "KB"
+msgstr ""
+
+#: lib/Reviews/Util/Base/View.php:224
+msgid "MB"
+msgstr ""
+
+#: lib/Reviews/Util/Base/View.php:228
+msgid "GB"
+msgstr ""
+
+#: lib/Reviews/Util/Base/Controller.php:215
+#, php-format
+msgid ""
+"The upload directory \"%s\" does not exist and could not be created. Try to "
+"create it yourself and make sure that this folder is accessible via the web "
+"and writable by the webserver."
+msgstr ""
+
+#: lib/Reviews/Util/Base/Controller.php:221
+#, php-format
+msgid ""
+"Warning! The upload directory at \"%s\" exists but is not writable by the "
+"webserver."
+msgstr ""
+
+#: lib/Reviews/Util/Base/Controller.php:232
+#, php-format
+msgid "Warning! Could not write the .htaccess file at \"%s\"."
+msgstr ""
+
+#: lib/Reviews/Util/Base/Workflow.php:227
+msgid "Reviews pending approval"
+msgstr ""
+
+#: lib/Reviews/Util/Base/Workflow.php:231
+#, php-format
+msgid "One review is waiting for approval."
+msgid_plural "%s reviews are waiting for approval."
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/Reviews/Util/ListEntries.php:28
+msgid "10"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:33
+msgid "9"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:38
+msgid "8"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:43
+msgid "7"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:48
+msgid "6"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:53
+msgid "5"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:58
+msgid "4"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:63
+msgid "3"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:68
+msgid "2"
+msgstr ""
+
+#: lib/Reviews/Util/ListEntries.php:73
+msgid "1"
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:31
+#: lib/Reviews/Entity/Validator/Base/Review.php:107
+#: lib/Reviews/Entity/Validator/Review.php:31
+#: lib/Reviews/Entity/Validator/Review.php:107
+#, php-format
+msgid "Error! Field value may only contain digits (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:35
+#: lib/Reviews/Entity/Validator/Base/Review.php:43
+#: lib/Reviews/Entity/Validator/Base/Review.php:51
+#: lib/Reviews/Entity/Validator/Base/Review.php:59
+#: lib/Reviews/Entity/Validator/Base/Review.php:75
+#: lib/Reviews/Entity/Validator/Base/Review.php:83
+#: lib/Reviews/Entity/Validator/Base/Review.php:95
+#: lib/Reviews/Entity/Validator/Base/Review.php:103
+#: lib/Reviews/Entity/Validator/Base/Review.php:111
+#: lib/Reviews/Entity/Validator/Base/Review.php:115
+#: lib/Reviews/Entity/Validator/Base/Review.php:119
+#: lib/Reviews/Entity/Validator/Review.php:35
+#: lib/Reviews/Entity/Validator/Review.php:43
+#: lib/Reviews/Entity/Validator/Review.php:51
+#: lib/Reviews/Entity/Validator/Review.php:59
+#: lib/Reviews/Entity/Validator/Review.php:75
+#: lib/Reviews/Entity/Validator/Review.php:83
+#: lib/Reviews/Entity/Validator/Review.php:95
+#: lib/Reviews/Entity/Validator/Review.php:103
+#: lib/Reviews/Entity/Validator/Review.php:111
+#: lib/Reviews/Entity/Validator/Review.php:115
+#: lib/Reviews/Entity/Validator/Review.php:119
+#, php-format
+msgid "Error! Length of field value must not be higher than %2$s (%1$s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:39
+#: lib/Reviews/Entity/Validator/Base/Review.php:47
+#: lib/Reviews/Entity/Validator/Base/Review.php:55
+#: lib/Reviews/Entity/Validator/Base/Review.php:63
+#: lib/Reviews/Entity/Validator/Base/Review.php:79
+#: lib/Reviews/Entity/Validator/Base/Review.php:87
+#: lib/Reviews/Entity/Validator/Review.php:39
+#: lib/Reviews/Entity/Validator/Review.php:47
+#: lib/Reviews/Entity/Validator/Review.php:55
+#: lib/Reviews/Entity/Validator/Review.php:79
+#: lib/Reviews/Entity/Validator/Review.php:87
+#, php-format
+msgid "Error! Field value must not be empty (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:67
+#: lib/Reviews/Entity/Validator/Review.php:67
+#, php-format
+msgid "Error! Field value must not contain space chars (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:71
+#, php-format
+msgid "Error! Field value must be a valid language code (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:91
+#: lib/Reviews/Entity/Validator/Review.php:91
+#, php-format
+msgid "Error! Field value must be a valid email address (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Validator/Base/Review.php:99
+#: lib/Reviews/Entity/Validator/Review.php:99
+#, php-format
+msgid "Error! Field value must be a valid url (%s)."
+msgstr ""
+
+#: lib/Reviews/Entity/Repository/Base/Review.php:262
+#: lib/Reviews/Entity/Repository/Base/Review.php:287
+#: lib/Reviews/Entity/Repository/Base/Review.php:314
+#: lib/Reviews/Entity/Repository/Base/Review.php:341
+msgid "Invalid user identifier received."
+msgstr ""
+
+#: lib/Reviews/Entity/Repository/Base/Review.php:381
+#: lib/Reviews/Api/Base/Selection.php:69
+msgid "Invalid identifier received."
+msgstr ""
+
+#: lib/Reviews/Entity/Repository/Base/Review.php:458
+msgid "Invalid slug title received."
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:888
+msgid "Error! Could not load the associated workflow."
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:967 lib/Reviews/Entity/Review.php:50
+msgid "Open preview page"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:968 lib/Reviews/Entity/Review.php:51
+msgid "Preview"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:974
+#: lib/Reviews/Entity/Base/Review.php:1018 lib/Reviews/Entity/Review.php:57
+#: lib/Reviews/Entity/Review.php:102 lib/Reviews/Entity/Review.php:109
+#: Resources/templates/admin/review/display.tpl:8
+#: templates/admin/review/display.tpl:8
+msgid "Details"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:984
+#: lib/Reviews/Entity/Base/Review.php:985
+#: lib/Reviews/Entity/Base/Review.php:1028
+#: lib/Reviews/Entity/Base/Review.php:1029 lib/Reviews/Entity/Review.php:67
+#: lib/Reviews/Entity/Review.php:68
+msgid "Edit"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:990
+#: lib/Reviews/Entity/Base/Review.php:1034 lib/Reviews/Entity/Review.php:73
+msgid "Reuse for new item"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:991
+#: lib/Reviews/Entity/Base/Review.php:1035 lib/Reviews/Entity/Review.php:74
+msgid "Reuse"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:1007
+#: lib/Reviews/Entity/Base/Review.php:1008
+#: lib/Reviews/Entity/Base/Review.php:1043
+#: lib/Reviews/Entity/Base/Review.php:1044 lib/Reviews/Entity/Review.php:90
+#: lib/Reviews/Entity/Review.php:91 lib/Reviews/Entity/Review.php:135
+#: lib/Reviews/Entity/Review.php:136
+msgid "Back to overview"
+msgstr ""
+
+#: lib/Reviews/Entity/Base/Review.php:1267
+msgid "Error! Could not remove stored workflow. Deletion has been aborted."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Selection.php:177
+msgid "Invalid object type received."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Search.php:154
+msgid "Error! Could not save the search results."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Mailz.php:32
+msgid "3 newest reviews"
+msgstr ""
+
+#: lib/Reviews/Api/Base/Mailz.php:33
+msgid "A list of the three newest reviews."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Mailz.php:38
+msgid "3 random reviews"
+msgstr ""
+
+#: lib/Reviews/Api/Base/Mailz.php:39
+msgid "A list of three random reviews."
+msgstr ""
+
+#: lib/Reviews/Api/Base/User.php:30 lib/Reviews/Api/User.php:26
+msgid "Backend"
+msgstr ""
+
+#: lib/Reviews/Api/Base/User.php:31 lib/Reviews/Api/User.php:27
+msgid "Switch to administration area."
+msgstr ""
+
+#: lib/Reviews/Api/Base/User.php:43 lib/Reviews/Api/Base/Admin.php:43
+#: lib/Reviews/Api/User.php:46 lib/Reviews/Api/Admin.php:82
+#: Resources/templates/admin/review/view.tpl:4
+#: Resources/templates/user/review/view.tpl:7
+#: templates/admin/review/view.tpl:4 templates/user/review/view.tpl:7
+msgid "Review list"
+msgstr ""
+
+#: lib/Reviews/Api/Base/User.php:60 lib/Reviews/Api/Base/User.php:202
+#: lib/Reviews/Api/User.php:69 lib/Reviews/Api/User.php:252
+msgid "Invalid arguments array received."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Admin.php:30 lib/Reviews/Api/Admin.php:75
+msgid "Frontend"
+msgstr ""
+
+#: lib/Reviews/Api/Base/Admin.php:31 lib/Reviews/Api/Admin.php:76
+msgid "Switch to user area."
+msgstr ""
+
+#: lib/Reviews/Api/Base/Admin.php:47 lib/Reviews/Api/Admin.php:90
+msgid "Configuration"
+msgstr ""
+
+#: lib/Reviews/Api/Base/Admin.php:48 lib/Reviews/Api/Admin.php:91
+msgid "Manage settings for this application"
+msgstr ""
+
+#: lib/Reviews/Api/Base/Account.php:51
+msgid "Reviews Backend"
+msgstr ""
+
+#: lib/Reviews/Api/User.php:39
+msgid "Index"
+msgstr ""
+
+#: lib/Reviews/Api/User.php:51
+msgid "Create Review"
+msgstr ""
+
+#: lib/Reviews/Api/User.php:52
+msgid "Create a review"
+msgstr ""
+
+#: lib/Reviews/Controller/Base/User.php:235
+#: lib/Reviews/Controller/Base/Admin.php:221
+#: lib/Reviews/Controller/Base/Admin.php:334
+#: lib/Reviews/Controller/Base/External.php:86
+#: lib/Reviews/Controller/User.php:365
+msgid "Error! Invalid identifier received."
+msgstr ""
+
+#: lib/Reviews/Controller/Base/Admin.php:356
+msgid "Error! It is not allowed to delete this entity."
+msgstr ""
+
+#: lib/Reviews/Controller/Base/External.php:164
+msgid "Error: Invalid editor context given for external controller action."
+msgstr ""
+
+#: lib/Reviews/Controller/Base/Ajax.php:152
+#: lib/Reviews/Controller/Base/Ajax.php:163
+msgid "Error: invalid input."
+msgstr ""
+
+#: lib/Reviews/Controller/User.php:289
+msgid "Invalid category passed."
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:4
+#: Resources/templates/user/review/display.tpl:4
+#: templates/external/review/find.tpl:70
+#: templates/external/review/select.tpl:39
+#: templates/admin/review/display.tpl:4 templates/user/review/display.tpl:4
 msgid "Review"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:47 templates/reviews_user_new.htm:38
-#: templates/reviews_admin_modify.htm:55
-msgid ""
-"Your actual review. Please observe proper grammar! Make it at least 100 "
-"words, OK? You may also use HTML tags if you know how to use them"
+#: Resources/templates/admin/review/display.tpl:9
+#: Resources/templates/admin/review/view.tpl:98
+#: Resources/templates/admin/review/view.tpl:159
+#: Resources/templates/user/review/display.tpl:7
+#: Resources/templates/user/review/view.tpl:90
+#: Resources/templates/user/review/view.tpl:149
+#: templates/admin/review/display.tpl:9 templates/admin/review/view.tpl:98
+#: templates/admin/review/view.tpl:159 templates/user/review/display.tpl:7
+#: templates/user/review/view.tpl:90 templates/user/review/view.tpl:149
+msgid "Actions"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:50 templates/reviews_user_view.htm:18
-#: templates/reviews_user_display.htm:17 templates/reviews_admin_modify.htm:58
+#: Resources/templates/admin/review/display.tpl:15
+#: Resources/templates/admin/review/view_quickNav.tpl:70
+#: Resources/templates/admin/review/view.tpl:66
+#: Resources/templates/admin/review/edit.tpl:31
+#: Resources/templates/user/review/display.tpl:12
+#: Resources/templates/user/review/view_quickNav.tpl:72
+#: Resources/templates/user/review/view.tpl:58
+#: Resources/templates/user/review/edit.tpl:25
+#: templates/external/review/find.tpl:93
+#: templates/external/review/select.tpl:54
+#: templates/admin/review/display.tpl:15
+#: templates/admin/review/view_quickNav.tpl:70
+#: templates/admin/review/view.tpl:66 templates/admin/review/edit.tpl:31
+#: templates/admin/review/view.csv:3 templates/user/review/display.tpl:12
+#: templates/user/review/view_quickNav.tpl:72
+#: templates/user/review/view.tpl:58 templates/user/review/edit.tpl:25
+#: templates/user/review/view.csv:3
+msgid "Title"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:18
+#: Resources/templates/admin/review/view_quickNav.tpl:79
+#: Resources/templates/admin/review/view.tpl:93
+#: Resources/templates/admin/review/edit.tpl:84
+#: Resources/templates/user/review/display.tpl:15
+#: Resources/templates/user/review/view_quickNav.tpl:81
+#: Resources/templates/user/review/view.tpl:85
+#: Resources/templates/user/review/edit.tpl:85
+#: templates/external/review/find.tpl:102
+#: templates/external/review/select.tpl:63
+#: templates/admin/review/display.tpl:45
+#: templates/admin/review/view_quickNav.tpl:79
+#: templates/admin/review/view.tpl:93 templates/admin/review/edit.tpl:84
+#: templates/user/review/display.tpl:15
+#: templates/user/review/view_quickNav.tpl:81
+#: templates/user/review/view.tpl:85 templates/user/review/edit.tpl:85
+msgid "Cover"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:26
+#: Resources/templates/admin/review/display.tpl:66
+#: Resources/templates/admin/review/view.tpl:149
+#: Resources/templates/admin/review/edit.tpl:103
+#: Resources/templates/user/review/display.tpl:25
+#: Resources/templates/user/review/display.tpl:67
+#: Resources/templates/user/review/view.tpl:139
+#: Resources/templates/user/review/edit.tpl:105
+#: templates/external/review/display.tpl:26
+#: templates/external/review/info.tpl:9 templates/admin/review/display.tpl:53
+#: templates/admin/review/view.tpl:149 templates/admin/review/edit.tpl:103
+#: templates/user/review/display.tpl:25 templates/user/review/display.tpl:67
+#: templates/user/review/view.tpl:139 templates/user/review/edit.tpl:105
+msgid "Download"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:30
+#: Resources/templates/admin/review/view_quickNav.tpl:71
+#: Resources/templates/admin/review/view.tpl:69
+#: Resources/templates/admin/review/edit.tpl:37
+#: Resources/templates/user/review/display.tpl:30
+#: Resources/templates/user/review/view_quickNav.tpl:73
+#: Resources/templates/user/review/view.tpl:61
+#: Resources/templates/user/review/edit.tpl:32
+#: templates/external/review/find.tpl:94
+#: templates/external/review/select.tpl:55
+#: templates/admin/review/display.tpl:17
+#: templates/admin/review/view_quickNav.tpl:71
+#: templates/admin/review/view.tpl:69 templates/admin/review/edit.tpl:37
+#: templates/admin/review/view.csv:3 templates/user/review/display.tpl:30
+#: templates/user/review/view_quickNav.tpl:73
+#: templates/user/review/view.tpl:61 templates/user/review/edit.tpl:32
+#: templates/user/review/view.csv:3
+msgid "Text"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:32
+#: Resources/templates/admin/review/view_quickNav.tpl:57
+#: Resources/templates/admin/review/view.tpl:72
+#: Resources/templates/admin/review/edit.tpl:43
+#: Resources/templates/user/review/view_quickNav.tpl:59
+#: Resources/templates/user/review/view_quickNav.tpl:74
+#: Resources/templates/user/review/edit.tpl:39
+#: templates/admin/review/display.tpl:19
+#: templates/admin/review/view_quickNav.tpl:57
+#: templates/admin/review/view.tpl:72 templates/admin/review/edit.tpl:43
+#: templates/user/review/view_quickNav.tpl:59
+#: templates/user/review/view_quickNav.tpl:74
+#: templates/user/review/edit.tpl:39
+msgid "Language"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:34
+#: Resources/templates/admin/review/view_quickNav.tpl:73
+#: Resources/templates/admin/review/view.tpl:75
+#: Resources/templates/admin/review/edit.tpl:49
+#: Resources/templates/user/review/display.tpl:34
+#: Resources/templates/user/review/view_quickNav.tpl:75
+#: Resources/templates/user/review/view.tpl:67
+#: Resources/templates/user/review/edit.tpl:45
+#: templates/external/review/find.tpl:96
+#: templates/external/review/select.tpl:57
+#: templates/admin/review/display.tpl:21
+#: templates/admin/review/view_quickNav.tpl:73
+#: templates/admin/review/view.tpl:75 templates/admin/review/edit.tpl:49
+#: templates/admin/review/view.csv:3 templates/user/review/display.tpl:34
+#: templates/user/review/view_quickNav.tpl:75
+#: templates/user/review/view.tpl:67 templates/user/review/edit.tpl:45
+#: templates/user/review/view.csv:3
+msgid "Reviewer"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:36
+#: Resources/templates/admin/review/display.tpl:38
+#: Resources/templates/admin/review/view_quickNav.tpl:74
+#: Resources/templates/admin/review/view.tpl:78
+#: Resources/templates/admin/review/view.tpl:124
+#: Resources/templates/admin/review/edit.tpl:55
+#: Resources/templates/user/review/display.tpl:36
+#: Resources/templates/user/review/display.tpl:38
+#: Resources/templates/user/review/view_quickNav.tpl:76
+#: Resources/templates/user/review/view.tpl:70
+#: Resources/templates/user/review/view.tpl:113
+#: Resources/templates/user/review/edit.tpl:52
+#: templates/external/review/find.tpl:97
+#: templates/external/review/select.tpl:58
+#: templates/admin/review/display.tpl:23 templates/admin/review/display.tpl:25
+#: templates/admin/review/view_quickNav.tpl:74
+#: templates/admin/review/view.tpl:78 templates/admin/review/view.tpl:124
+#: templates/admin/review/edit.tpl:55 templates/admin/review/view.csv:3
+#: templates/user/review/display.tpl:36 templates/user/review/display.tpl:38
+#: templates/user/review/view_quickNav.tpl:76
+#: templates/user/review/view.tpl:70 templates/user/review/view.tpl:113
+#: templates/user/review/edit.tpl:52 templates/user/review/view.csv:3
+msgid "Email"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:38
+#: Resources/templates/admin/review/view.tpl:124
+#: Resources/templates/user/review/display.tpl:38
+#: Resources/templates/user/review/view.tpl:113
+#: templates/admin/review/display.tpl:25 templates/admin/review/view.tpl:124
+#: templates/user/review/display.tpl:38 templates/user/review/view.tpl:113
+msgid "Send an email"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:43
+#: Resources/templates/admin/review/view_quickNav.tpl:48
+#: Resources/templates/admin/review/view_quickNav.tpl:75
+#: Resources/templates/admin/review/view.tpl:81
+#: Resources/templates/admin/review/edit.tpl:62
+#: Resources/templates/user/review/display.tpl:43
+#: Resources/templates/user/review/view_quickNav.tpl:50
+#: Resources/templates/user/review/view_quickNav.tpl:77
+#: Resources/templates/user/review/view.tpl:73
+#: Resources/templates/user/review/edit.tpl:60
+#: templates/external/review/find.tpl:98
+#: templates/external/review/select.tpl:59
+#: templates/admin/review/display.tpl:30
+#: templates/admin/review/view_quickNav.tpl:48
+#: templates/admin/review/view_quickNav.tpl:75
+#: templates/admin/review/view.tpl:81 templates/admin/review/edit.tpl:62
+#: templates/admin/review/view.csv:3 templates/user/review/display.tpl:43
+#: templates/user/review/view_quickNav.tpl:50
+#: templates/user/review/view_quickNav.tpl:77
+#: templates/user/review/view.tpl:73 templates/user/review/edit.tpl:60
+#: templates/user/review/view.csv:3
 msgid "Score"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:52
-msgid "Your Score"
+#: Resources/templates/admin/review/display.tpl:45
+#: Resources/templates/admin/review/edit.tpl:67
+#: Resources/templates/user/review/display.tpl:47
+#: Resources/templates/user/review/view_quickNav.tpl:78
+#: templates/admin/review/display.tpl:32 templates/user/review/display.tpl:47
+#: templates/user/review/view_quickNav.tpl:78
+msgid "Web"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:53 templates/reviews_admin_new.htm:54
-#: templates/reviews_admin_new.htm:55 templates/reviews_admin_new.htm:56
-#: templates/reviews_admin_new.htm:57 templates/reviews_admin_new.htm:58
-#: templates/reviews_admin_new.htm:59 templates/reviews_admin_new.htm:60
-#: templates/reviews_admin_modify.htm:60 templates/reviews_admin_modify.htm:61
-#: templates/reviews_admin_modify.htm:62 templates/reviews_admin_modify.htm:63
-#: templates/reviews_admin_modify.htm:64 templates/reviews_admin_modify.htm:65
-#: templates/reviews_admin_modify.htm:66 templates/reviews_admin_modify.htm:67
-msgid "Stars"
+#: Resources/templates/admin/review/display.tpl:48
+#: Resources/templates/admin/review/view.tpl:131
+#: Resources/templates/user/review/display.tpl:50
+#: Resources/templates/user/review/view.tpl:121
+#: templates/admin/review/display.tpl:35 templates/admin/review/view.tpl:131
+#: templates/user/review/display.tpl:50 templates/user/review/view.tpl:121
+msgid "Visit this page"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:61 templates/reviews_admin_new.htm:62
-#: templates/reviews_admin_modify.htm:68 templates/reviews_admin_modify.htm:69
-msgid "Star"
+#: Resources/templates/admin/review/display.tpl:48
+#: Resources/templates/admin/review/view.tpl:131
+#: Resources/templates/user/review/view.tpl:121
+#: templates/admin/review/display.tpl:35 templates/admin/review/view.tpl:131
+#: templates/user/review/view.tpl:121
+msgid "Homepage"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:66 templates/reviews_user_new.htm:41
-#: templates/reviews_admin_modify.htm:73
-msgid "Your name"
+#: Resources/templates/admin/review/display.tpl:54
+#: Resources/templates/admin/review/edit.tpl:73
+#: Resources/templates/user/review/view_quickNav.tpl:79
+#: Resources/templates/user/review/edit.tpl:72
+#: templates/admin/review/display.tpl:41
+#: templates/user/review/view_quickNav.tpl:79
+#: templates/user/review/edit.tpl:72
+msgid "Title of link"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:68 templates/reviews_user_new.htm:43
-#: templates/reviews_admin_modify.htm:75
+#: Resources/templates/admin/review/display.tpl:56
+#: Resources/templates/admin/review/view_quickNav.tpl:78
+#: Resources/templates/admin/review/view.tpl:90
+#: Resources/templates/admin/review/edit.tpl:78
+#: Resources/templates/user/review/display.tpl:57
+#: Resources/templates/user/review/view_quickNav.tpl:80
+#: Resources/templates/user/review/view.tpl:82
+#: Resources/templates/user/review/edit.tpl:78
+#: templates/external/review/find.tpl:101
+#: templates/external/review/select.tpl:62
+#: templates/admin/review/display.tpl:43
+#: templates/admin/review/view_quickNav.tpl:78
+#: templates/admin/review/view.tpl:90 templates/admin/review/edit.tpl:78
+#: templates/admin/review/view.csv:3 templates/user/review/display.tpl:57
+#: templates/user/review/view_quickNav.tpl:80
+#: templates/user/review/view.tpl:82 templates/user/review/edit.tpl:78
+#: templates/user/review/view.csv:3
+msgid "Hits"
+msgstr ""
+
+#: Resources/templates/admin/review/display.tpl:60
+#: Resources/templates/admin/review/view_quickNav.tpl:80
+#: Resources/templates/admin/review/view.tpl:96
+#: Resources/templates/admin/review/edit.tpl:89
+#: Resources/templates/user/review/display.tpl:19
+#: Resources/templates/user/review/display.tpl:61
+#: Resources/templates/user/review/view_quickNav.tpl:82
+#: Resources/templates/user/review/view.tpl:88
+#: Resources/templates/user/review/edit.tpl:91
+#: templates/external/review/find.tpl:103
+#: templates/external/review/select.tpl:64
+#: templates/admin/review/display.tpl:47
+#: templates/admin/review/view_quickNav.tpl:80
+#: templates/admin/review/view.tpl:96 templates/admin/review/edit.tpl:89
+#: templates/user/review/display.tpl:19 templates/user/review/display.tpl:61
+#: templates/user/review/view_quickNav.tpl:82
+#: templates/user/review/view.tpl:88 templates/user/review/edit.tpl:91
+msgid "Cover upload"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:6
+#: Resources/templates/user/review/view_quickNav.tpl:6
+#: templates/admin/review/view_quickNav.tpl:6
+#: templates/user/review/view_quickNav.tpl:6
+msgid "Quick navigation"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:21
+#: Resources/templates/user/review/view_quickNav.tpl:22
+#: templates/external/review/find.tpl:41
+#: templates/external/review/select.tpl:20
+#: templates/admin/include_categories_edit.tpl:11
+#: templates/admin/review/view_quickNav.tpl:21
+#: templates/contenttype/itemlist_edit.tpl:22
+#: templates/user/include_categories_edit.tpl:11
+#: templates/user/review/view_quickNav.tpl:22
+#: templates/block/itemlist_modify.tpl:16
+msgid "Category"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:26
+#: Resources/templates/user/review/view_quickNav.tpl:27
+#: templates/external/review/find.tpl:46
+#: templates/external/review/select.tpl:25
+#: templates/admin/include_categories_edit.tpl:3
+#: templates/admin/include_categories_edit.tpl:8
+#: templates/admin/include_categories_edit.tpl:14
+#: templates/admin/review/view.rss:41
+#: templates/admin/review/view_quickNav.tpl:26
+#: templates/admin/review/view.rss.tpl:41
+#: templates/admin/include_categories_display.tpl:4
+#: templates/admin/include_categories_display.tpl:7
+#: templates/contenttype/itemlist_edit.tpl:25
+#: templates/user/include_categories_edit.tpl:3
+#: templates/user/include_categories_edit.tpl:8
+#: templates/user/include_categories_edit.tpl:14
+#: templates/user/review/view.rss:41
+#: templates/user/review/view_quickNav.tpl:27
+#: templates/user/review/view.rss.tpl:41
+#: templates/user/include_categories_display.tpl:4
+#: templates/user/include_categories_display.tpl:7
+#: templates/block/itemlist_modify.tpl:21
+msgid "Categories"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:39
+#: Resources/templates/admin/review/view_quickNav.tpl:69
+#: Resources/templates/user/review/view_quickNav.tpl:41
+#: Resources/templates/user/review/view_quickNav.tpl:71
+#: templates/external/review/find.tpl:92
+#: templates/external/review/select.tpl:53
+#: templates/admin/review/view_quickNav.tpl:39
+#: templates/admin/review/view_quickNav.tpl:69
+#: templates/admin/review/view.csv:3
+#: templates/user/review/view_quickNav.tpl:41
+#: templates/user/review/view_quickNav.tpl:71 templates/user/review/view.csv:3
+msgid "Workflow state"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:61
+#: Resources/templates/user/review/view_quickNav.tpl:63
+#: templates/admin/review/view_quickNav.tpl:61
+#: templates/user/review/view_quickNav.tpl:63
+msgid "Search"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:65
+#: Resources/templates/user/review/view_quickNav.tpl:67
+#: templates/external/review/find.tpl:89
+#: templates/external/review/select.tpl:50
+#: templates/admin/review/view_quickNav.tpl:65
+#: templates/user/review/view_quickNav.tpl:67
+msgid "Sort by"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:68
+#: Resources/templates/user/review/view_quickNav.tpl:70
+#: templates/external/review/find.tpl:91
+#: templates/external/review/select.tpl:52
+#: templates/admin/review/view_quickNav.tpl:68
+#: templates/user/review/view_quickNav.tpl:70
+msgid "Id"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:72
+#: Resources/templates/user/review/view.tpl:64
+#: templates/external/review/find.tpl:95
+#: templates/external/review/select.tpl:56
+#: templates/admin/review/view_quickNav.tpl:72
+#: templates/admin/review/view.csv:3 templates/user/review/view.tpl:64
+#: templates/user/review/view.csv:3
+msgid "Zlanguage"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:76
+#: Resources/templates/admin/review/view.tpl:84
+#: Resources/templates/user/review/view.tpl:76
+#: Resources/templates/user/review/edit.tpl:65
+#: templates/external/review/find.tpl:99
+#: templates/external/review/select.tpl:60
+#: templates/admin/review/view_quickNav.tpl:76
+#: templates/admin/review/view.tpl:84 templates/admin/review/edit.tpl:67
+#: templates/admin/review/view.csv:3 templates/user/review/view.tpl:76
+#: templates/user/review/edit.tpl:65 templates/user/review/view.csv:3
+msgid "Url"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:77
+#: Resources/templates/admin/review/view.tpl:87
+#: Resources/templates/user/review/view.tpl:79
+#: templates/external/review/find.tpl:100
+#: templates/external/review/select.tpl:61
+#: templates/admin/review/view_quickNav.tpl:77
+#: templates/admin/review/view.tpl:87 templates/admin/review/edit.tpl:73
+#: templates/user/review/view.tpl:79
+msgid "Url_title"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:81
+#: Resources/templates/user/review/view_quickNav.tpl:83
+#: templates/external/review/find.tpl:104
+#: templates/external/review/select.tpl:65
+#: templates/admin/review/view_quickNav.tpl:81
+#: templates/user/review/view_quickNav.tpl:83
+msgid "Creation date"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:82
+#: Resources/templates/user/review/view_quickNav.tpl:84
+#: templates/external/review/find.tpl:105
+#: templates/external/review/select.tpl:66
+#: templates/admin/review/view_quickNav.tpl:82
+#: templates/user/review/view_quickNav.tpl:84
+msgid "Creator"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:83
+#: Resources/templates/user/review/view_quickNav.tpl:85
+#: templates/external/review/find.tpl:106
+#: templates/external/review/select.tpl:67
+#: templates/admin/review/view_quickNav.tpl:83
+#: templates/user/review/view_quickNav.tpl:85
+msgid "Update date"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:86
+#: Resources/templates/user/review/view_quickNav.tpl:88
+#: templates/external/review/find.tpl:109
+#: templates/external/review/select.tpl:70
+#: templates/admin/review/view_quickNav.tpl:86
+#: templates/user/review/view_quickNav.tpl:88
+msgid "ascending"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:87
+#: Resources/templates/user/review/view_quickNav.tpl:89
+#: templates/external/review/find.tpl:110
+#: templates/external/review/select.tpl:71
+#: templates/admin/review/view_quickNav.tpl:87
+#: templates/user/review/view_quickNav.tpl:89
+msgid "descending"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:94
+#: Resources/templates/user/review/view_quickNav.tpl:96
+#: templates/external/review/find.tpl:115
+#: templates/admin/review/view_quickNav.tpl:94
+#: templates/user/review/view_quickNav.tpl:96
+msgid "Page size"
+msgstr ""
+
+#: Resources/templates/admin/review/view_quickNav.tpl:105
+#: Resources/templates/user/review/view_quickNav.tpl:107
+#: templates/admin/review/view_quickNav.tpl:105
+#: templates/user/review/view_quickNav.tpl:107
+msgid "OK"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:13
+#: Resources/templates/admin/review/edit.tpl:10
+#: Resources/templates/user/review/view.tpl:13
+#: Resources/templates/user/review/edit.tpl:9
+#: templates/admin/review/view.tpl:13 templates/admin/review/edit.tpl:10
+#: templates/user/review/view.tpl:13 templates/user/review/edit.tpl:9
+msgid "Create review"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:23
+#: Resources/templates/user/review/view.tpl:23
+#: templates/admin/review/view.tpl:23 templates/user/review/view.tpl:23
+msgid "Back to paginated view"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:29
+#: Resources/templates/user/review/view.tpl:29
+#: templates/admin/review/view.tpl:29 templates/user/review/view.tpl:29
+msgid "Show all entries"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:63
+#: Resources/templates/user/review/view.tpl:55
+#: templates/admin/review/view.tpl:63 templates/user/review/view.tpl:55
+msgid "State"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:172
+#: Resources/templates/user/review/view.tpl:162
+#: templates/admin/review/view.tpl:172 templates/user/review/view.tpl:162
+#: templates/mailz/itemlist_review_html.tpl:10
+#: templates/mailz/itemlist_review_text.tpl:7
+msgid "No reviews found."
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:184
+#: templates/admin/review/view.tpl:184
+msgid "With selected reviews"
+msgstr ""
+
+#: Resources/templates/admin/review/view.tpl:186
+#: templates/admin/review/view.tpl:186
+msgid "Choose action"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:7
+#: Resources/templates/admin/review/edit.tpl:13
+#: Resources/templates/user/review/edit.tpl:7
+#: Resources/templates/user/review/edit.tpl:11
+#: templates/admin/review/edit.tpl:7 templates/admin/review/edit.tpl:13
+#: templates/user/review/edit.tpl:7 templates/user/review/edit.tpl:11
+msgid "Edit review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:28
+#: Resources/templates/user/review/edit.tpl:22
+#: templates/admin/review/edit.tpl:28 templates/user/review/edit.tpl:22
+msgid "Content"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:32
+#: Resources/templates/user/review/edit.tpl:26
+#: templates/admin/review/edit.tpl:32 templates/user/review/edit.tpl:26
+msgid "Enter the title of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:38
+#: Resources/templates/user/review/edit.tpl:33
+#: templates/admin/review/edit.tpl:38 templates/user/review/edit.tpl:33
+msgid "Enter the text of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:44
+#: Resources/templates/user/review/edit.tpl:40
+#: templates/admin/review/edit.tpl:44 templates/user/review/edit.tpl:40
+msgid "Choose the language of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:50
+#: Resources/templates/user/review/edit.tpl:46
+#: templates/admin/review/edit.tpl:50 templates/user/review/edit.tpl:46
+msgid "Enter the reviewer of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:56
+#: Resources/templates/user/review/edit.tpl:53
+#: templates/admin/review/edit.tpl:56 templates/user/review/edit.tpl:53
+msgid "Enter the email of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:63
+#: Resources/templates/user/review/edit.tpl:61
+#: templates/admin/review/edit.tpl:63 templates/user/review/edit.tpl:61
+msgid "Choose the score"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:68
+#: Resources/templates/user/review/edit.tpl:66
+#: templates/admin/review/edit.tpl:68 templates/user/review/edit.tpl:66
+msgid "Enter the url of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:74
+#: Resources/templates/user/review/edit.tpl:73
+#: templates/admin/review/edit.tpl:74 templates/user/review/edit.tpl:73
+msgid "Enter the url_title of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:79
+#: Resources/templates/user/review/edit.tpl:79
+#: templates/admin/review/edit.tpl:79 templates/user/review/edit.tpl:79
+msgid "Enter the hits of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:85
+#: Resources/templates/user/review/edit.tpl:86
+#: templates/admin/review/edit.tpl:85 templates/user/review/edit.tpl:86
+msgid "Enter the cover of the review"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:91
+#: Resources/templates/user/review/edit.tpl:93
+#: templates/admin/review/edit.tpl:91 templates/user/review/edit.tpl:93
+msgid "Reset to empty value"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:93
+#: Resources/templates/user/review/edit.tpl:95
+#: templates/admin/review/edit.tpl:93 templates/user/review/edit.tpl:95
+msgid "Allowed file extensions:"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:94
+#: Resources/templates/user/review/edit.tpl:96
+#: templates/admin/review/edit.tpl:94 templates/user/review/edit.tpl:96
+msgid "Allowed file size:"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:98
+#: Resources/templates/user/review/edit.tpl:100
+#: templates/admin/review/edit.tpl:98 templates/user/review/edit.tpl:100
+msgid "Current file"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:108
+#: Resources/templates/user/review/edit.tpl:110
+#: templates/admin/review/edit.tpl:108 templates/user/review/edit.tpl:110
+msgid "Delete cover upload ?"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:109
+#: Resources/templates/user/review/edit.tpl:111
+#: templates/admin/review/edit.tpl:109 templates/user/review/edit.tpl:111
+msgid "Delete existing file"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:140
+#: Resources/templates/user/review/edit.tpl:148
+#: templates/admin/review/edit.tpl:140 templates/user/review/edit.tpl:148
+msgid "Return control"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:142
+#: Resources/templates/user/review/edit.tpl:150
+#: templates/admin/review/edit.tpl:142 templates/user/review/edit.tpl:150
+msgid "Create another item after save"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:155
+#: Resources/templates/user/review/edit.tpl:163
+#: templates/admin/review/edit.tpl:155 templates/user/review/edit.tpl:163
+msgid "Really delete this review?"
+msgstr ""
+
+#: Resources/templates/admin/review/edit.tpl:161
+#: Resources/templates/user/review/edit.tpl:169
+#: templates/external/review/find.tpl:137 templates/admin/config.tpl:41
+#: templates/admin/review/edit.tpl:161 templates/admin/review/delete.tpl:22
+#: templates/user/review/edit.tpl:169
+msgid "Cancel"
+msgstr ""
+
+#: Resources/templates/user/review/edit.tpl:28
+#: templates/user/review/edit.tpl:28
+msgid "Name of the reviewed product."
+msgstr ""
+
+#: Resources/templates/user/review/edit.tpl:35
+#: templates/user/review/edit.tpl:35
+msgid ""
+"Please observe proper grammar! Make it at least 100 words, OK? You may also "
+"use HTML tags if you know how to use them"
+msgstr ""
+
+#: Resources/templates/user/review/edit.tpl:48
+#: templates/user/review/edit.tpl:48
 msgid "Your full name. Required."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:71 templates/reviews_user_new.htm:46
-#: templates/reviews_admin_modify.htm:78
-msgid "Your e-mail"
-msgstr ""
-
-#: templates/reviews_admin_new.htm:73 templates/reviews_user_new.htm:48
-#: templates/reviews_admin_modify.htm:80
+#: Resources/templates/user/review/edit.tpl:56
+#: templates/user/review/edit.tpl:56
 msgid "Your e-mail address. Required."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:76 templates/reviews_user_display.htm:21
-#: templates/reviews_user_new.htm:51 templates/reviews_admin_modify.htm:83
-msgid "Related Link"
-msgstr ""
-
-#: templates/reviews_admin_new.htm:78 templates/reviews_user_new.htm:53
-#: templates/reviews_admin_modify.htm:85
+#: Resources/templates/user/review/edit.tpl:68
+#: templates/user/review/edit.tpl:68
 msgid "Product's official website. Make sure your URL starts with 'http://'"
 msgstr ""
 
-#: templates/reviews_admin_new.htm:81 templates/reviews_user_new.htm:56
-#: templates/reviews_admin_modify.htm:88
-msgid "Link title"
-msgstr ""
-
-#: templates/reviews_admin_new.htm:83 templates/reviews_user_new.htm:58
-#: templates/reviews_admin_modify.htm:90
+#: Resources/templates/user/review/edit.tpl:74
+#: templates/user/review/edit.tpl:74
 msgid "Required if you have a related link, otherwise not required."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:86 templates/reviews_user_new.htm:61
-#: templates/reviews_admin_modify.htm:93
-msgid "Image filename"
-msgstr ""
-
-#: templates/reviews_admin_new.htm:88 templates/reviews_user_new.htm:63
-#: templates/reviews_admin_modify.htm:95
+#: Resources/templates/user/review/edit.tpl:87
+#: templates/user/review/edit.tpl:87
 #, php-format
 msgid "Name of the cover image, located in %s. Not required."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:90 templates/reviews_user_new.htm:65
-#: templates/reviews_admin_modify.htm:97
+#: Resources/templates/user/review/edit.tpl:117
+#: templates/user/review/edit.tpl:117
 msgid ""
 "Please make sure that the information entered is 100% valid and uses proper "
 "grammar and capitalization. For instance, please do not enter your text in "
 "ALL CAPS, as it will be rejected."
 msgstr ""
 
-#: templates/reviews_admin_new.htm:94 templates/reviews_user_new.htm:69
-msgid "Create"
+#: Resources/templates/user/review/edit.tpl:136
+#: templates/user/review/edit.tpl:136
+msgid "Hooks"
 msgstr ""
 
-#: templates/reviews_user_main.htm:6
-msgid "10 Most Popular Reviews"
+#: templates/plugin_config/ItemList.tpl:14
+#: templates/contenttype/itemlist_edit.tpl:38
+#: templates/block/itemlist_modify.tpl:36
+msgid "Sorting"
 msgstr ""
 
-#: templates/reviews_user_main.htm:19
-msgid "10 Most Recent Reviews"
+#: templates/plugin_config/ItemList.tpl:16
+#: templates/contenttype/itemlist_edit.tpl:42
+#: templates/block/itemlist_modify.tpl:38
+msgid "Random"
 msgstr ""
 
-#: templates/reviews_user_main.htm:33
-msgid "Categories"
+#: templates/plugin_config/ItemList.tpl:17
+#: templates/contenttype/itemlist_edit.tpl:45
+#: templates/block/itemlist_modify.tpl:39
+msgid "Newest"
 msgstr ""
 
-#: templates/reviews_user_view.htm:17 templates/reviews_user_display.htm:14
-msgid "Reviewer"
+#: templates/plugin_config/ItemList.tpl:18
+#: templates/contenttype/itemlist_edit.tpl:48
+#: templates/block/itemlist_modify.tpl:40
+msgid "Default"
 msgstr ""
 
-#: templates/reviews_user_view.htm:19 templates/reviews_user_display.htm:24
-msgid "Hits"
+#: templates/plugin_config/ItemList.tpl:22
+#: templates/contenttype/itemlist_edit.tpl:54
+#: templates/block/itemlist_modify.tpl:45
+msgid "Amount"
 msgstr ""
 
-#: templates/reviews_user_view.htm:25 templates/reviews_user_view.htm:42
-#: templates/reviews_admin_view.htm:75
-msgid "No items found."
+#: templates/plugin_config/ItemList.tpl:27
+#: templates/contenttype/itemlist_edit.tpl:74
+#: templates/block/itemlist_modify.tpl:65
+msgid "Filter (expert option)"
 msgstr ""
 
-#: templates/reviews_admin_view.htm:3
-msgid "View Reviews List"
+#: templates/plugin_config/ItemList.tpl:30
+#: templates/contenttype/itemlist_edit.tpl:78
+#: templates/block/itemlist_modify.tpl:68
+msgid "Syntax examples"
 msgstr ""
 
-#: templates/reviews_admin_view.htm:39
+#: templates/plugin_config/ItemList.tpl:30
+#: templates/contenttype/itemlist_edit.tpl:78
+#: templates/block/itemlist_modify.tpl:68
+msgid "or"
+msgstr ""
+
+#: templates/plugin_config/ItemList.tpl:36
+msgid "No object types found."
+msgstr ""
+
+#: templates/external/review/find.tpl:5 templates/external/review/find.tpl:33
+msgid "Search and select review"
+msgstr ""
+
+#: templates/external/review/find.tpl:54
+#: templates/contenttype/itemlist_edit.tpl:30
+#: templates/block/itemlist_modify.tpl:29
+msgid "This is an optional filter."
+msgstr ""
+
+#: templates/external/review/find.tpl:61
+msgid "Paste as"
+msgstr ""
+
+#: templates/external/review/find.tpl:63
+msgid "Link to the review"
+msgstr ""
+
+#: templates/external/review/find.tpl:64
+msgid "ID of review"
+msgstr ""
+
+#: templates/external/review/find.tpl:82
+#: templates/external/review/select.tpl:44
+#: templates/contenttype/itemlist_review_display_description.tpl:11
+msgid "No entries found."
+msgstr ""
+
+#: templates/external/review/find.tpl:128
+#: templates/external/review/select.tpl:76
+msgid "Search for"
+msgstr ""
+
+#: templates/external/review/find.tpl:130
+#: templates/external/review/select.tpl:78
 msgid "Filter"
 msgstr ""
 
-#: templates/reviews_admin_view.htm:40
-msgid "Reset"
+#: templates/external/review/find.tpl:136
+msgid "Change selection"
 msgstr ""
 
-#: templates/reviews_admin_view.htm:50
-msgid "Internal ID"
+#: templates/external/review/select.tpl:4
+msgid "Review information"
 msgstr ""
 
-#: templates/reviews_admin_view.htm:54
-msgid "Options"
+#: templates/admin/config.tpl:4 templates/admin/config.tpl:7
+msgid "Settings"
 msgstr ""
 
-#: templates/reviews_user_display.htm:12
-msgid "Published on"
+#: templates/admin/config.tpl:15
+msgid "General"
 msgstr ""
 
-#: templates/reviews_user_new.htm:2
-msgid "Submit a Review"
+#: templates/admin/config.tpl:19
+msgid "Here you can manage all basic settings for this application."
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:2
-msgid "Edit Review"
+#: templates/admin/config.tpl:22
+msgid "Enablecategorization"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:16
-msgid "Content"
+#: templates/admin/config.tpl:26
+msgid "Pagesize"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:100
-msgid "Meta data"
+#: templates/admin/config.tpl:27
+msgid "Enter the pagesize. Only digits are allowed."
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:103
+#: templates/admin/config.tpl:30
+msgid "Score for users"
+msgstr ""
+
+#: templates/admin/config.tpl:34
+msgid "Addcategorytitletopermalink"
+msgstr ""
+
+#: templates/admin/config.tpl:40
+msgid "Update configuration"
+msgstr ""
+
+#: templates/admin/include_standardfields_edit.tpl:4
+#: templates/admin/include_standardfields_edit.tpl:9
+#: templates/admin/include_standardfields_display.tpl:4
+#: templates/admin/include_standardfields_display.tpl:7
+#: templates/user/include_standardfields_edit.tpl:4
+#: templates/user/include_standardfields_edit.tpl:9
+#: templates/user/include_standardfields_display.tpl:4
+#: templates/user/include_standardfields_display.tpl:7
+msgid "Creation and update"
+msgstr ""
+
+#: templates/admin/include_standardfields_edit.tpl:13
+#: templates/user/include_standardfields_edit.tpl:13
 #, php-format
 msgid "Created by %s"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:104
+#: templates/admin/include_standardfields_edit.tpl:14
+#: templates/user/include_standardfields_edit.tpl:14
 #, php-format
 msgid "Created on %s"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:106
+#: templates/admin/include_standardfields_edit.tpl:18
+#: templates/user/include_standardfields_edit.tpl:18
 #, php-format
-msgid "Last update by %s"
+msgid "Updated by %s"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:107
+#: templates/admin/include_standardfields_edit.tpl:19
+#: templates/user/include_standardfields_edit.tpl:19
 #, php-format
 msgid "Updated on %s"
 msgstr ""
 
-#: templates/reviews_admin_modify.htm:112
-msgid "Update"
+#: templates/admin/review/view.rss:11 templates/admin/review/view.atom:4
+#: templates/admin/review/view.rss.tpl:11 templates/user/review/view.rss:11
+#: templates/user/review/view.atom:4 templates/user/review/view.rss.tpl:11
+msgid "Latest reviews"
+msgstr ""
+
+#: templates/admin/review/view.rss:12 templates/admin/review/view.atom:5
+#: templates/admin/review/view.rss.tpl:12 templates/user/review/view.rss:12
+#: templates/user/review/view.atom:5 templates/user/review/view.rss.tpl:12
+msgid "A direct feed showing the list of reviews"
+msgstr ""
+
+#: templates/admin/review/include_displayItemListMany.tpl:16
+#: templates/admin/review/include_displayItemListOne.tpl:13
+#: templates/user/review/include_displayItemListMany.tpl:19
+#: templates/user/review/include_displayItemListOne.tpl:15
+msgid "Open quick view window"
+msgstr ""
+
+#: templates/admin/review/include_displayItemListMany.tpl:16
+#: templates/admin/review/include_displayItemListOne.tpl:13
+#: templates/user/review/include_displayItemListMany.tpl:19
+#: templates/user/review/include_displayItemListOne.tpl:15
+msgid "Quick view"
+msgstr ""
+
+#: templates/admin/review/view.csv:3 templates/user/review/view.csv:3
+msgid "Url title"
+msgstr ""
+
+#: templates/admin/review/delete.tpl:4
+msgid "Delete review"
+msgstr ""
+
+#: templates/admin/review/delete.tpl:11
+msgid "Do you really want to delete this review ?"
+msgstr ""
+
+#: templates/admin/review/delete.tpl:18
+msgid "Confirmation prompt"
+msgstr ""
+
+#: templates/admin/include_standardfields_display.tpl:11
+#: templates/user/include_standardfields_display.tpl:11
+msgid "Creation"
+msgstr ""
+
+#: templates/admin/include_standardfields_display.tpl:22
+#: templates/user/include_standardfields_display.tpl:22
+#, php-format
+msgid "Created by %1$s on %2$s"
+msgstr ""
+
+#: templates/admin/include_standardfields_display.tpl:25
+#: templates/user/include_standardfields_display.tpl:25
+msgid "Last update"
+msgstr ""
+
+#: templates/admin/include_standardfields_display.tpl:36
+#: templates/user/include_standardfields_display.tpl:36
+#, php-format
+msgid "Updated by %1$s on %2$s"
+msgstr ""
+
+#: templates/contenttype/item_edit.tpl:5
+#: templates/contenttype/itemlist_edit.tpl:3
+#: templates/block/itemlist_modify.tpl:3
+msgid "Object type"
+msgstr ""
+
+#: templates/contenttype/item_edit.tpl:8
+#: templates/contenttype/itemlist_edit.tpl:7
+msgid ""
+"If you change this please save the element once to reload the parameters "
+"below."
+msgstr ""
+
+#: templates/contenttype/item_edit.tpl:11
+msgid ""
+"Please select your item here. You can resort the dropdown list and reduce "
+"it's entries by applying filters. On the right side you will see a preview "
+"of the selected entry."
+msgstr ""
+
+#: templates/contenttype/item_edit.tpl:17
+msgid "Link to object"
+msgstr ""
+
+#: templates/contenttype/item_edit.tpl:19
+msgid "Embed object display"
+msgstr ""
+
+#: templates/contenttype/itemlist_edit.tpl:60
+#: templates/block/itemlist_modify.tpl:50
+msgid "Template"
+msgstr ""
+
+#: templates/contenttype/itemlist_edit.tpl:70
+#: templates/block/itemlist_modify.tpl:61
+msgid "Example"
+msgstr ""
+
+#: templates/contenttype/itemlist_review_display_description.tpl:8
+#: templates/contenttype/itemlist_review_display.tpl:4
+msgid "Read more"
+msgstr ""
+
+#: templates/user/main.tpl:7
+msgid "10 Most Popular Reviews"
+msgstr ""
+
+#: templates/user/main.tpl:20
+msgid "10 Most Recent Reviews"
+msgstr ""
+
+#: templates/block/itemlist_modify.tpl:7
+msgid ""
+"If you change this please save the block once to reload the parameters below."
 msgstr ""
