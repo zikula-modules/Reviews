@@ -25,12 +25,14 @@
             {formlabel for='title' __text='Title' mandatorysym='1' cssClass=''}
             {formtextinput group='review' id='title' mandatory=true readOnly=false __title='Enter the title of the review' textMode='singleline' maxLength=255 cssClass='required' }
             {reviewsValidationError id='title' class='required'}
+            <em class="z-sub z-formnote">{gt text='Name of the reviewed product.'}</em>
         </div>
         
         <div class="z-formrow">
             {formlabel for='text' __text='Text' mandatorysym='1' cssClass=''}
             {formtextinput group='review' id='text' mandatory=true __title='Enter the text of the review' textMode='multiline' rows='6' cols='50' cssClass='required' }
             {reviewsValidationError id='text' class='required'}
+            <em class="z-sub z-formnote">{gt text='Please observe proper grammar! Make it at least 100 words, OK? You may also use HTML tags if you know how to use them'}</em>
         </div>
         
         <div class="z-formrow">
@@ -43,6 +45,7 @@
             {formlabel for='reviewer' __text='Reviewer' mandatorysym='1' cssClass=''}
             {formtextinput group='review' id='reviewer' mandatory=true readOnly=false __title='Enter the reviewer of the review' textMode='singleline' maxLength=255 cssClass='required' }
             {reviewsValidationError id='reviewer' class='required'}
+            <em class="z-sub z-formnote">{gt text='Your full name. Required.'}</em>
         </div>
         
         <div class="z-formrow">
@@ -50,6 +53,7 @@
                 {formemailinput group='review' id='email' mandatory=true readOnly=false __title='Enter the email of the review' textMode='singleline' maxLength=255 cssClass='required validate-email' }
             {reviewsValidationError id='email' class='required'}
             {reviewsValidationError id='email' class='validate-email'}
+            <em class="z-sub z-formnote">{gt text='Your e-mail address. Required.'}</em>
         </div>
         {if $modvars.Reviews.scoreForUsers eq 1}
         <div class="z-formrow">
@@ -61,17 +65,20 @@
             {formlabel for='url' __text='Url' cssClass=''}
             {formurlinput group='review' id='url' mandatory=false readOnly=false __title='Enter the url of the review' textMode='singleline' maxLength=255 cssClass=' validate-url' }
             {reviewsValidationError id='url' class='validate-url'}
+            <em class="z-sub z-formnote">{gt text="Product's official website. Make sure your URL starts with 'http://'"}</em>
         </div>
         
         <div class="z-formrow">
-            {formlabel for='url_title' __text='Url_title' cssClass=''}
+            {formlabel for='url_title' __text='Title of link' cssClass=''}
             {formtextinput group='review' id='url_title' mandatory=false readOnly=false __title='Enter the url_title of the review' textMode='singleline' maxLength=255 cssClass='' }
+            <em class="z-sub z-formnote">{gt text='Required if you have a related link, otherwise not required.'}</em> 
         </div>
         
-        <div class="z-formrow">
+        <div class="z-formrow" style="display: none;">
             {formlabel for='hits' __text='Hits' cssClass=''}
             {formintinput group='review' id='hits' mandatory=false __title='Enter the hits of the review' maxLength=18 cssClass=' validate-digits' }
             {reviewsValidationError id='hits' class='validate-digits'}
+            <input name="hits" type="hidden" value="0" />
         </div>
         
         <div class="z-formrow">
@@ -109,8 +116,10 @@
         </div>
         <p class="z-warningmsg">{gt text='Please make sure that the information entered is 100% valid and uses proper grammar and capitalization. For instance, please do not enter your text in ALL CAPS, as it will be rejected.'}</p>
     </fieldset>
+    {if $modvars.Reviews.enablecategorization eq 1}
+        {include file='user/include_categories_edit.tpl' obj=$review groupName='reviewObj'}
+    {/if}
     
-    {include file='user/include_categories_edit.tpl' obj=$review groupName='reviewObj'}
     {if $mode ne 'create'}
         {include file='user/include_standardfields_edit.tpl' obj=$review}
     {/if}
@@ -122,12 +131,15 @@
     {else}
         {notifydisplayhooks eventname='reviews.ui_hooks.reviews.form_edit' id=null assign='hooks'}
     {/if}
-    {if is_array($hooks) && count($hooks)}
-        {foreach key='providerArea' item='hook' from=$hooks}
-            <fieldset>
+    {if is_array($hooks) && count($hooks) > 0}
+        <fieldset>
+            <legend>{gt text='Hooks'}</legend>
+            {foreach key='hookName' item='hook' from=$hooks}
+            <div class="z-formrow">
                 {$hook}
-            </fieldset>
-        {/foreach}
+            </div>
+            {/foreach}
+        </fieldset>
     {/if}
     
     {* include return control *}
