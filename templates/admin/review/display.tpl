@@ -10,13 +10,26 @@
     </div>
 
     <dl>
-        <dt>{gt text='State'}</dt>
+       {* <dt>{gt text='State'}</dt>
         <dd>{$review.workflowState|reviewsGetListEntry:'review':'workflowState'|safetext}</dd>
         <dt>{gt text='Title'}</dt>
-        <dd>{$review.title}</dd>
+        <dd>{$review.title}</dd> *}
+        {if $review.cover ne '' && $review.coverUpload eq ''}
+          <dt>{gt text='Cover'}</dt>
+          <dd><img src="/modules/Reviews/images/{$review.cover}" /></dd>
+        {/if} 
+        {if $review.coverUpload ne ''}
+          <a href="{$review.coverUploadFullPathURL}" title="{$review->getTitleFromDisplayPattern()|replace:"\"":""}"{if $review.coverUploadMeta.isImage} rel="imageviewer[review]"{/if}>
+          {if $review.coverUploadMeta.isImage}
+              {thumb image=$review.coverUploadFullPath objectid="review-`$review.id`" preset=$reviewThumbPresetCoverUpload tag=true img_alt=$review->getTitleFromDisplayPattern()}
+          {else}
+              {gt text='Download'} ({$review.coverUploadMeta.size|reviewsGetFileSize:$review.coverUploadFullPath:false:false})
+          {/if}
+          </a>
+        {else}&nbsp;{/if}
         <dt>{gt text='Text'}</dt>
         <dd>{$review.text}</dd>
-        <dt>{gt text='Zlanguage'}</dt>
+        <dt>{gt text='Language'}</dt>
         <dd>{$review.zlanguage|getlanguagename|safetext}</dd>
         <dt>{gt text='Reviewer'}</dt>
         <dd>{$review.reviewer}</dd>
@@ -29,7 +42,7 @@
         </dd>
         <dt>{gt text='Score'}</dt>
         <dd>{$review.score|reviewsGetListEntry:'review':'score'|safetext}</dd>
-        <dt>{gt text='Url'}</dt>
+        <dt>{gt text='Web'}</dt>
         <dd>{if $review.url ne ''}
         {if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}
         <a href="{$review.url}" title="{gt text='Visit this page'}">{icon type='url' size='extrasmall' __alt='Homepage'}</a>
@@ -38,12 +51,12 @@
         {/if}
         {else}&nbsp;{/if}
         </dd>
-        <dt>{gt text='Url_title'}</dt>
+        <dt>{gt text='Title of link'}</dt>
         <dd>{$review.url_title}</dd>
         <dt>{gt text='Hits'}</dt>
         <dd>{$review.hits}</dd>
-        <dt>{gt text='Cover'}</dt>
-        <dd>{$review.cover}</dd>
+       {* <dt>{gt text='Cover'}</dt>
+        <dd>{$review.cover}</dd> 
         <dt>{gt text='Cover upload'}</dt>
         <dd>{if $review.coverUpload ne ''}
           <a href="{$review.coverUploadFullPathURL}" title="{$review->getTitleFromDisplayPattern()|replace:"\"":""}"{if $review.coverUploadMeta.isImage} rel="imageviewer[review]"{/if}>
@@ -54,10 +67,12 @@
           {/if}
           </a>
         {else}&nbsp;{/if}
-        </dd>
+        </dd> *}
         
     </dl>
-    {include file='admin/include_categories_display.tpl' obj=$review}
+    {if $modvars.Reviews.enablecategorization eq 1}
+        {include file='admin/include_categories_display.tpl' obj=$review}
+    {/if}
     {include file='admin/include_standardfields_display.tpl' obj=$review}
 
     {if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}

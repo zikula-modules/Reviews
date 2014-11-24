@@ -35,7 +35,7 @@
         <dd>{$review.reviewer}</dd>
         <dt>{gt text='Email'}</dt>
         <dd>{if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}
-        <a href="mailto:{$review.email}" title="{gt text='Send an email'}">{icon type='mail' size='extrasmall' __alt='Email'}</a>
+        <a href="mailto:{$review.email|@html_entity_decode}" title="{gt text='Send an email'}">{icon type='mail' size='extrasmall' __alt='Email'}</a>
         {else}
           {$review.email}
         {/if}
@@ -71,7 +71,9 @@
         </dd> *}
         
     </dl>
-    {include file='user/include_categories_display.tpl' obj=$review}
+    {if $modvars.Reviews.enablecategorization eq 1}
+        {include file='user/include_categories_display.tpl' obj=$review}
+    {/if}
     {include file='user/include_standardfields_display.tpl' obj=$review}
 
     {if !isset($smarty.get.theme) || $smarty.get.theme ne 'Printer'}

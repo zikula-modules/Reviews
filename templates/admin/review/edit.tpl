@@ -64,13 +64,13 @@
         </div>
         
         <div class="z-formrow">
-            {formlabel for='url' __text='Url' cssClass=''}
+            {formlabel for='url' __text='Web' cssClass=''}
             {formurlinput group='review' id='url' mandatory=false readOnly=false __title='Enter the url of the review' textMode='singleline' maxLength=255 cssClass=' validate-url' }
             {reviewsValidationError id='url' class='validate-url'}
         </div>
         
         <div class="z-formrow">
-            {formlabel for='url_title' __text='Url_title' cssClass=''}
+            {formlabel for='url_title' __text='Title of link' cssClass=''}
             {formtextinput group='review' id='url_title' mandatory=false readOnly=false __title='Enter the url_title of the review' textMode='singleline' maxLength=255 cssClass='' }
         </div>
         
@@ -113,8 +113,9 @@
             {reviewsValidationError id='coverUpload' class='validate-upload'}
         </div>
     </fieldset>
-    
-    {include file='admin/include_categories_edit.tpl' obj=$review groupName='reviewObj'}
+    {if $modvars.Reviews.enablecategorization eq 1}
+        {include file='admin/include_categories_edit.tpl' obj=$review groupName='reviewObj'}
+    {/if}
     {if $mode ne 'create'}
         {include file='admin/include_standardfields_edit.tpl' obj=$review}
     {/if}
