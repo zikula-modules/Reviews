@@ -57,7 +57,7 @@
         {/if}
         {if !isset($zlanguageFilter) || $zlanguageFilter eq true}
                 <label for="zlanguage">{gt text='Language'}</label>
-                {html_select_locales name='zlanguage' selected=$zlanguage}
+                {html_select_locales name='zlanguage' selected=$zlanguage all=true}
         {/if}
         {if !isset($searchFilter) || $searchFilter eq true}
                 <label for="searchTerm">{gt text='Search'}</label>
@@ -71,12 +71,12 @@
                     <option value="workflowState"{if $sort eq 'workflowState'} selected="selected"{/if}>{gt text='Workflow state'}</option>
                     <option value="title"{if $sort eq 'title'} selected="selected"{/if}>{gt text='Title'}</option>
                     <option value="text"{if $sort eq 'text'} selected="selected"{/if}>{gt text='Text'}</option>
-                    <option value="zlanguage"{if $sort eq 'zlanguage'} selected="selected"{/if}>{gt text='Zlanguage'}</option>
+                    <option value="zlanguage"{if $sort eq 'zlanguage'} selected="selected"{/if}>{gt text='Language'}</option>
                     <option value="reviewer"{if $sort eq 'reviewer'} selected="selected"{/if}>{gt text='Reviewer'}</option>
                     <option value="email"{if $sort eq 'email'} selected="selected"{/if}>{gt text='Email'}</option>
                     <option value="score"{if $sort eq 'score'} selected="selected"{/if}>{gt text='Score'}</option>
-                    <option value="url"{if $sort eq 'url'} selected="selected"{/if}>{gt text='Url'}</option>
-                    <option value="url_title"{if $sort eq 'url_title'} selected="selected"{/if}>{gt text='Url_title'}</option>
+                    <option value="url"{if $sort eq 'url'} selected="selected"{/if}>{gt text='Web'}</option>
+                    <option value="url_title"{if $sort eq 'url_title'} selected="selected"{/if}>{gt text='Title of link'}</option>
                     <option value="hits"{if $sort eq 'hits'} selected="selected"{/if}>{gt text='Hits'}</option>
                     <option value="cover"{if $sort eq 'cover'} selected="selected"{/if}>{gt text='Cover'}</option>
                     <option value="coverUpload"{if $sort eq 'coverUpload'} selected="selected"{/if}>{gt text='Cover upload'}</option>
