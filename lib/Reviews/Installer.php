@@ -49,6 +49,8 @@ class Reviews_Installer extends Reviews_Base_Installer
                 // we get all old entries
                 $result = DBUtil::executeSQL('SELECT * FROM `reviews`');
                 $reviews = $result->fetchAll(Doctrine::FETCH_ASSOC);
+                
+                $dom = ZLanguage::getModuleDomain($this->name);
 
                 $workflowHelper = new Zikula_Workflow('standard', 'Reviews');
 
@@ -63,27 +65,27 @@ class Reviews_Installer extends Reviews_Base_Installer
                         $newReview->setWorkflowState('approved');
                         $newReview->setTitle($review['pn_title']);
                         $newReview->setText($review['pn_text']);
-                        $newReview->setReviewer($review['pn_reviewer']);
-                        $newReview->setEmail($review['pn_email']);
+                        if ($review['pn_reviewer'] != '') {
+                            $newReview->setReviewer($review['pn_reviewer']);
+                        } else {
+                            $newReview->setReviewer(__('Unknown', $dom));
+                        }
+                        if ($review['pn_email'] != '') {
+                            $newReview->setEmail($review['pn_email']);
+                        } else {
+                            $adminmail = UserUtil::getVar('email', 2);
+                            $newReview->setEmail(__($adminmail));
+                        }
                         $newReview->setScore($review['pn_score']);
                         $newReview->setCover($review['pn_cover']);
                         $newReview->setUrl($review['pn_url']);
                         $newReview->setUrl_title($review['pn_url_title']);
                         $newReview->setHits($review['pn_hits']);
                         $newReview->setZlanguage($review['pn_language']);
-
-                        $createdDate =  $review['pn_cr_date'];
-                        //$createdDate = $createdDate->getTimestamp();
-
-                        //$createdDate = date( 'Y-m-d H:i:s', $createdDate);
-                        //$createdDate = DateUtil::formatDatetime($review['pn_cr_date'], 'datetimelong');
-                        //$newReview->setCreatedDate($createdDate);
-                        //$updatedDate = $review['pn_lu_date'];
-
-                        //$updatedDate = $updatedDate->getTimestamp();
-
-                        //$updatedDate = date( 'Y-m-d H:i:s', $updatedDate);
-                        //$newReview->setUpdatedDate($updatedDate);
+                        $createdDate =  new Datetime($review['pn_cr_date']);
+                        $newReview->setCreatedDate($createdDate);
+                        $updatedDate = new DateTime($review['pn_lu_date']);
+                        $newReview->setUpdatedDate($updatedDate);
                         $newReview->setCreatedUserId($review['pn_cr_uid']);
                         $newReview->setUpdatedUserId($review['pn_lu_uid']);
 
