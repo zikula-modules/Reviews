@@ -66,3 +66,12 @@ div.reviews-view form.reviews-quicknav fieldset #num {
     width: 50px;
     text-align: right;
 }
+
+/**************OWN CODE ********************/
+
+div#reviews-popular,
+div#reviews-recent {
+    float: left;
+    margin: 2em auto;
+    width: 50%;
+}
