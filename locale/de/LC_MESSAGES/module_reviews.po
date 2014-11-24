@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Reviews\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-24 12:45+0000\n"
-"PO-Revision-Date: 2014-11-24 15:56+0100\n"
+"PO-Revision-Date: 2014-11-24 21:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -182,7 +182,7 @@ msgstr "Übersicht Rezensionen"
 
 #: templates/plugins/function.reviewsuserlinks.php:60
 msgid "Submit a review"
-msgstr "Eine Rezension einreichen"
+msgstr "Rezension einreichen"
 
 #: templates/plugins/function.reviewsValidationError.php:36
 msgid "This is a required field."
@@ -632,45 +632,43 @@ msgstr "Zeigt alle Elemente ausgenommen die abgelehnt wurden"
 
 #: lib/Reviews/Util/Base/ListEntries.php:206
 msgid "Ten"
-msgstr ""
+msgstr "Zehn"
 
 #: lib/Reviews/Util/Base/ListEntries.php:211
 msgid "Nine"
-msgstr ""
+msgstr "Neun"
 
 #: lib/Reviews/Util/Base/ListEntries.php:216
 msgid "Eight"
-msgstr ""
+msgstr "Acht"
 
 #: lib/Reviews/Util/Base/ListEntries.php:221
 msgid "Seven"
-msgstr ""
+msgstr "Sieben"
 
 #: lib/Reviews/Util/Base/ListEntries.php:226
 msgid "Six"
-msgstr ""
+msgstr "Sechs"
 
 #: lib/Reviews/Util/Base/ListEntries.php:231
 msgid "Five"
-msgstr ""
+msgstr "Fünf"
 
 #: lib/Reviews/Util/Base/ListEntries.php:236
 msgid "Four"
-msgstr ""
+msgstr "Vier"
 
 #: lib/Reviews/Util/Base/ListEntries.php:241
-#, fuzzy
 msgid "Three"
-msgstr "Eine Liste der 3 neuesten Sitzungen."
+msgstr "Drei"
 
 #: lib/Reviews/Util/Base/ListEntries.php:246
 msgid "Two"
-msgstr ""
+msgstr "Zwei"
 
 #: lib/Reviews/Util/Base/ListEntries.php:251
-#, fuzzy
 msgid "One"
-msgstr "Ein Element"
+msgstr "Eins"
 
 #: lib/Reviews/Util/Base/View.php:217
 msgid "Bytes"
@@ -720,8 +718,8 @@ msgstr "Rezensionen auf Freigabe wartend"
 #, php-format
 msgid "One review is waiting for approval."
 msgid_plural "%s reviews are waiting for approval."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eine Rezension wartet auf Freigabe."
+msgstr[1] "%s Rezensionen warten auf Freigabe."
 
 #: lib/Reviews/Util/ListEntries.php:28
 msgid "10"
@@ -975,11 +973,11 @@ msgstr "Index"
 
 #: lib/Reviews/Api/User.php:51
 msgid "Create Review"
-msgstr "Eine Rezension erstellen"
+msgstr "Rezension erstellen"
 
 #: lib/Reviews/Api/User.php:52
 msgid "Create a review"
-msgstr "Eine Rezension erstellen"
+msgstr "Rezension erstellen"
 
 #: lib/Reviews/Controller/Base/User.php:235
 #: lib/Reviews/Controller/Base/Admin.php:221
@@ -1376,9 +1374,8 @@ msgstr "Sprache"
 #: templates/admin/review/view.tpl:84 templates/admin/review/edit.tpl:67
 #: templates/admin/review/view.csv:3 templates/user/review/view.tpl:76
 #: templates/user/review/edit.tpl:65 templates/user/review/view.csv:3
-#, fuzzy
 msgid "Url"
-msgstr "Bitte gib eine gültige URL ein."
+msgstr "Url"
 
 #: Resources/templates/admin/review/view_quickNav.tpl:77
 #: Resources/templates/admin/review/view.tpl:87
@@ -1388,9 +1385,8 @@ msgstr "Bitte gib eine gültige URL ein."
 #: templates/admin/review/view_quickNav.tpl:77
 #: templates/admin/review/view.tpl:87 templates/admin/review/edit.tpl:73
 #: templates/user/review/view.tpl:79
-#, fuzzy
 msgid "Url_title"
-msgstr "Permalink Url Titel"
+msgstr " Url Titel"
 
 #: Resources/templates/admin/review/view_quickNav.tpl:81
 #: Resources/templates/user/review/view_quickNav.tpl:83
@@ -1459,7 +1455,7 @@ msgstr "OK"
 #: templates/admin/review/view.tpl:13 templates/admin/review/edit.tpl:10
 #: templates/user/review/view.tpl:13 templates/user/review/edit.tpl:9
 msgid "Create review"
-msgstr "Eine Rezension erstellen"
+msgstr "Rezension erstellen"
 
 #: Resources/templates/admin/review/view.tpl:23
 #: Resources/templates/user/review/view.tpl:23
@@ -1476,7 +1472,6 @@ msgstr "Alle Einträge anzeigen"
 #: Resources/templates/admin/review/view.tpl:63
 #: Resources/templates/user/review/view.tpl:55
 #: templates/admin/review/view.tpl:63 templates/user/review/view.tpl:55
-#, fuzzy
 msgid "State"
 msgstr "Status"
 
@@ -1552,65 +1547,56 @@ msgstr "Wähle die Bewertung"
 #: Resources/templates/admin/review/edit.tpl:68
 #: Resources/templates/user/review/edit.tpl:66
 #: templates/admin/review/edit.tpl:68 templates/user/review/edit.tpl:66
-#, fuzzy
 msgid "Enter the url of the review"
 msgstr "Bitte gib eine gültige URL ein."
 
 #: Resources/templates/admin/review/edit.tpl:74
 #: Resources/templates/user/review/edit.tpl:73
 #: templates/admin/review/edit.tpl:74 templates/user/review/edit.tpl:73
-#, fuzzy
 msgid "Enter the url_title of the review"
-msgstr "Permalink Url Titel"
+msgstr "Gib den Linktitel der Rezension ein"
 
 #: Resources/templates/admin/review/edit.tpl:79
 #: Resources/templates/user/review/edit.tpl:79
 #: templates/admin/review/edit.tpl:79 templates/user/review/edit.tpl:79
-#, fuzzy
 msgid "Enter the hits of the review"
-msgstr "Zugriffe"
+msgstr "Gib die Aufrufe der Rezension ein"
 
 #: Resources/templates/admin/review/edit.tpl:85
 #: Resources/templates/user/review/edit.tpl:86
 #: templates/admin/review/edit.tpl:85 templates/user/review/edit.tpl:86
-#, fuzzy
 msgid "Enter the cover of the review"
-msgstr "Rezension"
+msgstr "Gib den Namen des Covers für die Rezension ein"
 
 #: Resources/templates/admin/review/edit.tpl:91
 #: Resources/templates/user/review/edit.tpl:93
 #: templates/admin/review/edit.tpl:91 templates/user/review/edit.tpl:93
-#, fuzzy
 msgid "Reset to empty value"
 msgstr "Zu leerem Wert zurück setzen"
 
 #: Resources/templates/admin/review/edit.tpl:93
 #: Resources/templates/user/review/edit.tpl:95
 #: templates/admin/review/edit.tpl:93 templates/user/review/edit.tpl:95
-#, fuzzy
 msgid "Allowed file extensions:"
 msgstr "Erlaubte Dateiendungen:"
 
 #: Resources/templates/admin/review/edit.tpl:94
 #: Resources/templates/user/review/edit.tpl:96
 #: templates/admin/review/edit.tpl:94 templates/user/review/edit.tpl:96
-#, fuzzy
 msgid "Allowed file size:"
 msgstr "Erlaubte Dateigröße:"
 
 #: Resources/templates/admin/review/edit.tpl:98
 #: Resources/templates/user/review/edit.tpl:100
 #: templates/admin/review/edit.tpl:98 templates/user/review/edit.tpl:100
-#, fuzzy
 msgid "Current file"
 msgstr "Aktuelle Datei"
 
 #: Resources/templates/admin/review/edit.tpl:108
 #: Resources/templates/user/review/edit.tpl:110
 #: templates/admin/review/edit.tpl:108 templates/user/review/edit.tpl:110
-#, fuzzy
 msgid "Delete cover upload ?"
-msgstr "Bildupload"
+msgstr "Cover löschen?"
 
 #: Resources/templates/admin/review/edit.tpl:109
 #: Resources/templates/user/review/edit.tpl:111
@@ -1898,7 +1884,6 @@ msgid "Quick view"
 msgstr "Schnellansicht"
 
 #: templates/admin/review/view.csv:3 templates/user/review/view.csv:3
-#, fuzzy
 msgid "Url title"
 msgstr "Permalink Url Titel"
 
@@ -1998,6 +1983,9 @@ msgid ""
 msgstr ""
 "Wenn Du dies änderst speichere dieses Element um die Parameter unten neu zu "
 "laden."
+
+msgid "Unknown"
+msgstr "Unbekannt"
 
 #~ msgid ""
 #~ "Warning! Could not create the default Reviews category tree. If you want "
