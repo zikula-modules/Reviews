@@ -12,8 +12,6 @@
 
 class Reviews_Api_Admin extends Zikula_AbstractApi
 {
-
-
     /**
      * Purge the permalink fields in the Reviews table
      * @author Mateo Tibaquira
@@ -83,10 +81,10 @@ class Reviews_Api_Admin extends Zikula_AbstractApi
                     'text' => $this->__('Reviews'),
                     'title' => $this->__('Review list'));
         } 
-        if (SecurityUtil::checkPermission('Reviews::', '::', ACCESS_ADMIN)) {
+       /* if (SecurityUtil::checkPermission('Reviews::', '::', ACCESS_ADMIN)) {
             $links[] = array('url'  => ModUtil::url('Reviews', 'admin', 'view', array('purge' => 1)),
                     'text' => $this->__('Purge permalinks'));
-        }
+        }*/
         if (SecurityUtil::checkPermission($this->name . '::', '::', ACCESS_ADMIN)) {
             $links[] = array('url' => ModUtil::url($this->name, 'admin', 'config'),
                     'text' => $this->__('Configuration'),
