@@ -1,6 +1,44 @@
 CHANGELOG
 ---------
 
+Changes in 2.5.0
+
+fixed #7 search is working now
+
+fixed #8 saving is not possible without required input
+
+fixed #9 solved with refactoring by MOST
+
+fixed #11 dropdown for scoring in frontend; possible to disable in backend
+
+fixed #12 complete workflow with generating by MOST
+
+fixed #13 Done. Refactoring with MOST
+
+fixed #19 modvars renamed
+
+fixed #20 categories find their way in the new table
+
+fixed #21 dropdownlist for score is working now
+
+fixed #22 all existing entries get workflow state 'approved'
+
+fixed #23 all entries get their entry in the workflow table
+
+fixed #24 categories work in url if shorturl is enabled
+
+fixed #27 renamed entry in the category registry to 'Review'
+
+fixed #28 dates of existing entries are there after upgrade
+
+fixed #29 path to cover - old style
+
+fixed #30 overview is working now again
+
+fixed #31 diable categories is working now
+
+fixed #32 upgrade is working now
+
 Changes in 2.4.1
 
 fixed #1 The module is installable now under Zikula 1.3.5
