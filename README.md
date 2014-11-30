@@ -1,7 +1,7 @@
 Reviews 2.5.0
 ===========================
 
-This version is under development.
+This version is redy for use.
 
 
 This module is intended for being used with Zikula 1.3.x.
