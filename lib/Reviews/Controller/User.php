@@ -13,6 +13,19 @@
 class Reviews_Controller_User extends Reviews_Controller_Base_User
 {
     /**
+     * Post initialise.
+     *
+     * Run after construction.
+     *
+     * @return void
+     */
+    protected function postInitialize()
+    {
+        // Set caching to true by default.
+        $this->view->setCaching(Zikula_View::CACHE_DISABLED);
+    }
+    
+    /**
      * the main user function
      *
      * @param integer startnum starting number of the page

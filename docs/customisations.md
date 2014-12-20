@@ -18,6 +18,7 @@ implemented classes
 *lib/Reviews/Api/Search.php
 
 *lib/Reviews/Controller/Admin.php
+*lib/Reviews/Controller/User.php
 
 *lib/Reviews/Entity/Review.php
 *lib/Reviews/Entity/Repository/Review.php
