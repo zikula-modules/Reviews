@@ -6,10 +6,9 @@ This version is ready for use.
 
 This module is intended for being used with Zikula 1.3.x.
 
-For questions and other remarks visit our homepage http://webdesign-in-bremen.com.
+For questions and other remarks visit our homepage https://homepages-mit-zikula.de.
 
-Also you can visit the german community (http://support.zikula.de)
-or the international community (http://zikula.org) for questions or remarks.
+Also you can visit the community (zikula.org) for questions or remarks.
 
-Michael Ueberschaer (kontakt@webdesign-in-bremen.com)
-http://webdesign-in-bremen.com
+Michael Ueberschaer (info@homepages-mit-zikula.de)
+https://homepages-mit-zikula.de
